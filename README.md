@@ -1,1 +1,1 @@
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). Please see the page "Get Started" at https://bookdown.org/home/about/ for how to compile this example.
+Jonathan D. Trattner's honor thesis for his Bachelor of Science Degree in Computational Neuroscience from Wake Forest University. Built with the R package [{bookdown}](https://github.com/rstudio/bookdown). 

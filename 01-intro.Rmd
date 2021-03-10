@@ -1,6 +1,6 @@
 # Introduction {#intro}
 
-[**You:**]{.ul} "Jonathan, what the heck is your senior thesis?".
+[**You:**]{.ul} "Jonathan, what is your senior thesis?".
 
 [**Me:**]{.ul} "Oh, it's a hodgepodge of R packages and projects I've developed. I have something for behavioral-genetics modeling, creating and deploying surveys, conducting randomized-trials, interfacing with the GitHub API, and more."
 
