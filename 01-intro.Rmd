@@ -1,17 +1,17 @@
 # Introduction {#intro}
 
-You: "Jonathan, what the heck is your senior thesis?".
+[**You:**]{.ul} "Jonathan, what the heck is your senior thesis?".
 
-Me: "Oh, it's a hodgepodge of R packages and projects I've developed. I have something for behavioral-genetics modeling, creating and deploying surveys, conducting randomized-trials, interfacing with the GitHub API, and more."
+[**Me:**]{.ul} "Oh, it's a hodgepodge of R packages and projects I've developed. I have something for behavioral-genetics modeling, creating and deploying surveys, conducting randomized-trials, interfacing with the GitHub API, and more."
 
-You: "Wow! That's so cool. How does it relate to your major?"
+[**You:**]{.ul} "Wow! That's so cool. How does it relate to your major?"
 
-Me: "Good question! In order to determine statistical significance for a question-of-interest, many researchers (especially in the life sciences) employ randomized-controlled studies. They are the 'gold standard for effectiveness research' because they help reduce bias when examining causal relationships [@hariton2018]. In the neuroscience literature specifically, a lot of behavioral data is collected and correlated with neuroimaging data. Some of the work I've done to facilitate easy creation and deployment of surveys, as well as provide a framework for randomized-controlled studies, helps make that process easier."
+[**Me:**]{.ul} "Good question! In order to determine statistical significance for a question-of-interest, many researchers (especially in the life sciences) employ randomized-controlled studies. They are the 'gold standard for effectiveness research' because they help reduce bias when examining causal relationships [@hariton2018]. In the neuroscience literature specifically, a lot of behavioral data is collected and correlated with neuroimaging data. Some of the work I've done to facilitate easy creation and deployment of surveys, as well as provide a framework for randomized-controlled studies, helps make that process easier."
 
-You: "What about the GitHub API interface and behavioral-genetics modeling work?"
+[**You:**]{.ul} "What about the GitHub API interface and behavioral-genetics modeling work?"
 
-Me: "Also good question! GitHub is a code hosting platform that facilitates collaboration between programmers all over the world. It's especially useful because it allows you to version-control your work (i.e. save a copy at every stage and easily revert back to older work as needed). The behavioral-genetics modeling is simply one way I exercised the computational techniques (both mathematical and technical) I have learned while pursuing my degree."
+[**Me:**]{.ul} "Also good question! GitHub is a code hosting platform that facilitates collaboration between programmers all over the world. It's especially useful because it allows you to version-control your work (i.e. save a copy at every stage and easily revert back to older work as needed). The behavioral-genetics modeling is simply one way I exercised the computational techniques (both mathematical and technical) I have learned while pursuing my degree."
 
-You: "Well, okay then! How can I hear about these in more detail?"
+[**You:**]{.ul} "Well, okay then! How can I hear about these in more detail?"
 
-Me: "I'm so glad you asked! You can read about them on this website I created for my senior thesis. You can find it at seniorthesis.jdtrat.com."
+[**Me:**]{.ul} "I'm so glad you asked! You can read about them on this website I created for my senior thesis. You can find it at seniorthesis.jdtrat.com."
