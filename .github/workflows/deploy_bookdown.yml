@@ -23,7 +23,7 @@ jobs:
           key: r-6-${{ hashFiles('DESCRIPTION') }}
           restore-keys: r-6-
 
-       -name: Install pak
+      - name: Install pak
         run: Rscript -e 'install.packages("pak", repos = "https://r-lib.github.io/p/pak/dev/")'
 
       - name: Install dependencies
