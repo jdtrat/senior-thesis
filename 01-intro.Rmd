@@ -1,0 +1,9 @@
+# Introduction {#intro}
+
+You: "Jonathan, what the heck is your senior thesis?".
+
+Me: "Oh, it's a hodgepodge of R packages and projects I've developed. I have something for behavioral-genetics modeling, creating and deploying surveys, conducting randomized-trials, interfacing with the GitHub API, and more."
+
+You: "Wow! That's so cool. How does it relate to your major?"
+
+Me: "Good question! In order to determine statistical significance for a question-of-interest, many researchers (especially in the life sciences) employ randomized-controlled studies. They are the 'gold standard for effectiveness research' because they help reduce bias when examining causal relationships [@hariton2018]. In the neuroscience literature, specifically, a lot of behavioral data is collected and correlated with neuroimaging data. Some of the work I've done to facilitate easy creation and deployment of surveys as well as provide a framework for randomized-controlled studies helps make that process easier."
