@@ -17,7 +17,7 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install rmarkdown and remotes
-        run: Rscript -e 'install.packages(c("rmarkdown","remotes"))'
+        run: Rscript -e 'install.packages(c("rmarkdown","remotes", "bslib", "downlit", "xml2"))'
       - name: Install dev version of bookdown
         run: Rscript -e 'remotes::install_github("rstudio/bookdown")'
       - name: Render Book
