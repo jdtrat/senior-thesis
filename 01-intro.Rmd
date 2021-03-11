@@ -14,4 +14,4 @@
 
 [**You:**]{.ul} "Well, okay then! How can I hear about these in more detail?"
 
-[**Me:**]{.ul} "I'm so glad you asked! You can read about them on this website I created for my senior thesis. You can find it at seniorthesis.jdtrat.com."
+[**Me:**]{.ul} "I'm so glad you asked! You can read about them on this website I created for my senior thesis. That is, at [senior-thesis.jdtrat.com](https://senior-thesis.jdtrat.com). There, I describe in-depth the theoretical and technical details involved in my work, why it matters, and how it can (and is already) helping other people."

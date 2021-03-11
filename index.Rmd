@@ -22,21 +22,21 @@ Technically, Wake Forest does not have a major in Computational Neuroscience. St
 
 ### Why did I major in Computational Neuroscience? 
 
-In high school, I read the book *Thinking, Fast and Slow* by Israeli Psychologist and Nobel Laureate [Daniel Kahneman](https://en.wikipedia.org/wiki/Daniel_Kahneman). It introduced me to the field of behavioral economics. At the time, I was taking AP Psychology and just got interested in the psychology of how people make decisions. When I got to Wake, I enrolled in Introduction to Neuroscience with the amazing Katy Lack. That class really whet my appetite for all things neuroscience, and I became interested in the five-year [combined Bachelor's/Master's degree in Neuroscience](https://school.wakehealth.edu/Education-and-Training/Graduate-Programs/Graduate-Programs-in-Neuroscience/5Year-Dual-Degree) that Wake offered. I met with the program director, [Carol Milligan](https://school.wakehealth.edu/Faculty/M/Carol-Milligan), and she introduced me to this newly hired professor, [Ken Kishida](https://kishidalab.com). His lab uses behavioral tasks and neuroimaging methods to explore the neurophysiological mechanisms underlying decision-making. I've been working with Ken since spring 2018 and our work really inspired me to design my own major. 
+In high school, I read the book *Thinking, Fast and Slow* by Israeli Psychologist and Nobel Laureate [Daniel Kahneman](https://en.wikipedia.org/wiki/Daniel_Kahneman). It introduced me to the field of behavioral economics. At the time, I was taking AP Psychology and became interested in the psychology of how people make decisions. When I arrived at Wake, I enrolled in "Introduction to Neuroscience" with the amazing Katy Lack. That class whet my appetite for all things neuroscience, and I became interested in the five-year [combined Bachelor's/Master's degree in Neuroscience](https://school.wakehealth.edu/Education-and-Training/Graduate-Programs/Graduate-Programs-in-Neuroscience/5Year-Dual-Degree). I met with the program director, [Carol Milligan](https://school.wakehealth.edu/Faculty/M/Carol-Milligan), and she introduced me to this newly hired professor, [Ken Kishida](https://kishidalab.com). His lab pairs behavioral tasks with neuro-imaging to explore the neurophysiological mechanisms that underly decision-making. I've been working with Ken since spring 2018 and our work inspired me to design my own major. 
 
 ### What am I doing with Computational Neuroscience?
 
-While working with Ken on my master's thesis, I developed an interest in the programming language R. I took a course in Statistical Learning with the brilliant [Lucy D'Agostino McGowan](https://www.lucymcgowan.com) and asked her if she would be my thesis advisor. Fortunately for me, she said yes. Working with her over the past year has been an incredible learning experience, and I'm an infinitely better programmer through her tutelage. As I head into my master's program next year, and beyond, I hope to continue improving my skills and creating exciting software tools to facilitate the development and analysis of behavioral and neural data.
+While working with Ken on my master's thesis, I developed an interest in the programming language R. I took a course in Statistical Learning with the brilliant [Lucy D'Agostino McGowan](https://www.lucymcgowan.com) and asked her if she would be my thesis advisor. Fortunately for me, she said yes. Working with her over the past year has been an incredible learning experience, and I'm an infinitely better programmer because of her tutelage. As I head into my master's program next year, and beyond, I hope to continue improving my skills and creating exciting software tools to facilitate the development and analysis of behavioral and neural data.
 
-### Thank you
+### Thank you `r emo::ji("raised_hands")`
 
-Wake Forest is truly a special place where professors and students can connect on a personal level. I've had the privilege of working with so many intelligent, kind, and talented people, and I've had so many wonderful role models. A (nonexhaustive and unordered) list of people I'm forever grateful to:
+Wake Forest is truly a special place where professors and students can connect on a personal level. I've had the privilege of working with so many intelligent, kind, and talented people, and I've had so many wonderful role models. A (nonexhaustive and unordered) list of mentors to whom I'm forever grateful:
 
 
 * [Lucy D'Agostino McGowan](https://www.lucymcgowan.com) who helped foster my interest in R and programming. She challenged me and gave me the room to grow personally and academically. 
 * [Ken Kishida]()
 * [Michael Cartwright]()
-* [S. Mason Garrison](https://psychology.wfu.edu/about-the-department/faculty-and-staff/mason-garrison/) who 
+* [S. Mason Garrison](https://psychology.wfu.edu/about-the-department/faculty-and-staff/mason-garrison/)
 * [David Heeger]()
 * [Todd McFall]()
 * [Melissa Mafeo]()
