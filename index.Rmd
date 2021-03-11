@@ -44,9 +44,6 @@ Wake Forest is truly a special place where professors and students can connect o
 * [Terry Blumenthal]()
 * [Wayne Pratt]()
 
-
-`r emo::ji("one")` Documentation for 
-
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
