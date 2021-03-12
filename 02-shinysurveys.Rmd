@@ -1,4 +1,6 @@
-# Motivation
+# {shinysurveys} {#shinysurveys}
+
+## Motivation 
 
 Surveys are extremely useful tools for gathering information from individuals on a large scale and are used in a variety of domains. Within the medical research field, for example, there are often three types of surveys: epidemiological questionnaires, ones on attitudes towards health services or interventions, and polls to assess knowledge about specific topics [@jones2013]. Neuroscientific research often uses them to correlate behaviors (e.g. political ideology or X) with neuroimaging data (see [@ahn2014] as an example).
 
@@ -6,6 +8,6 @@ The ability to easily collect and analyze survey data is, therefore, extremely i
 
 > Add more about why we developed {shinysurveys}...describe what the programming language R is, what it is used for, the package Shiny, and how our work can be utilized in existing data collection pipelines.
 
-# A survey of {shinysurveys} {#survey-of-shinysurveys}
+## A survey of {shinysurveys} {#survey-of-shinysurveys}
 
 > `r emo::ji("warning")` vignette coming soon...
