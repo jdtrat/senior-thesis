@@ -3,3 +3,5 @@ why-did-i-major-in-computational-neuroscience
 what-am-i-doing-with-computational-neuroscience
 thank-you
 intro
+motivation
+survey-of-shinysurveys
