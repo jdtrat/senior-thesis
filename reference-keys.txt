@@ -5,4 +5,6 @@ thank-you
 intro
 shinysurveys
 motivation
+why-r
+shiny
 survey-of-shinysurveys
