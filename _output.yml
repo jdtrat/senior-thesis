@@ -1,6 +1,8 @@
 bookdown::bs4_book:
   theme:
     primary: "#3D91F2"
+  includes:
+    in_header: hypothesis-annotation.html
 bookdown::gitbook:
   css: style.css
   config:
