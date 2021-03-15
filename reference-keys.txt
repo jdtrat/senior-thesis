@@ -3,8 +3,10 @@ why-did-i-major-in-computational-neuroscience
 what-am-i-doing-with-computational-neuroscience
 thank-you
 intro
+r
+what-is-r
+why-is-r-becoming-more-popular
 shinysurveys
 motivation
-why-r
-shiny
+what-is-shiny
 survey-of-shinysurveys
