@@ -20,7 +20,10 @@ Imports:
     rmarkdown,
     bslib,
     downlit,
-    xml2
+    xml2,
+    shiny,
+    here,
+    details
 Remotes: 
     rstudio/bookdown,
     hadley/emo
