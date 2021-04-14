@@ -52,7 +52,7 @@ knitr::include_graphics(here::here("graphics/shinyapp_textInput.png"))
 Kandlikar and colleagues (2018) developed an application, *ranacapa*, to explore environmental DNA sequences that is used to engage and educate professionals and students alike. It allowed resource managers at the Channel Islands National Park Service to filter their observed species down to "a particular set of key taxa that they regularly monitor" and allowed students with "no prior bioinformatics experience" to gain an understanding of their eDNA samples, allowing their instructors to focus on "biological questions rather than on troubleshooting bioinformatics problems" [@kandlikar2018].
 
 ```{r add-industry-example}
-details(c("Add an example of {shiny} in industry. Mastering Shiny references Silicon Valley metrics. Maybe ask R4DS members?"), summary = "Add Industry Example")
+details::details(c("Add an example of {shiny} in industry. Mastering Shiny references Silicon Valley metrics. Maybe ask R4DS members?"), summary = "Add Industry Example")
 ```
 
 {shiny} is "used in almost as many niches and industries as R itself is" [@hadleywickham2020]. As such, the work presented in this section is usable in many contexts.
