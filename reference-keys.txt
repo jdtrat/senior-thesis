@@ -7,6 +7,8 @@ r
 what-is-r
 why-is-r-becoming-more-popular
 shinysurveys
-motivation
 what-is-shiny
+technical-aspects
+usage
+motivation
 survey-of-shinysurveys
