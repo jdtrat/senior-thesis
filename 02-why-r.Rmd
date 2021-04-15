@@ -4,7 +4,7 @@ The work discussed in this thesis was primarily done with the programming langua
 
 ## What is R?
 
-R is an interpreted, object-oriented language developed in the early 1990s by Ross Ihaka and Robert Gentleman[@ihaka1996]. It is "an integrated suite of software facilities for data manipulation, calculation and graphical display"[@therfoundation]. R is often thought of as a statistical computing language, though it may be better categorized as an "environment with which statistical techniques are implemented" [@therfoundation]. Recently, it has gained widespread popularity in both academia and industry jobs [@carson2016; @ashleevance2009a; @rstudio2018].
+R is an interpreted, object-oriented language developed in the early 1990s by Ross Ihaka and Robert Gentleman [@ihaka1996]. It is "an integrated suite of software facilities for data manipulation, calculation and graphical display" [@therfoundation]. R is often thought of as a statistical computing language, though it may be better categorized as an "environment with which statistical techniques are implemented" [@therfoundation]. Recently, it has gained widespread popularity in both academia and industry jobs [@carson2016; @ashleevance2009a; @rstudio2018].
 
 ## Why is R becoming more popular? 
 
