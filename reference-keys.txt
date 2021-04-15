@@ -12,7 +12,6 @@ technical-aspects
 usage
 motivation
 survey-of-shinysurveys
-introduction
 examples
 numeric-input
 multiple_choice
@@ -20,7 +19,6 @@ text_input
 select-input
 yes-or-no-yn-input
 implementing-surveys-in-shiny
-main-functions
 ui-function
 server-function
 basic-survey
