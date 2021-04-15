@@ -73,8 +73,6 @@ library(shinysurveys)
 library(tibble)
 ```
 
-# Introduction {#introduction}
-
 Surveys are ubiquitous in data science. A clear example is a simple demographic form. Our package allows you to easily create questionnaires using Shiny.[^1] We provide two functions to do this: `surveyOutput()` and `renderSurvey()`. Both of these functions take in a data frame containing question information that follows a specific format. To illustrate them in use, we will show you a questionnaire from McGowan et al. (unpublished) that is built into the `shinysurveys` package:
 
 [^1]: We assume that you are familiar with the basic layout of a Shiny application. If not, please check out RStudio's [great resources](https://shiny.rstudio.com/tutorial/) before completing this vignette.
@@ -99,11 +97,11 @@ Each question has seven variables that dictate how it functions within the surve
 -   *dependence_value*: This column contains the specific value that the dependence question must take for this question (row) to be shown.
 -   *required*: logical TRUE/FALSE signifying if a question is required.
 
-# Examples
+### Examples
 
 Below are examples of the currently supported question types. We provide a thorough explanation for the numeric input, but only point out notable differences for other inputs.
 
-## Numeric Input
+#### Numeric Input
 
 A good example of a numeric input is the first question: "What's your age?":
 
@@ -121,7 +119,7 @@ We can also tell that there are no dependency questions. This means that no matt
 
 ![](graphics/numeric_example.png){style="display: block; margin: 1em auto" width="300"}
 
-## Multiple Choice (mc) Input {#multiple_choice}
+#### Multiple Choice (mc) Input {#multiple_choice}
 
 An example of this is the question "Which best describes your gender?":
 
@@ -133,7 +131,7 @@ Unlike numeric inputs, the `option` column represents each of the possible respo
 
 ![](graphics/mc_example.png){style="display: block; margin: 1em auto" width="300"}
 
-## Text Input {#text_input}
+#### Text Input {#text_input}
 
 Questions that need text-based input should specify "text" in the `input_type` column. As noted in the previous example, the following is a dependent of the question "Which best describes your gender?":
 
@@ -147,7 +145,7 @@ It's important to note that, as previously mentioned, the `option` column for te
 
 ![](graphics/text_input_character_string.png){style="display: block; margin: 1em auto" width="290" height="71"}
 
-## Select Input
+#### Select Input
 
 Select inputs are great when there are many potential, discretely defined, response choices.[^4] An example is the question "What was your first language?" which contains `r nrow(subset(teaching_r_questions, question == "What was your first language?"))` 15 options (rows):[^5]
 
@@ -161,7 +159,7 @@ subset(teaching_r_questions, question == "What was your first language?")$option
 
 ![](graphics/select_input_example.png){style="display: block; margin: 1em auto" width="300"}
 
-## Yes or No (y/n) Input
+#### Yes or No (y/n) Input
 
 Yes or no questions are self-explanatory. An example is the question "Have you ever learned to program in R?":
 
@@ -171,19 +169,17 @@ subset(teaching_r_questions, input_id == "learned_r")
 
 ![](graphics/yes_no_example.png){style="display: block; margin: 1em auto" width="300"}
 
-# Implementing Surveys in Shiny
+### Implementing Surveys in Shiny
 
-## Main Functions
-
-### UI Function
+#### UI Function
 
 `surveyOutput()` takes in a data frame of the form described above. You may also add a title and description for your survey with the arguments `survey_title` and `survey_description`, though these are optional. Further documentation can be accessed by typing `?shinysurveys::surveyOutput()` in the console.
 
-### Server Function
+#### Server Function
 
 `renderSurvey()` takes in a data frame of the form described above. It also takes in a `theme` color to style your survey. Typical names such as "red" or "blue" work, as well as hex color codes such as "\#63B8FF" (the default theme). The documentation for it can be accessed by typing `?shinysurveys::renderSurvey()` in the console.
 
-## Basic Survey
+#### Basic Survey
 
 A minimal example of a survey can be created with this template:
 
@@ -204,9 +200,9 @@ shiny::shinyApp(ui = ui, server = server)
 
 Please note that the UI comes with a "Submit" button included. Survey designers can customize actions by using the call `input$submit`. Some examples would be saving or displaying user responses, or displaying a message as seen on the [gif here](https://www.jdtrat.com/packages/shinysurveys/index.html#demos).
 
-## Advanced Features
+### Advanced Features
 
-### Dependency Questions
+#### Dependency Questions
 
 We use the term question dependencies in reference to the situations where a question should only be shown (i.e. asked) if a specific response is given to a preceding question. The questions included with the `shinysurveys` package contain many dependencies. One example we've seen discussing [multiple choice](#multiple_choice) and [text-based](#text_input) questions is the dependent for "Which best describes your gender?"
 
@@ -220,7 +216,7 @@ Focusing on the columns `dependence` and `dependence_value`, we see that the tex
 
 ![](graphics/dependency_example_2.png){style="display: block; margin: 1em auto" width="300"}
 
-### Required Questions {#required_questions}
+#### Required Questions {#required_questions}
 
 Survey designers can define questions that must be answered by adding the value TRUE to the `required` column. If a required question is not answered, the user will not be able to submit their responses.
 
@@ -228,7 +224,7 @@ Survey designers can define questions that must be answered by adding the value 
 
 ![](graphics/required_submit_enabled.png){style="display: block; margin: 1em auto" width="300"}
 
-### User Tracking
+#### User Tracking
 
 Built into the survey is the ability to track users based on URL parameters. If you deploy your survey on [shinyapps.io](shinyapps.io), or run it locally in a browser, you can add a URL parameter after the backslash as follows: `?user_id=12345`. A live demo can be found here: <https://jdtrat-apps.shinyapps.io/shinysurveys_user_tracking/?user_id=hadley>
 
