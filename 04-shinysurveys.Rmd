@@ -37,11 +37,11 @@ shinyApp(ui, server)
 
 When run in a browser, this code produces the following application:
 
-```{r shinyapp-textInput-gif, include = knitr::is_html_output()}
+```{r shinyapp-textInput-gif, include = knitr::is_html_output(), echo = FALSE}
 knitr::include_graphics(here::here("graphics/shinyapp_textInput.gif"))
 ```
 
-```{r shinyapp-textInput-png, include = knitr::is_latex_output()}
+```{r shinyapp-textInput-png, include = knitr::is_latex_output(), echo = FALSE}
 knitr::include_graphics(here::here("graphics/shinyapp_textInput.png"))
 ```
 
@@ -51,7 +51,7 @@ knitr::include_graphics(here::here("graphics/shinyapp_textInput.png"))
 
 Kandlikar and colleagues (2018) developed an application, *ranacapa*, to explore environmental DNA sequences that is used to engage and educate professionals and students alike. It allowed resource managers at the Channel Islands National Park Service to filter their observed species down to "a particular set of key taxa that they regularly monitor" and allowed students with "no prior bioinformatics experience" to gain an understanding of their eDNA samples, allowing their instructors to focus on "biological questions rather than on troubleshooting bioinformatics problems" [@kandlikar2018].
 
-```{r add-industry-example}
+```{r add-industry-example, echo = FALSE}
 details::details(c("Add an example of {shiny} in industry. Mastering Shiny references Silicon Valley metrics. Maybe ask R4DS members?"), summary = "Add Industry Example")
 ```
 
@@ -65,17 +65,18 @@ The ability to easily collect and analyze survey data is, therefore, extremely i
 
 ## A survey of {shinysurveys} {#survey-of-shinysurveys}
 
-> `r emo::ji("warning")` vignette in progress...
-
-
-```{r setup, message = FALSE}
+```{r setup, message = FALSE, echo = FALSE}
 library(shinysurveys)
 library(tibble)
 ```
 
-Surveys are ubiquitous in data science. A clear example is a simple demographic form. Our package allows you to easily create questionnaires using Shiny.[^1] We provide two functions to do this: `surveyOutput()` and `renderSurvey()`. Both of these functions take in a data frame containing question information that follows a specific format. To illustrate them in use, we will show you a questionnaire from McGowan et al. (unpublished) that is built into the `shinysurveys` package:
+Surveys are ubiquitous in data science. A clear example is a simple demographic form. Our package allows you to easily create questionnaires using {shiny}.[^shinysurveys-1] This vignette introduces you to the main functionality of our package as it is currently published on CRAN.[^shinysurveys-2] We provide two functions to do this: `surveyOutput()` and `renderSurvey()`. Both of these take in a data frame containing question information that follows a specific format. To illustrate them in use, we will show you a questionnaire from McGowan et al. (unpublished) that is built into the `shinysurveys` package:[^shinysurveys-3]
 
-[^1]: We assume that you are familiar with the basic layout of a Shiny application. If not, please check out RStudio's [great resources](https://shiny.rstudio.com/tutorial/) before completing this vignette.
+[^shinysurveys-1]: We assume that you are familiar with the basic layout of a Shiny application. If not, please check out the brief discussion earlier in this thesis or RStudio's [great resources](https://shiny.rstudio.com/tutorial/).
+
+[^shinysurveys-2]: The version discussed was published on CRAN, the Comprehensive R Archive Network, on February 19th, 2021. The development version, hosted on GitHub, contains new features and can be [accessed here](https://github.com/jdtrat/shinysurveys/).
+
+[^shinysurveys-3]: In the following code, I use the prefix `shinysurveys::` whenever I'm using a function specific to this package. If you are unfamiliar with this notation, see [[\@rpkgs]](https://r-pkgs.org/namespace.html)
 
 ```{r, echo = FALSE}
 shinysurveys::teaching_r_questions
@@ -109,13 +110,13 @@ A good example of a numeric input is the first question: "What's your age?":
 subset(teaching_r_questions, input_id == "age")
 ```
 
-As we noted in the [introduction](#Introduction), this row shows us that the question is "What's your age?". We know we are expecting a numeric input by looking at the `input_type` column, and the default value is equal to 25 according to the `option` column.[^2]
+As we noted in the [introduction](#Introduction), this row shows us that the question is "What's your age?". We know we are expecting a numeric input by looking at the `input_type` column, and the default value is equal to 25 according to the `option` column.[^shinysurveys-4]
 
-[^2]: It is important to note that the option column for numeric inputs provides the default value, but for other types -- as we will see -- provides the possible options for a question.
+[^shinysurveys-4]: It is important to note that the option column for numeric inputs provides the default value, but for other types -- as we will see -- provides the possible options for a question.
 
-We can also tell that there are no dependency questions. This means that no matter what value you enter, no follow-up question will appear. Lastly, we know this is a required question.[^3]
+We can also tell that there are no dependency questions. This means that no matter what value you enter, no follow-up question will appear. Lastly, we know this is a required question.[^shinysurveys-5]
 
-[^3]: Required question functionality will be discussed in more detail in the section [Required Questions](#required_questions).
+[^shinysurveys-5]: Required question functionality will be discussed in more detail in the section [Required Questions](#required_questions).
 
 ![](graphics/numeric_example.png){style="display: block; margin: 1em auto" width="300"}
 
@@ -147,11 +148,11 @@ It's important to note that, as previously mentioned, the `option` column for te
 
 #### Select Input
 
-Select inputs are great when there are many potential, discretely defined, response choices.[^4] An example is the question "What was your first language?" which contains `r nrow(subset(teaching_r_questions, question == "What was your first language?"))` 15 options (rows):[^5]
+Select inputs are great when there are many potential, discretely defined, response choices.[^shinysurveys-6] An example is the question "What was your first language?" which contains `r nrow(subset(teaching_r_questions, question == "What was your first language?"))` options (rows):[^shinysurveys-7]
 
-[^4]: As of October 2020, these do not support multiple options selected at once, though we anticipate adding this functionality in the future.
+[^shinysurveys-6]: As of October 2020, these do not support multiple options selected at once, though we anticipate adding this functionality in the future.
 
-[^5]: Note the presence of the NA in the output above. This deals with question dependencies, which is explained in detail in the section [Dependency Questions](#Question%20Dependencies).
+[^shinysurveys-7]: Note the presence of the NA in the output above. This deals with question dependencies, which is explained in detail in the section [Dependency Questions](#Question%20Dependencies).
 
 ```{r show first language options, echo = FALSE}
 subset(teaching_r_questions, question == "What was your first language?")$option
@@ -227,4 +228,3 @@ Survey designers can define questions that must be answered by adding the value 
 #### User Tracking
 
 Built into the survey is the ability to track users based on URL parameters. If you deploy your survey on [shinyapps.io](shinyapps.io), or run it locally in a browser, you can add a URL parameter after the backslash as follows: `?user_id=12345`. A live demo can be found here: <https://jdtrat-apps.shinyapps.io/shinysurveys_user_tracking/?user_id=hadley>
-
