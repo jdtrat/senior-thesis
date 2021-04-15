@@ -5,7 +5,7 @@ thank-you
 intro
 r
 what-is-r
-why-is-r-becoming-more-popular
+r-popularity
 shinysurveys
 what-is-shiny
 technical-aspects
