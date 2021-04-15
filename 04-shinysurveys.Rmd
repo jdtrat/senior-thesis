@@ -70,6 +70,7 @@ The ability to easily collect and analyze survey data is, therefore, extremely i
 
 ```{r setup, message = FALSE}
 library(shinysurveys)
+library(tibble)
 ```
 
 # Introduction {#introduction}

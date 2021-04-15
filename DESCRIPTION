@@ -23,7 +23,8 @@ Imports:
     xml2,
     shiny,
     here,
-    details
+    details,
+    tibble
 Remotes: 
     rstudio/bookdown,
     hadley/emo
