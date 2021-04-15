@@ -38,11 +38,11 @@ shinyApp(ui, server)
 When run in a browser, this code produces the following application:
 
 ```{r shinyapp-textInput-gif, include = knitr::is_html_output(), echo = FALSE}
-knitr::include_graphics(here::here("graphics/shinyapp_textInput.gif"))
+knitr::include_graphics(here::here("graphics/shinysurveys/shinyapp_textInput.gif"))
 ```
 
 ```{r shinyapp-textInput-png, include = knitr::is_latex_output(), echo = FALSE}
-knitr::include_graphics(here::here("graphics/shinyapp_textInput.png"))
+knitr::include_graphics(here::here("graphics/shinysurveys/shinyapp_textInput.png"))
 ```
 
 ### Usage {#usage}
