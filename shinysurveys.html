@@ -35,6 +35,7 @@
 <li><a class="" href="intro.html"><span class="header-section-number">1</span> Introduction</a></li>
 <li><a class="" href="r.html"><span class="header-section-number">2</span> R</a></li>
 <li><a class="active" href="shinysurveys.html"><span class="header-section-number">3</span> {shinysurveys}</a></li>
+<li><a class="" href="ghee.html"><span class="header-section-number">4</span> {ghee}</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -84,7 +85,7 @@
 <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p>When run in a browser, this code produces the following application:</p>
 <div class="inline-figure">
-<img src="graphics/shinyapp_textInput.gif"><!-- -->
+<img src="graphics/shinysurveys/shinyapp_textInput.gif"><!-- -->
 </div>
 </div>
 <div id="usage" class="section level3">
@@ -173,7 +174,7 @@
 ## 1 What's your a… 25     numeric    age      &lt;NA&gt;       &lt;NA&gt;             TRUE</code></pre>
 <p>As we noted in the <a href="#Introduction">introduction</a>, this row shows us that the question is “What’s your age?”. We know we are expecting a numeric input by looking at the <code>input_type</code> column, and the default value is equal to 25 according to the <code>option</code> column.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;It is important to note that the option column for numeric inputs provides the default value, but for other types – as we will see – provides the possible options for a question.&lt;/p&gt;"><sup>5</sup></a></p>
 <p>We can also tell that there are no dependency questions. This means that no matter what value you enter, no follow-up question will appear. Lastly, we know this is a required question.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Required question functionality will be discussed in more detail in the section &lt;a href="shinysurveys.html#required_questions"&gt;Required Questions&lt;/a&gt;.&lt;/p&gt;'><sup>6</sup></a></p>
-<div class="inline-figure"><img src="graphics/numeric_example.png" style="display: block; margin: 1em auto" width="300"></div>
+<div class="inline-figure"><img src="graphics/shinysurveys/numeric_example.png" style="display: block; margin: 1em auto" width="300"></div>
 </div>
 <div id="multiple_choice" class="section level4">
 <h4>
@@ -189,7 +190,7 @@
 ## 4 Which best… Prefer … mc         gender    &lt;NA&gt;       &lt;NA&gt;             TRUE    
 ## 5 Which best… &lt;NA&gt;     text       self_des… gender     Prefer to self … FALSE</code></pre>
 <p>Unlike numeric inputs, the <code>option</code> column represents each of the possible responses for this question. You may notice that the fifth row of this question has <em>NA</em> in the <code>option</code> column and “text” in the <code>input_type</code> column. We will discuss this in more detail <a href="#Question%20Dependencies">below</a>, but for now note that this question has a dependent. That is, if a specific option is chosen for this question, a new one will appear below. In this case, a question that accepts text as its input.</p>
-<div class="inline-figure"><img src="graphics/mc_example.png" style="display: block; margin: 1em auto" width="300"></div>
+<div class="inline-figure"><img src="graphics/shinysurveys/mc_example.png" style="display: block; margin: 1em auto" width="300"></div>
 </div>
 <div id="text_input" class="section level4">
 <h4>
@@ -201,8 +202,8 @@
 ##   &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;            &lt;lgl&gt;   
 ## 1 Which best … &lt;NA&gt;   text       self_desc… gender     Prefer to self … FALSE</code></pre>
 <p>It’s important to note that, as previously mentioned, the <code>option</code> column for text-based inputs corresponds to a placeholder value. It can be left blank (i.e. NA) or contain a character string. If they are left empty, the text field will display “Placeholder” as seen below. Otherwise, the character string will be displayed.</p>
-<div class="inline-figure"><img src="graphics/text_input_placeholder.png" style="display: block; margin: 1em auto" width="300"></div>
-<div class="inline-figure"><img src="graphics/text_input_character_string.png" style="display: block; margin: 1em auto" width="290" height="71"></div>
+<div class="inline-figure"><img src="graphics/shinysurveys/text_input_placeholder.png" style="display: block; margin: 1em auto" width="300"></div>
+<div class="inline-figure"><img src="graphics/shinysurveys/text_input_character_string.png" style="display: block; margin: 1em auto" width="290" height="71"></div>
 </div>
 <div id="select-input" class="section level4">
 <h4>
@@ -212,7 +213,7 @@
 <pre><code>##  [1] "Arabic"   "Armenian" "Chinese"  "English"  "French"   "Creole"  
 ##  [7] "German"   "Greek"    "Gujarati" "Hebrew"   "Hindi"    "Italian" 
 ## [13] "Japanese" "Other"    NA</code></pre>
-<div class="inline-figure"><img src="graphics/select_input_example.png" style="display: block; margin: 1em auto" width="300"></div>
+<div class="inline-figure"><img src="graphics/shinysurveys/select_input_example.png" style="display: block; margin: 1em auto" width="300"></div>
 </div>
 <div id="yes-or-no-yn-input" class="section level4">
 <h4>
@@ -224,7 +225,7 @@
 ##   &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;            &lt;lgl&gt;   
 ## 1 Have you ever… Yes    y/n        learned… &lt;NA&gt;       &lt;NA&gt;             TRUE    
 ## 2 Have you ever… No     y/n        learned… &lt;NA&gt;       &lt;NA&gt;             TRUE</code></pre>
-<div class="inline-figure"><img src="graphics/yes_no_example.png" style="display: block; margin: 1em auto" width="300"></div>
+<div class="inline-figure"><img src="graphics/shinysurveys/yes_no_example.png" style="display: block; margin: 1em auto" width="300"></div>
 </div>
 </div>
 <div id="implementing-surveys-in-shiny" class="section level3">
@@ -282,16 +283,16 @@
 ## 4 Which best… Prefer … mc         gender    &lt;NA&gt;       &lt;NA&gt;             TRUE    
 ## 5 Which best… &lt;NA&gt;     text       self_des… gender     Prefer to self … FALSE</code></pre>
 <p>Focusing on the columns <code>dependence</code> and <code>dependence_value</code>, we see that the text-based question will only show if the multiple choice one, with the input id of “gender” takes on the value “Prefer to self describe.” That is, a question with non <em>NA</em> values in the <code>dependence</code> and <code>dependence_value</code> columns mean that it will only show if the question with the input id from <code>dependence</code> takes on the value from <code>dependence_value</code>. This can be seen below:</p>
-<div class="inline-figure"><img src="graphics/dependency_example_1.png" style="display: block; margin: 1em auto" width="300"></div>
-<div class="inline-figure"><img src="graphics/dependency_example_2.png" style="display: block; margin: 1em auto" width="300"></div>
+<div class="inline-figure"><img src="graphics/shinysurveys/dependency_example_1.png" style="display: block; margin: 1em auto" width="300"></div>
+<div class="inline-figure"><img src="graphics/shinysurveys/dependency_example_2.png" style="display: block; margin: 1em auto" width="300"></div>
 </div>
 <div id="required_questions" class="section level4">
 <h4>
 <span class="header-section-number">3.3.3.2</span> Required Questions<a class="anchor" aria-label="anchor" href="#required_questions"><i class="fas fa-link"></i></a>
 </h4>
 <p>Survey designers can define questions that must be answered by adding the value TRUE to the <code>required</code> column. If a required question is not answered, the user will not be able to submit their responses.</p>
-<div class="inline-figure"><img src="graphics/required_submit_disabled.png" style="display: block; margin: 1em auto" width="300"></div>
-<div class="inline-figure"><img src="graphics/required_submit_enabled.png" style="display: block; margin: 1em auto" width="300"></div>
+<div class="inline-figure"><img src="graphics/shinysurveys/required_submit_disabled.png" style="display: block; margin: 1em auto" width="300"></div>
+<div class="inline-figure"><img src="graphics/shinysurveys/required_submit_enabled.png" style="display: block; margin: 1em auto" width="300"></div>
 </div>
 <div id="user-tracking" class="section level4">
 <h4>
@@ -306,7 +307,7 @@
 
   <div class="chapter-nav">
 <div class="prev"><a href="r.html"><span class="header-section-number">2</span> R</a></div>
-<div class="next"><a href="references.html">References</a></div>
+<div class="next"><a href="ghee.html"><span class="header-section-number">4</span> {ghee}</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">

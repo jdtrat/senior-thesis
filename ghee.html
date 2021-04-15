@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>4 {ghee} | Senior Thesis</title>
+<meta name="author" content="Jonathan D. Trattner">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.4/tabs.js"></script><script src="libs/bs3compat-0.2.4/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://hypothes.is/embed.js" async></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Senior Thesis</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Hello, World</a></li>
+<li><a class="" href="intro.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="r.html"><span class="header-section-number">2</span> R</a></li>
+<li><a class="" href="shinysurveys.html"><span class="header-section-number">3</span> {shinysurveys}</a></li>
+<li><a class="active" href="ghee.html"><span class="header-section-number">4</span> {ghee}</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ghee" class="section level1">
+<h1>
+<span class="header-section-number">4</span> {ghee}<a class="anchor" aria-label="anchor" href="#ghee"><i class="fas fa-link"></i></a>
+</h1>
+<div id="version-control" class="section level2">
+<h2>
+<span class="header-section-number">4.1</span> Version Control<a class="anchor" aria-label="anchor" href="#version-control"><i class="fas fa-link"></i></a>
+</h2>
+<p>Programming is an important skill used in academia and industry alike. A computational neuroscientist, for example, may need to develop code that combines neuroimaging data (such as functional magnetic resonance imaging, fMRI) with behavioral data (such as political ideology) in order to understand the relationship between neural processes and political attitudes (e.g. <span class="citation">(Ahn et al. <a href="references.html#ref-ahn2014" role="doc-biblioref">2014</a>)</span>). An industry professional may need to develop code that combines demographic data and purchasing history in order to predict future profits for a new product. Complex models and programs like these are often developed piecemeal by multiple individuals. Thus, if one person makes a change or implements a feature, it’s essential that all collaborators have the latest version. It’s equally essential that any change be revertible in case it introduces a bug to the existing code.</p>
+<p>These requirements are met with a version control system (VCS), which allows you to track incremental changes to code. One may think of VCS as a more robust version of Microsoft Word’s “Track Changes” feature. A popular VCS is called <a href="http://git-scm.com">git</a>, and is extremely popular with scientists and programmers alike <span class="citation">(Blischak, Davenport, and Wilson <a href="references.html#ref-blischak2016" role="doc-biblioref">2016</a>)</span>. The next section discusses the basics of working with git and how to share your code with others using <a href="https://github.com">GitHub</a>, an online platform that hosts code that is version-controlled with git.</p>
+</div>
+<div id="git-and-github" class="section level2">
+<h2>
+<span class="header-section-number">4.2</span> git and GitHub<a class="anchor" aria-label="anchor" href="#git-and-github"><i class="fas fa-link"></i></a>
+</h2>
+<p>In order to version-control your code with git you must navigate to the folder containing your code and <em>initiate</em> a <strong>repository</strong>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;This minimal introduction assumes git is installed on your computer. For a great “how-to”, see the “Install Git” section from &lt;span class="citation"&gt;(Jenny Bryan and Jim Hester, &lt;a href="references.html#ref-jennybryan" role="doc-biblioref"&gt;n.d.&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>9</sup></a></p>
+<details closed><p><summary><span title="Click to Expand"> How to best cite these git definitions? </span> </summary></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="ghee.html#cb13-1"></a></span>
+<span id="cb13-2"><a href="ghee.html#cb13-2"></a>How should I cite the definition blocks? I wanted to include them because I found box <span class="dv">1</span> of [<span class="op">@</span>blischak2016] useful, but I feel they are not explicitly citable from that?</span></code></pre></div>
+</details><p><br></p>
+<div class="definition">
+<p><span id="def:unlabeled-div-1" class="definition"><strong>Definition 4.1  </strong></span>A <strong>repository</strong> (or <strong>repo</strong>) is a folder containing all files to be version-controlled in their present and past forms.</p>
+</div>
+<p>As an example, this thesis is currently version-controlled in a repo called “senior-thesis,” which simply lives as a folder on my computer. This is the <strong>local</strong> repository. Whenever I make a change to a file, I <strong>stage</strong> those changes and <strong>commit</strong> them to my local repository.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-2" class="definition"><strong>Definition 4.2  </strong></span>A <strong>local</strong> repository is a folder of version-controlled files that lives on a personal computer.</p>
+<p>To <strong>stage</strong> files is to highlight them as modified; typically comments are made about any changes for these files and a snapshot of them are <strong>committed</strong> to your local repo.</p>
+</div>
+<p>Once I have committed (a snapshot of) my modified files to my local repo, I <strong>push</strong> those changes to a <strong>remote</strong> repository.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-3" class="definition"><strong>Definition 4.3  </strong></span>A <strong>remote</strong> repository is the version of your local repository stored on a remote server such as GitHub.<br><br>
+To <strong>push</strong> files is to send commits from a local repository to its remote repository.</p>
+</div>
+<p>If someone wished to work on my thesis for me, they could <strong>clone</strong> the remote repository “senior-thesis”, stage, commit, and push changes, and then I could <strong>pull</strong> them into my local repository, ensuring that our versions our consistent.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-4" class="definition"><strong>Definition 4.4  </strong></span>To <strong>clone</strong> a repository is to make a copy of a remote repository on a personal computer; that is, make a local repo from an remote one.<br><br>
+To <strong>pull</strong> is to retrieve any commits (modifications) that are on a remote repository and update your local repo.</p>
+</div>
+<p>With an understanding of some of the core features of git,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;There are additional features of git that are outside the scope of this thesis. For those interested, I would recommend the book &lt;em&gt;Pro Git&lt;/em&gt;, which is freely available &lt;a href="http://git-scm.com/book/en/v2"&gt;here&lt;/a&gt; &lt;span class="citation"&gt;(Scott Chacon and Ben Straub &lt;a href="references.html#ref-scottchacon2014" role="doc-biblioref"&gt;2014&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>10</sup></a> one is ready to collaborate with others. This is often done using <a href="https://github.com/">GitHub</a>, which I will redescribe as an online host for git repositories. When I push an updated version of my thesis, others can view that (and previous versions) <a href="https://github.com/jdtrat/senior-thesis">on GitHub</a>. Because GitHub is a remote platform, it provides a version-controlled backup of my code (or thesis) in case something happened to my computer. On top of that, GitHub has extremely nice features for collaboration and productivity. A few features relevant to my thesis include:</p>
+<details closed><p><summary><span title="Click to Expand"> How to best cite these GitHub Features? </span> </summary></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="ghee.html#cb14-1"></a></span>
+<span id="cb14-2"><a href="ghee.html#cb14-2"></a>How should I cite these? They<span class="st">'re from GitHub'</span>s website <span class="op">--</span><span class="st"> </span>mainly https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>features <span class="op">--</span><span class="st"> </span>as well as personal experience</span></code></pre></div>
+</details><p><br></p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Issues</strong>: A framework for collecting user feedback, reporting software bugs, tracking and prioritizing work, assigning responsibilities, and more.</li>
+<li>
+<strong>Pull requests</strong>: A method of pushing changes to a repository which requires approval by an owner. This facilitates discussions of potential changes before they are integrated into the repository.</li>
+<li>
+<strong>Repository visibility:</strong> A way to restrict who has access to a repository; public repos are available to anyone on the internet; private repos are only available to the owner and any individuals to whom they explicitly grant access; organization repos are available to people in specific organizations (groups).</li>
+</ol>
+<p>For my research, I found myself utilizing these features of GitHub more often. I was constantly leaving my code editor, <a href="https://www.rstudio.com">RStudio</a>, opening up a browser, navigating to my repo-of-choice, and creating or commenting on issues, inviting people to a repository, etc. For this reason, I developed a package, {ghee}, that allows common GitHub tasks to be achieved directly from R. So, what exactly is {ghee}?</p>
+</div>
+<div id="what-is-ghee" class="section level2">
+<h2>
+<span class="header-section-number">4.3</span> What is {ghee}?<a class="anchor" aria-label="anchor" href="#what-is-ghee"><i class="fas fa-link"></i></a>
+</h2>
+<blockquote>
+<p>{ghee} is a user-friendly wrapper for the {gh} package that provides client access to Github’s REST API for common tasks such as creating issues and inviting collaborators.</p>
+</blockquote>
+<div id="technical-aspects-1" class="section level3">
+<h3>
+<span class="header-section-number">4.3.1</span> Technical Aspects<a class="anchor" aria-label="anchor" href="#technical-aspects-1"><i class="fas fa-link"></i></a>
+</h3>
+<div id="github-api" class="section level4">
+<h4>
+<span class="header-section-number">4.3.1.1</span> GitHub API<a class="anchor" aria-label="anchor" href="#github-api"><i class="fas fa-link"></i></a>
+</h4>
+
+</div>
+</div>
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="shinysurveys.html"><span class="header-section-number">3</span> {shinysurveys}</a></div>
+<div class="next"><a href="references.html">References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ghee"><span class="header-section-number">4</span> {ghee}</a></li>
+<li><a class="nav-link" href="#version-control"><span class="header-section-number">4.1</span> Version Control</a></li>
+<li><a class="nav-link" href="#git-and-github"><span class="header-section-number">4.2</span> git and GitHub</a></li>
+<li>
+<a class="nav-link" href="#what-is-ghee"><span class="header-section-number">4.3</span> What is {ghee}?</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#technical-aspects-1"><span class="header-section-number">4.3.1</span> Technical Aspects</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Senior Thesis</strong>" was written by Jonathan D. Trattner. It was last built on 2021-04-15.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

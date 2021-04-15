@@ -1,3 +1,7 @@
+def:unlabeled-div-1
+def:unlabeled-div-2
+def:unlabeled-div-3
+def:unlabeled-div-4
 foreword
 why-did-i-major-in-computational-neuroscience
 what-am-i-doing-with-computational-neuroscience
@@ -26,3 +30,9 @@ advanced-features
 dependency-questions
 required_questions
 user-tracking
+ghee
+version-control
+git-and-github
+what-is-ghee
+technical-aspects-1
+github-api
