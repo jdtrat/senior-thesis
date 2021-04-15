@@ -27,3 +27,4 @@ Imports:
 Remotes: 
     rstudio/bookdown,
     hadley/emo
+    jdtrat/shinysurveys
