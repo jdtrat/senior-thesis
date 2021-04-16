@@ -1,0 +1,9 @@
+# {discord}
+
+## Behavior Genetics
+
+As a field, (human) behavior -- or behavioral -- genetics explores individual differences in psychological traits and characteristics that arise from genetic and environmental factors [@burt2019]. The field grew as an offshoot of psychology and psychiatry as our understanding of molecular genetics matured with the identification of DNA's structure and sequencing [@future-bg; @watson1953; @sanger1977; @fleischmann1995]. For both ethical and practical considerations, conducting randomized experiments -- the "gold standard" for inferring causation [@s.masongarrison2017] -- that aim to tease apart individual traits arising from differences in genes and environment are not possible. Behavior geneticists instead turn towards quasi-experimental designs which control for potential confounds using a variety of statistical approaches [@s.masongarrison2017; @shadish-2002; @sherman2009].
+
+In this thesis, I present work based on a quasi-experimental design using kinship modeling. Kin comparison designs distinguish within-family variance from between-family variance [@chamberlain1975]. The former is a measure of how family members differ from one another; the latter reflects sources that make family members similar to one another but different from other families [@s.masongarrison2017]. By partitioning these sources of variance, behavioral geneticists may greatly reduce confounds when testing causal hypotheses [@lahey2010]. To ease researchers in this goal, I have redesigned an R package, {discord}, that provides user-friendly functions for sibling-based quasi-experimental designs.
+
+## Technical Aspects
