@@ -25,7 +25,8 @@ Imports:
     here,
     details,
     tibble,
-    shinysurveys
+    shinysurveys,
+    ghee
 Remotes: 
     rstudio/bookdown,
     hadley/emo

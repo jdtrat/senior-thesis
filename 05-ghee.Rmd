@@ -167,7 +167,7 @@ gh_issue_new(path = "jdtrat/shinysurveys",
 
 To assign that issue to myself, or respond to it, I would use the issue number (which I could get with `gh_issue_list()`) and do something like this:
 
-```{r gh_issues_extra}
+```{r gh_issues_extra, eval = FALSE}
 
 gh_issue_assign(path = "jdtrat/shinysurveys",
                 issue_number = 5, 
