@@ -10,9 +10,11 @@ intro
 r
 what-is-r
 r-popularity
+discord
+behavior-genetics
+technical-aspects
 shinysurveys
 what-is-shiny
-technical-aspects
 usage
 motivation
 survey-of-shinysurveys
