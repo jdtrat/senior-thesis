@@ -30,9 +30,16 @@ advanced-features
 dependency-questions
 required_questions
 user-tracking
+conclusion
 ghee
 version-control
 git-and-github
 what-is-ghee
 technical-aspects-1
-github-api
+clarifying-butter
+installation
+what-are-use-cases-for-ghee
+collaboration
+repositories
+issues
+conclusion-1

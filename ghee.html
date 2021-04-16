@@ -9,7 +9,7 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.4/tabs.js"></script><script src="libs/bs3compat-0.2.4/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://hypothes.is/embed.js" async></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://hypothes.is/embed.js" async></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -74,12 +74,12 @@
 </div>
 <p>Once I have committed (a snapshot of) my modified files to my local repo, I <strong>push</strong> those changes to a <strong>remote</strong> repository.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-3" class="definition"><strong>Definition 4.3  </strong></span>A <strong>remote</strong> repository is the version of your local repository stored on a remote server such as GitHub.<br><br>
-To <strong>push</strong> files is to send commits from a local repository to its remote repository.</p>
+<p><span id="def:unlabeled-div-3" class="definition"><strong>Definition 4.3  </strong></span>A <strong>remote</strong> repository is the version of your local repository stored on a remote server such as GitHub.</p>
+<p>To <strong>push</strong> files is to send commits from a local repository to its remote repository.</p>
 </div>
 <p>If someone wished to work on my thesis for me, they could <strong>clone</strong> the remote repository “senior-thesis”, stage, commit, and push changes, and then I could <strong>pull</strong> them into my local repository, ensuring that our versions our consistent.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-4" class="definition"><strong>Definition 4.4  </strong></span>To <strong>clone</strong> a repository is to make a copy of a remote repository on a personal computer; that is, make a local repo from an remote one.<br><br>
+<p><span id="def:unlabeled-div-4" class="definition"><strong>Definition 4.4  </strong></span>To <strong>clone</strong> a repository is to make a copy of a remote repository on a personal computer; that is, make a local repo from an remote one.<br>
 To <strong>pull</strong> is to retrieve any commits (modifications) that are on a remote repository and update your local repo.</p>
 </div>
 <p>With an understanding of some of the core features of git,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;There are additional features of git that are outside the scope of this thesis. For those interested, I would recommend the book &lt;em&gt;Pro Git&lt;/em&gt;, which is freely available &lt;a href="http://git-scm.com/book/en/v2"&gt;here&lt;/a&gt; &lt;span class="citation"&gt;(Scott Chacon and Ben Straub &lt;a href="references.html#ref-scottchacon2014" role="doc-biblioref"&gt;2014&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>10</sup></a> one is ready to collaborate with others. This is often done using <a href="https://github.com/">GitHub</a>, which I will redescribe as an online host for git repositories. When I push an updated version of my thesis, others can view that (and previous versions) <a href="https://github.com/jdtrat/senior-thesis">on GitHub</a>. Because GitHub is a remote platform, it provides a version-controlled backup of my code (or thesis) in case something happened to my computer. On top of that, GitHub has extremely nice features for collaboration and productivity. A few features relevant to my thesis include:</p>
@@ -108,13 +108,104 @@ To <strong>pull</strong> is to retrieve any commits (modifications) that are on 
 <h3>
 <span class="header-section-number">4.3.1</span> Technical Aspects<a class="anchor" aria-label="anchor" href="#technical-aspects-1"><i class="fas fa-link"></i></a>
 </h3>
-<div id="github-api" class="section level4">
-<h4>
-<span class="header-section-number">4.3.1.1</span> GitHub API<a class="anchor" aria-label="anchor" href="#github-api"><i class="fas fa-link"></i></a>
-</h4>
+<p>An Application Programming Interface (API) may be thought of as a channel provided by developers of proprietary software that allows individuals to access certain features. The R package <a href="http://googledrive.tidyverse.org/">{googledrive}</a>, for example, allows you to read, write, and manipulate files in your Google Drive account directly from R. In the same vein, GitHub’s API allows you to perform <a href="https://docs.github.com/en/rest/overview/endpoints-available-for-github-apps">hundreds of actions</a> involving repositories, organizations, billing, and more. The official GitHub API “Octokit” is provided for Ruby, .NET, and JavaScript, but there are implementations in many other languages from Clojure to Go, Haskell to Perl, Python and R.</p>
+<p>For R, the package <a href="http://gh.r-lib.org/">{gh}</a> provides extremely flexible API access to GitHub, though it requires the use of HTTP verbs such as <code>HEAD</code>, <code>GET</code>, and <code>POST</code> to perform actions. For R users who are familiar with web protocols, or those who don’t mind exploring the documentation for API requests, {gh} is a wonderful package.</p>
+<p>{ghee} is <strong>not</strong> meant to replace {gh} or be an exhaustive API. It is designed for R users, such as myself, who are less comfortable with web protocols but regularly interact with GitHub. That is, it was designed with the goal of helping developers achieve common tasks with GitHub easily. As such, all functions begin with the prefix <code>gh_</code>, followed by categories of actions such as <code>collab</code> and <code>issue</code>. An overview of the package is described in the next section.</p>
+</div>
+</div>
+<div id="clarifying-butter" class="section level2">
+<h2>
+<span class="header-section-number">4.4</span> Clarifying Butter<a class="anchor" aria-label="anchor" href="#clarifying-butter"><i class="fas fa-link"></i></a>
+</h2>
+<p>I chose the name {ghee} for a couple reasons. One, my neighbor loves using ghee (clarified butter) to cook with, and I’ve become a fan. Two, I think it makes it easy to switch between this package and its underlying one, {gh}, if you need to perform sophisticated API requests.</p>
+<div id="installation" class="section level3">
+<h3>
+<span class="header-section-number">4.4.1</span> Installation<a class="anchor" aria-label="anchor" href="#installation"><i class="fas fa-link"></i></a>
+</h3>
+<p>The source code for {ghee} is <a href="https://github.com/jdtrat/ghee">on my GitHub repo</a>, and the development version of it can be installed and loaded as follows:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Install released version from CRAN</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ghee"</span><span class="op">)</span>
 
+<span class="co"># Or, install the development version from GitHub</span>
+<span class="co"># install.packages("remotes")</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"jdtrat/ghee"</span><span class="op">)</span>
+
+<span class="co"># Load package</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jdtrat/ghee">ghee</a></span><span class="op">)</span></code></pre></div>
+</div>
+<div id="what-are-use-cases-for-ghee" class="section level3">
+<h3>
+<span class="header-section-number">4.4.2</span> What are use cases for {ghee}?<a class="anchor" aria-label="anchor" href="#what-are-use-cases-for-ghee"><i class="fas fa-link"></i></a>
+</h3>
+<div id="collaboration" class="section level4">
+<h4>
+<span class="header-section-number">4.4.2.1</span> Collaboration<a class="anchor" aria-label="anchor" href="#collaboration"><i class="fas fa-link"></i></a>
+</h4>
+<p>I’ve found it particularly helpful to use {ghee} when working with collaborators. Normally, to invite someone to a repo, I would have to navigate to its page on Github, go to settings, manage access, and send an invitation manually. With {ghee}, though, it’s as simple as specifying the repo and the invitee:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_collab_invite.html">gh_collab_invite</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"owner/repository"</span>,
+                 invitee <span class="op">=</span> <span class="st">"bestfriend"</span><span class="op">)</span></code></pre></div>
+<p>If you wanted to invite multiple friends at once, you could do so in a functional programming style. Here’s an example with the <a href="http://purrr.tidyverse.org/">{purrr}</a> package, which simply calls the <code><a href="https://rdrr.io/pkg/ghee/man/gh_collab_invite.html">gh_collab_invite()</a></code> for each entry in the friends vector.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">friends</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"friend"</span>, <span class="st">"pal"</span>, <span class="st">"amigo"</span><span class="op">)</span>
+<span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">walk</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">friends</span>, 
+            <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_collab_invite.html">gh_collab_invite</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"owner/repository"</span>, invitee <span class="op">=</span> <span class="va">.x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="repositories" class="section level4">
+<h4>
+<span class="header-section-number">4.4.2.2</span> Repositories<a class="anchor" aria-label="anchor" href="#repositories"><i class="fas fa-link"></i></a>
+</h4>
+<p>{ghee} provides functions to create, edit, and delete repositories. As an example, I’ll create a repo called “ghee_test,” as seen below.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Create a Private Repo</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_repos_create.html">gh_repos_create</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/ghee_test"</span>, private <span class="op">=</span> <span class="cn">TRUE</span>, description <span class="op">=</span> <span class="st">"A test repository."</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="graphics/ghee/ghee_test_create.png"></div>
+<p>Note how the above picture shows an “Issues” tab. I don’t really want feedback on this repository, so I’m going to disable it with the <code><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate()</a></code> function.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Disable Issues</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/ghee_test"</span>, has_issues <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="graphics/ghee/ghee_test_mutate_issues.png"></div>
+<p>If you decide you don’t want a private repo anymore, no problem! That’s an easy change! In the picture below, you can see the private badge next to the title is gone.</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Change Privacy Settings</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/ghee_test"</span>, private <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="graphics/ghee/ghee_test_mutate_privacy.png"></div>
+<p>Now, I know what you’re thinking. You don’t like the repo name “ghee_test.” I don’t blame you. Let’s change it! Voila! It’s now “ghee_testing.”</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Change Repo Name</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/ghee_test"</span>, name <span class="op">=</span> <span class="st">"ghee_testing"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="graphics/ghee/ghee_test_mutate_name.png"></div>
+<p>For more repository manipulation options, check out GitHub’s API <a href="https://docs.github.com/en/rest/reference/repos#update-a-repository">here</a>. You can also look at the documentation for <code><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate()</a></code>, which expands upon the above examples.</p>
+<p>{ghee} also has a function to delete repositories, though it should be <em>used with caution</em>, as it is <span class="ul"><strong>permanent</strong></span>. Further, if you want to use it, you will need to create a special GitHub PAT with the <a href="https://docs.github.com/en/github/administering-a-repository/deleting-a-repository">appropriate permissions</a>. This can be done with the with the <a href="http://usethis.r-lib.org">{usethis}</a> package as follows: <code>usethis::create_github_token(scopes = "delete_repo")</code>.</p>
+</div>
+<div id="issues" class="section level4">
+<h4>
+<span class="header-section-number">4.4.2.3</span> Issues<a class="anchor" aria-label="anchor" href="#issues"><i class="fas fa-link"></i></a>
+</h4>
+<p>Another big component of GitHub are Issues. {ghee} includes some helper functions for interacting with them. These include, <code><a href="https://rdrr.io/pkg/ghee/man/gh_issue_list.html">gh_issue_list()</a></code>, <code><a href="https://rdrr.io/pkg/ghee/man/gh_issue_new.html">gh_issue_new()</a></code>, <code><a href="https://rdrr.io/pkg/ghee/man/gh_issue_comment.html">gh_issue_comment()</a></code>, and <code><a href="https://rdrr.io/pkg/ghee/man/gh_issue_assign.html">gh_issue_assign()</a></code>. The first function lists the GitHub issues for a specific repo. The next one allows you to create a new issue, and the other two allow you to comment on or assign existing ones. For example, if I wanted to create an issue for my <a href="https://github.com/jdtrat/shinysurveys">{shinysurveys}</a> package discussed <a href="shinysurveys.html#shinysurveys">elsewhere in this thesis</a>, I could do so as follows:</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_issue_new.html">gh_issue_new</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/shinysurveys"</span>, 
+             title <span class="op">=</span> <span class="st">"My Issue Title"</span>, 
+             body <span class="op">=</span> <span class="st">"Just wanted to pop on and say I love your package!"</span><span class="op">)</span></code></pre></div>
+<p>To assign that issue to myself, or respond to it, I would use the issue number (which I could get with <code><a href="https://rdrr.io/pkg/ghee/man/gh_issue_list.html">gh_issue_list()</a></code>) and do something like this:</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_issue_assign.html">gh_issue_assign</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/shinysurveys"</span>,
+                issue_number <span class="op">=</span> <span class="fl">5</span>, 
+                assignees <span class="op">=</span> <span class="st">"jdtrat"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_issue_comment.html">gh_issue_comment</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/shinysurveys"</span>, 
+                 issue_number <span class="op">=</span> <span class="fl">5</span>, 
+                 body <span class="op">=</span> <span class="st">"Thanks, @jdtrat!"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
+</div>
+<div id="conclusion-1" class="section level2">
+<h2>
+<span class="header-section-number">4.5</span> Conclusion<a class="anchor" aria-label="anchor" href="#conclusion-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>Coming soon to a website on your browser…</p>
+
 </div>
 </div>
 
@@ -130,6 +221,13 @@ To <strong>pull</strong> is to retrieve any commits (modifications) that are on 
 <li>
 <a class="nav-link" href="#what-is-ghee"><span class="header-section-number">4.3</span> What is {ghee}?</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#technical-aspects-1"><span class="header-section-number">4.3.1</span> Technical Aspects</a></li></ul>
 </li>
+<li>
+<a class="nav-link" href="#clarifying-butter"><span class="header-section-number">4.4</span> Clarifying Butter</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#installation"><span class="header-section-number">4.4.1</span> Installation</a></li>
+<li><a class="nav-link" href="#what-are-use-cases-for-ghee"><span class="header-section-number">4.4.2</span> What are use cases for {ghee}?</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#conclusion-1"><span class="header-section-number">4.5</span> Conclusion</a></li>
 </ul>
 
       <div class="book-extra">
@@ -146,7 +244,7 @@ To <strong>pull</strong> is to retrieve any commits (modifications) that are on 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Senior Thesis</strong>" was written by Jonathan D. Trattner. It was last built on 2021-04-15.</p>
+    <p>"<strong>Senior Thesis</strong>" was written by Jonathan D. Trattner. It was last built on 2021-04-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
