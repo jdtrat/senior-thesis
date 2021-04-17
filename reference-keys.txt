@@ -13,6 +13,7 @@ r-popularity
 discord
 behavior-genetics
 technical-aspects
+vaccine-willingness-and-socioeconomic-status
 shinysurveys
 what-is-shiny
 usage
