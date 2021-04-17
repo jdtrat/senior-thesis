@@ -54,15 +54,24 @@
 <span class="header-section-number">3.1</span> Behavior Genetics<a class="anchor" aria-label="anchor" href="#behavior-genetics"><i class="fas fa-link"></i></a>
 </h2>
 <p>As a field, (human) behavior – or behavioral – genetics explores individual differences in psychological traits and characteristics that arise from genetic and environmental factors <span class="citation">(Burt, Plaisance, and Hambrick <a href="references.html#ref-burt2019" role="doc-biblioref">2019</a>)</span>. The field grew as an offshoot of psychology and psychiatry as our understanding of molecular genetics matured with the identification of DNA’s structure and sequencing <span class="citation">(S. Mason Garrison <a href="references.html#ref-future-bg" role="doc-biblioref">2017</a>; Watson and Crick <a href="references.html#ref-watson1953" role="doc-biblioref">1953</a>; Sanger, Nicklen, and Coulson <a href="references.html#ref-sanger1977" role="doc-biblioref">1977</a>; Fleischmann et al. <a href="references.html#ref-fleischmann1995" role="doc-biblioref">1995</a>)</span>. For both ethical and practical considerations, conducting randomized experiments – the “gold standard” for inferring causation <span class="citation">(S. Mason Garrison and Joseph Lee Rodgers <a href="references.html#ref-s.masongarrison2017" role="doc-biblioref">2017</a>)</span> – that aim to tease apart individual traits arising from differences in genes and environment are not possible. Behavior geneticists instead turn towards quasi-experimental designs which control for potential confounds using a variety of statistical approaches <span class="citation">(S. Mason Garrison and Joseph Lee Rodgers <a href="references.html#ref-s.masongarrison2017" role="doc-biblioref">2017</a>; William R. Shadish, Thomas D. Cook, and Donald T. Campbell <a href="references.html#ref-shadish-2002" role="doc-biblioref">2002</a>; Sherman, Jessica L. Tracy, and Richard W. Robins <a href="references.html#ref-sherman2009" role="doc-biblioref">2009</a>)</span>.</p>
-<p>In this thesis, I present work based on a quasi-experimental design using kinship modeling. Kin comparison designs distinguish within-family variance from between-family variance <span class="citation">(Gary Chamberlain and Zvi Griliches <a href="references.html#ref-chamberlain1975" role="doc-biblioref">1975</a>)</span>. The former is a measure of how family members differ from one another; the latter reflects sources that make family members similar to one another but different from other families <span class="citation">(S. Mason Garrison and Joseph Lee Rodgers <a href="references.html#ref-s.masongarrison2017" role="doc-biblioref">2017</a>)</span>. By partitioning these sources of variance, behavioral geneticists may greatly reduce confounds when testing causal hypotheses <span class="citation">(Lahey and D’Onofrio <a href="references.html#ref-lahey2010" role="doc-biblioref">2010</a>)</span>. To ease researchers in this goal, I have redesigned an R package, {discord}, that provides user-friendly functions for sibling-based quasi-experimental designs.</p>
+<p>In this thesis, I present work based on a quasi-experimental design using kinship modeling. Kin comparison designs distinguish within-family variance from between-family variance <span class="citation">(Gary Chamberlain and Zvi Griliches <a href="references.html#ref-chamberlain1975" role="doc-biblioref">1975</a>)</span>. The former is a measure of how family members differ from one another; the latter reflects sources that make family members similar to one another but different from other families <span class="citation">(S. Mason Garrison and Joseph Lee Rodgers <a href="references.html#ref-s.masongarrison2017" role="doc-biblioref">2017</a>)</span>. By partitioning these sources of variance, behavioral geneticists may greatly reduce confounds when testing causal hypotheses <span class="citation">(Lahey and D’Onofrio <a href="references.html#ref-lahey2010" role="doc-biblioref">2010</a>)</span>. To ease researchers in this goal, I have developed an R package, {discord}, that provides user-friendly functions for sibling-based quasi-experimental designs.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The {discord} package was previously published by S. Mason Garrison in 2016. The work I discuss here is a revised implementation of the original package focused on ease-of-use.&lt;/p&gt;"><sup>2</sup></a></p>
 </div>
 <div id="technical-aspects" class="section level2">
 <h2>
 <span class="header-section-number">3.2</span> Technical Aspects<a class="anchor" aria-label="anchor" href="#technical-aspects"><i class="fas fa-link"></i></a>
 </h2>
+<p>At a high-level, the {discord} package implements a modified reciprocal standard dyad model <span class="citation">(Kenny, Kashy, and Cook <a href="references.html#ref-kenny2006" role="doc-biblioref">2006</a>)</span> to facilitate kinship comparisons known as the discordant-kinship model. Consider the simplified case where a behavioral outcome, <span class="math inline">\(Y\)</span>, is predicted by one variable, <span class="math inline">\(X\)</span>. The discordant-kinship model relates the difference in the outcome, <span class="math inline">\(Y_{i\Delta}\)</span>, for the <span class="math inline">\(i\text{th}\)</span> kinship pair, where <span class="math inline">\(\bar{Y}_i\)</span> is the mean level of the outcome, <span class="math inline">\(\bar{X}_i\)</span> is the mean level of the predictor, and <span class="math inline">\(X_{i\Delta}\)</span> is the between-kin difference in the predictor.</p>
+<p><span class="math display">\[
+Y_{i\Delta} = \beta_0 + \beta_1 \bar{Y}_i + \beta_2 \bar{X}_i + \beta_3 X_{i\Delta} + \epsilon_i
+\]</span></p>
+<p>This model partitions variance in line with the above discussion to support causal inference. Specifically, the within-family variance is described by <span class="math inline">\(Y_{\Delta}\)</span> and <span class="math inline">\(X_{\Delta}\)</span>; between-family variance is captured by <span class="math inline">\(\bar{Y}\)</span> and <span class="math inline">\(\bar{X}\)</span> <span class="citation">(S. Mason Garrison and Joseph Lee Rodgers <a href="references.html#ref-s.masongarrison2017" role="doc-biblioref">2017</a>)</span>.</p>
+<p>A non-significant association between <span class="math inline">\(Y_\Delta\)</span> and <span class="math inline">\(X_\Delta\)</span> suggests that the variables are not causally related and may have arisen from genetic covariance or shared-environmental factors. In contrast, a significant association may provide support for a causal relationship between variables depending on the relatedness of each kin pair. That is, the discordant-kinship model is applicable for any kin-pair: monozygotic twins who share 100% of their DNA; full-siblings who share 50%; half-siblings who share 25%; cousins who share 12.5%; etc. Thus, a significant relationship found with monozygotic twins would provide stronger support for a causal claim than the same relationship between cousins.</p>
+<p>Following <span class="citation">(S. Mason Garrison and Joseph Lee Rodgers <a href="references.html#ref-s.masongarrison2017" role="doc-biblioref">2017</a>)</span>, I recommend interpreting significant associations as “not disproving a causal relationship.” Although this design controls for much (sibling) if not all (monozygotic twins) background heterogeneity, it is possible that a significant relationship between a phenotype and plausible covariates is possible due to non-shared environmental influences.</p>
+<p>The next section illustrates how to perform a discordant-kinship regression using the {discord} package.</p>
 
 </div>
 </div>
+
   <div class="chapter-nav">
 <div class="prev"><a href="r.html"><span class="header-section-number">2</span> R</a></div>
 <div class="next"><a href="shinysurveys.html"><span class="header-section-number">4</span> {shinysurveys}</a></div>
@@ -88,7 +97,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Senior Thesis</strong>" was written by Jonathan D. Trattner. It was last built on 2021-04-16.</p>
+    <p>"<strong>Senior Thesis</strong>" was written by Jonathan D. Trattner. It was last built on 2021-04-17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -96,6 +105,18 @@
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 </html>
