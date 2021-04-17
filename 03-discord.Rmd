@@ -6,7 +6,7 @@ As a field, (human) behavior -- or behavioral -- genetics explores individual di
 
 In this thesis, I present work based on a quasi-experimental design using kinship modeling. Kin comparison designs distinguish within-family variance from between-family variance [@chamberlain1975]. The former is a measure of how family members differ from one another; the latter reflects sources that make family members similar to one another but different from other families [@s.masongarrison2017]. By partitioning these sources of variance, behavioral geneticists may greatly reduce confounds when testing causal hypotheses [@lahey2010]. To ease researchers in this goal, I have developed an R package, {discord}, that provides user-friendly functions for sibling-based quasi-experimental designs.[^discord-1]
 
-[^discord-1]: The {discord} package was previously published by S. Mason Garrison in 2016. The work I discuss here is a revised implementation of the original package focused on ease-of-use.
+[^discord-1]: The {discord} package was previously published by S. Mason Garrison in 2017. The work I discuss here is a revised implementation of the original package focused on ease-of-use.
 
 ## Technical Aspects
 
@@ -23,3 +23,10 @@ A non-significant association between $Y_\Delta$ and $X_\Delta$ suggests that th
 Following [@s.masongarrison2017], I recommend interpreting significant associations as "not disproving a causal relationship." Although this design controls for much (sibling) if not all (monozygotic twins) background heterogeneity, it is possible that a significant relationship between a phenotype and plausible covariates is possible due to non-shared environmental influences.
 
 The next section illustrates how to perform a discordant-kinship regression using the {discord} package.
+
+## Vaccine willingness and socioeconomic status
+
+The following analysis is a pared-down version of previous work presented at the Behavior Genetics Association 50th Annual Meeting [@jonathantrattner2020]. It utilizes data from the 1979 National Longitudinal Survey of Youth (NLSY79), a nationally representative household probability sample sponsored by the U.S. Bureau of Labor Statistics and Department of Defense. Participants were surveyed annually from 1979-1994 at which point surveys occurred biennially. The data set is publicly available at <https://www.nlsinfo.org/>.
+
+Recent work identified relatedness for approximately 95% of the NLSY79 kin pairs [@rodgers2016]. These kinship links are included in the [{NlsyLinks}](http://nlsy-links.github.io/NlsyLinks/index.html) R package [@beasley2016] and are easily utilized with the {discord} package. The data for this analysis was downloaded with the [NLS Investigator](https://www.nlsinfo.org/investigator/pages/login) and can be found [*here*.]{.ul} For clarity, and to emphasize the functionality of {discord}, the data has been preprocessed using [*this script*]{.ul}.
+
