@@ -4,6 +4,22 @@
 
 As a field, (human) behavior -- or behavioral -- genetics explores individual differences in psychological traits and characteristics that arise from genetic and environmental factors [@burt2019]. The field grew as an offshoot of psychology and psychiatry as our understanding of molecular genetics matured with the identification of DNA's structure and sequencing [@future-bg; @watson1953; @sanger1977; @fleischmann1995]. For both ethical and practical considerations, conducting randomized experiments -- the "gold standard" for inferring causation [@s.masongarrison2017] -- that aim to tease apart individual traits arising from differences in genes and environment are not possible. Behavior geneticists instead turn towards quasi-experimental designs which control for potential confounds using a variety of statistical approaches [@s.masongarrison2017; @shadish-2002; @sherman2009].
 
-In this thesis, I present work based on a quasi-experimental design using kinship modeling. Kin comparison designs distinguish within-family variance from between-family variance [@chamberlain1975]. The former is a measure of how family members differ from one another; the latter reflects sources that make family members similar to one another but different from other families [@s.masongarrison2017]. By partitioning these sources of variance, behavioral geneticists may greatly reduce confounds when testing causal hypotheses [@lahey2010]. To ease researchers in this goal, I have redesigned an R package, {discord}, that provides user-friendly functions for sibling-based quasi-experimental designs.
+In this thesis, I present work based on a quasi-experimental design using kinship modeling. Kin comparison designs distinguish within-family variance from between-family variance [@chamberlain1975]. The former is a measure of how family members differ from one another; the latter reflects sources that make family members similar to one another but different from other families [@s.masongarrison2017]. By partitioning these sources of variance, behavioral geneticists may greatly reduce confounds when testing causal hypotheses [@lahey2010]. To ease researchers in this goal, I have developed an R package, {discord}, that provides user-friendly functions for sibling-based quasi-experimental designs.[^discord-1]
+
+[^discord-1]: The {discord} package was previously published by S. Mason Garrison in 2016. The work I discuss here is a revised implementation of the original package focused on ease-of-use.
 
 ## Technical Aspects
+
+At a high-level, the {discord} package implements a modified reciprocal standard dyad model [@kenny2006] to facilitate kinship comparisons known as the discordant-kinship model. Consider the simplified case where a behavioral outcome, $Y$, is predicted by one variable, $X$. The discordant-kinship model relates the difference in the outcome, $Y_{i\Delta}$, for the $i\text{th}$ kinship pair, where $\bar{Y}_i$ is the mean level of the outcome, $\bar{X}_i$ is the mean level of the predictor, and $X_{i\Delta}$ is the between-kin difference in the predictor.
+
+$$
+Y_{i\Delta} = \beta_0 + \beta_1 \bar{Y}_i + \beta_2 \bar{X}_i + \beta_3 X_{i\Delta} + \epsilon_i
+$$
+
+This model partitions variance in line with the above discussion to support causal inference. Specifically, the within-family variance is described by $Y_{\Delta}$ and $X_{\Delta}$; between-family variance is captured by $\bar{Y}$ and $\bar{X}$ [@s.masongarrison2017].
+
+A non-significant association between $Y_\Delta$ and $X_\Delta$ suggests that the variables are not causally related and may have arisen from genetic covariance or shared-environmental factors. In contrast, a significant association may provide support for a causal relationship between variables depending on the relatedness of each kin pair. That is, the discordant-kinship model is applicable for any kin-pair: monozygotic twins who share 100% of their DNA; full-siblings who share 50%; half-siblings who share 25%; cousins who share 12.5%; etc. Thus, a significant relationship found with monozygotic twins would provide stronger support for a causal claim than the same relationship between cousins.
+
+Following [@s.masongarrison2017], I recommend interpreting significant associations as "not disproving a causal relationship." Although this design controls for much (sibling) if not all (monozygotic twins) background heterogeneity, it is possible that a significant relationship between a phenotype and plausible covariates is possible due to non-shared environmental influences.
+
+The next section illustrates how to perform a discordant-kinship regression using the {discord} package.
