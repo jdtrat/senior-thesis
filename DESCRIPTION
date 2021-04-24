@@ -30,7 +30,8 @@ Imports:
     dplyr,
     NlsyLinks,
     discord,
-    janitor
+    janitor,
+    readr
 Remotes: 
     rstudio/bookdown,
     hadley/emo
