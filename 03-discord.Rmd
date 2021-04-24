@@ -2,7 +2,7 @@
 
 ## Behavior Genetics
 
-As a field, (human) behavior -- or behavioral -- genetics explores individual differences in psychological traits and characteristics that arise from genetic and environmental factors [@burt2019]. The field grew as an offshoot of psychology and psychiatry as our understanding of molecular genetics matured with the identification of DNA's structure and sequencing [@future-bg; @watson1953; @sanger1977; @fleischmann1995]. For both ethical and practical considerations, conducting randomized experiments -- the "gold standard" for inferring causation [@s.masongarrison2017] -- that aim to tease apart individual traits arising from differences in genes and environment are not possible. Behavior geneticists instead turn towards quasi-experimental designs which control for potential confounds using a variety of statistical approaches [@s.masongarrison2017; @shadish-2002; @sherman2009].
+As a field, (human) behavior -- or behavioral -- genetics explores individual differences in psychological traits and characteristics that arise from genetic and environmental factors [@burt2019]. As described in [@future-bg], the field grew as an offshoot of psychology and psychiatry as our understanding of molecular genetics matured with the identification of DNA's structure and sequencing -- see [@watson1953; @sanger1977; @fleischmann1995]. For both ethical and practical considerations, conducting randomized experiments -- the "gold standard" for inferring causation [@s.masongarrison2017] -- that aim to tease apart individual traits arising from differences in genes and environment are not possible. Behavior geneticists instead turn towards quasi-experimental designs which control for potential confounds using a variety of statistical approaches [@s.masongarrison2017; @shadish-2002; @sherman2009].
 
 In this thesis, I present work based on a quasi-experimental design using kinship modeling. Kin comparison designs distinguish within-family variance from between-family variance [@chamberlain1975]. The former is a measure of how family members differ from one another; the latter reflects sources that make family members similar to one another but different from other families [@s.masongarrison2017]. By partitioning these sources of variance, behavioral geneticists may greatly reduce confounds when testing causal hypotheses [@lahey2010]. To ease researchers in this goal, I have developed an R package, {discord}, that provides user-friendly functions for sibling-based quasi-experimental designs.[^discord-1]
 
@@ -20,7 +20,7 @@ This model partitions variance in line with the above discussion to support caus
 
 A non-significant association between $Y_\Delta$ and $X_\Delta$ suggests that the variables are not causally related and may have arisen from genetic covariance or shared-environmental factors. In contrast, a significant association may provide support for a causal relationship between variables depending on the relatedness of each kin pair. That is, the discordant-kinship model is applicable for any kin-pair: monozygotic twins who share 100% of their DNA; full-siblings who share 50%; half-siblings who share 25%; cousins who share 12.5%; etc. Thus, a significant relationship found with monozygotic twins would provide stronger support for a causal claim than the same relationship between cousins.
 
-Following [@s.masongarrison2017], I recommend interpreting significant associations as "not disproving a causal relationship." Although this design controls for much (sibling) if not all (monozygotic twins) background heterogeneity, it is possible that a significant relationship between a phenotype and plausible covariates is possible due to non-shared environmental influences.
+Following [@s.masongarrison2017], I recommend interpreting significant associations as *not disproving a causal relationship*. Although this design controls for much (sibling) if not all (monozygotic twins) background heterogeneity, it is possible that a significant relationship between a phenotype and plausible covariates is possible due to non-shared environmental influences.
 
 The next section illustrates how to perform a discordant-kinship regression using the {discord} package.
 
@@ -131,7 +131,7 @@ flu_modeling_data %>%
 
 To perform the regression using the {discord} package, we supply the data frame and specify the outcome and predictors. It also requires a kinship pair id, `extended_id` in our case, as well as pair identifiers -- the column name suffixes that identify to which kin a column's values correspond ("\_s1" and "\_s2" in our case).[^discord-2] Optional, though recommended, are columns containing sex and race information to control for as additional covariates. In our case, these columns are prefixed "race" and "sex". Per the *pre-processing script*, these columns contain dummy variables where the default race is non-minority and the default sex is female.
 
-[^discord-2]: Note these were previously "*S1" and "S2"* , however, we used the `clean_names()` function which coerced the column names to lowercase.
+[^discord-2]: Note these were previously "\_S1" and "\_S2", however, we used the `clean_names()` function which coerced the column names to lowercase.
 
 By entering this information into the `discord_regression()` function, we can run our model as such:
 
