@@ -59,7 +59,7 @@ library(janitor)
 
 After some pre-processing, we have a data frame containing subject identifiers, demographic information such as race and sex, and behavioral measurements such as flu vaccination rates and SES at age 40:
 
-```{r preview-pre-processed-data, include = FALSE}
+```{r preview-pre-processed-data, echo = FALSE}
 flu_ses_data %>%
   select(CASEID, RACE, SEX, FLU_total, S00_H40) %>%
   head()
@@ -86,7 +86,7 @@ df_link <- CreatePairLinksSingleEntered(outcomeDataset = flu_ses_data,
 
 We've saved this data frame as `df_link`. A subset of this data looks like this:
 
-```{r preview-linked-dat, include = FALSE}
+```{r preview-linked-dat, echo = FALSE}
 df_link %>%
   select(ExtendedID, SubjectTag_S1, SubjectTag_S2, FLU_total_S1, FLU_total_S2, S00_H40_S1, S00_H40_S2) %>%
   head()
