@@ -53,7 +53,7 @@
 <h2>
 <span class="header-section-number">3.1</span> Behavior Genetics<a class="anchor" aria-label="anchor" href="#behavior-genetics"><i class="fas fa-link"></i></a>
 </h2>
-<p>As a field, (human) behavior – or behavioral – genetics explores individual differences in psychological traits and characteristics that arise from genetic and environmental factors <span class="citation">(Burt, Plaisance, and Hambrick <a href="references.html#ref-burt2019" role="doc-biblioref">2019</a>)</span>. The field grew as an offshoot of psychology and psychiatry as our understanding of molecular genetics matured with the identification of DNA’s structure and sequencing <span class="citation">(S. Mason Garrison <a href="references.html#ref-future-bg" role="doc-biblioref">2017</a>; Watson and Crick <a href="references.html#ref-watson1953" role="doc-biblioref">1953</a>; Sanger, Nicklen, and Coulson <a href="references.html#ref-sanger1977" role="doc-biblioref">1977</a>; Fleischmann et al. <a href="references.html#ref-fleischmann1995" role="doc-biblioref">1995</a>)</span>. For both ethical and practical considerations, conducting randomized experiments – the “gold standard” for inferring causation <span class="citation">(S. Mason Garrison and Joseph Lee Rodgers <a href="references.html#ref-s.masongarrison2017" role="doc-biblioref">2017</a>)</span> – that aim to tease apart individual traits arising from differences in genes and environment are not possible. Behavior geneticists instead turn towards quasi-experimental designs which control for potential confounds using a variety of statistical approaches <span class="citation">(S. Mason Garrison and Joseph Lee Rodgers <a href="references.html#ref-s.masongarrison2017" role="doc-biblioref">2017</a>; William R. Shadish, Thomas D. Cook, and Donald T. Campbell <a href="references.html#ref-shadish-2002" role="doc-biblioref">2002</a>; Sherman, Jessica L. Tracy, and Richard W. Robins <a href="references.html#ref-sherman2009" role="doc-biblioref">2009</a>)</span>.</p>
+<p>As a field, (human) behavior – or behavioral – genetics explores individual differences in psychological traits and characteristics that arise from genetic and environmental factors <span class="citation">(Burt, Plaisance, and Hambrick <a href="references.html#ref-burt2019" role="doc-biblioref">2019</a>)</span>. As described in <span class="citation">(S. Mason Garrison <a href="references.html#ref-future-bg" role="doc-biblioref">2017</a>)</span>, the field grew as an offshoot of psychology and psychiatry as our understanding of molecular genetics matured with the identification of DNA’s structure and sequencing – see <span class="citation">(Watson and Crick <a href="references.html#ref-watson1953" role="doc-biblioref">1953</a>; Sanger, Nicklen, and Coulson <a href="references.html#ref-sanger1977" role="doc-biblioref">1977</a>; Fleischmann et al. <a href="references.html#ref-fleischmann1995" role="doc-biblioref">1995</a>)</span>. For both ethical and practical considerations, conducting randomized experiments – the “gold standard” for inferring causation <span class="citation">(S. Mason Garrison and Joseph Lee Rodgers <a href="references.html#ref-s.masongarrison2017" role="doc-biblioref">2017</a>)</span> – that aim to tease apart individual traits arising from differences in genes and environment are not possible. Behavior geneticists instead turn towards quasi-experimental designs which control for potential confounds using a variety of statistical approaches <span class="citation">(S. Mason Garrison and Joseph Lee Rodgers <a href="references.html#ref-s.masongarrison2017" role="doc-biblioref">2017</a>; William R. Shadish, Thomas D. Cook, and Donald T. Campbell <a href="references.html#ref-shadish-2002" role="doc-biblioref">2002</a>; Sherman, Jessica L. Tracy, and Richard W. Robins <a href="references.html#ref-sherman2009" role="doc-biblioref">2009</a>)</span>.</p>
 <p>In this thesis, I present work based on a quasi-experimental design using kinship modeling. Kin comparison designs distinguish within-family variance from between-family variance <span class="citation">(Gary Chamberlain and Zvi Griliches <a href="references.html#ref-chamberlain1975" role="doc-biblioref">1975</a>)</span>. The former is a measure of how family members differ from one another; the latter reflects sources that make family members similar to one another but different from other families <span class="citation">(S. Mason Garrison and Joseph Lee Rodgers <a href="references.html#ref-s.masongarrison2017" role="doc-biblioref">2017</a>)</span>. By partitioning these sources of variance, behavioral geneticists may greatly reduce confounds when testing causal hypotheses <span class="citation">(Lahey and D’Onofrio <a href="references.html#ref-lahey2010" role="doc-biblioref">2010</a>)</span>. To ease researchers in this goal, I have developed an R package, {discord}, that provides user-friendly functions for sibling-based quasi-experimental designs.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The {discord} package was previously published by S. Mason Garrison in 2017. The work I discuss here is a revised implementation of the original package focused on ease-of-use.&lt;/p&gt;"><sup>2</sup></a></p>
 </div>
 <div id="technical-aspects" class="section level2">
@@ -66,15 +66,146 @@ Y_{i\Delta} = \beta_0 + \beta_1 \bar{Y}_i + \beta_2 \bar{X}_i + \beta_3 X_{i\Del
 \]</span></p>
 <p>This model partitions variance in line with the above discussion to support causal inference. Specifically, the within-family variance is described by <span class="math inline">\(Y_{\Delta}\)</span> and <span class="math inline">\(X_{\Delta}\)</span>; between-family variance is captured by <span class="math inline">\(\bar{Y}\)</span> and <span class="math inline">\(\bar{X}\)</span> <span class="citation">(S. Mason Garrison and Joseph Lee Rodgers <a href="references.html#ref-s.masongarrison2017" role="doc-biblioref">2017</a>)</span>.</p>
 <p>A non-significant association between <span class="math inline">\(Y_\Delta\)</span> and <span class="math inline">\(X_\Delta\)</span> suggests that the variables are not causally related and may have arisen from genetic covariance or shared-environmental factors. In contrast, a significant association may provide support for a causal relationship between variables depending on the relatedness of each kin pair. That is, the discordant-kinship model is applicable for any kin-pair: monozygotic twins who share 100% of their DNA; full-siblings who share 50%; half-siblings who share 25%; cousins who share 12.5%; etc. Thus, a significant relationship found with monozygotic twins would provide stronger support for a causal claim than the same relationship between cousins.</p>
-<p>Following <span class="citation">(S. Mason Garrison and Joseph Lee Rodgers <a href="references.html#ref-s.masongarrison2017" role="doc-biblioref">2017</a>)</span>, I recommend interpreting significant associations as “not disproving a causal relationship.” Although this design controls for much (sibling) if not all (monozygotic twins) background heterogeneity, it is possible that a significant relationship between a phenotype and plausible covariates is possible due to non-shared environmental influences.</p>
+<p>Following <span class="citation">(S. Mason Garrison and Joseph Lee Rodgers <a href="references.html#ref-s.masongarrison2017" role="doc-biblioref">2017</a>)</span>, I recommend interpreting significant associations as <em>not disproving a causal relationship</em>. Although this design controls for much (sibling) if not all (monozygotic twins) background heterogeneity, it is possible that a significant relationship between a phenotype and plausible covariates is possible due to non-shared environmental influences.</p>
 <p>The next section illustrates how to perform a discordant-kinship regression using the {discord} package.</p>
 </div>
 <div id="vaccine-willingness-and-socioeconomic-status" class="section level2">
 <h2>
 <span class="header-section-number">3.3</span> Vaccine willingness and socioeconomic status<a class="anchor" aria-label="anchor" href="#vaccine-willingness-and-socioeconomic-status"><i class="fas fa-link"></i></a>
 </h2>
-<p>The following analysis is a pared-down version of previous work presented at the Behavior Genetics Association 50th Annual Meeting <span class="citation">(Jonathan Trattner, Kennon Later, and S. Mason Garrison <a href="references.html#ref-jonathantrattner2020" role="doc-biblioref">2020</a>)</span>. It utilizes data from the 1979 National Longitudinal Survey of Youth (NLSY79), a nationally representative household probability sample sponsored by the U.S. Bureau of Labor Statistics and Department of Defense. Participants were surveyed annually from 1979-1994 at which point surveys occurred biennially. The data set is publicly available at <a href="https://www.nlsinfo.org/" class="uri">https://www.nlsinfo.org/</a>.</p>
-<p>Recent work identified relatedness for approximately 95% of the NLSY79 kin pairs <span class="citation">(Rodgers et al. <a href="references.html#ref-rodgers2016" role="doc-biblioref">2016</a>)</span>. These kinship links are included in the <a href="http://nlsy-links.github.io/NlsyLinks/index.html">{NlsyLinks}</a> R package <span class="citation">(Beasley et al. <a href="references.html#ref-beasley2016" role="doc-biblioref">2016</a>)</span> and are easily utilized with the {discord} package. The data for this analysis was downloaded with the <a href="https://www.nlsinfo.org/investigator/pages/login">NLS Investigator</a> and can be found <span class="ul"><em>here</em>.</span> For clarity, and to emphasize the functionality of {discord}, the data has been preprocessed using <span class="ul"><em>this script</em></span>.</p>
+<div id="introduction" class="section level3">
+<h3>
+<span class="header-section-number">3.3.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction"><i class="fas fa-link"></i></a>
+</h3>
+<p>The following analysis is a pared-down version of previous work presented at the Behavior Genetics Association 50th Annual Meeting <span class="citation">(Jonathan Trattner, Kennon Later, and S. Mason Garrison <a href="references.html#ref-jonathantrattner2020" role="doc-biblioref">2020</a>)</span>. The original project was inspired by reports detailing health disparities amongst ethnic minorities during the Covid-19 pandemic <span class="citation">(Hooper, Nápoles, and Pérez-Stable <a href="references.html#ref-hooper2020" role="doc-biblioref">2020</a>)</span>. These were often attributed to differences in socioeconomic status (SES), pre-existing health conditions, and Covid-19 symptom severity <span class="citation">(Ssentongo et al. <a href="references.html#ref-ssentongo2020" role="doc-biblioref">2020</a>; Yang, Gui, and Xiong <a href="references.html#ref-yang2020" role="doc-biblioref">2020</a>)</span>. In line with the field of behavior genetics, any intervention to address these disparities must explicitly account for known gene-and-environmental confounds <span class="citation">(Garrison and Rodgers <a href="references.html#ref-garrison2019" role="doc-biblioref">2019</a>; Williams et al. <a href="references.html#ref-williams2020" role="doc-biblioref">2020</a>)</span>.</p>
+<p>We thus aimed to identify the relationship between SES and vaccination willingness using a quasi-experimental design. Data for this analysis is from the 1979 National Longitudinal Survey of Youth (NLSY79), a nationally representative household probability sample sponsored by the U.S. Bureau of Labor Statistics and Department of Defense. Participants were surveyed annually from 1979-1994 at which point surveys occurred biennially. The data set is publicly available at <a href="https://www.nlsinfo.org/" class="uri">https://www.nlsinfo.org/</a>. The data includes a biennial flu vaccine survey containing data from 2006-2016. We examined whether SES at age 40 was a significant predictor for vaccination rates using the discordant-kinship model.</p>
+<p>As described in <span class="citation">(Garrison and Rodgers <a href="references.html#ref-garrison2019" role="doc-biblioref">2019</a>)</span>, SES was quantified using methodology from <span class="citation">(Myrianthopoulos and French <a href="references.html#ref-myrianthopoulos1968" role="doc-biblioref">1968</a>)</span>. Individuals were given a mean quantile score based on their net family income, years of education, and occupation prestige. Missing data was imputed from nonmissing components, and higher scores correspond to higher SES.</p>
+<p>The data for this analysis was downloaded with the <a href="https://www.nlsinfo.org/investigator/pages/login">NLS Investigator</a> and can be found <span class="ul"><em>here</em>.</span> The SES at age 40 data can be found <span class="ul"><em>here</em></span>. For clarity, and to emphasize the functionality of {discord}, the data has been pre-processed using <span class="ul"><em>this script</em></span>. This discordant-kinship analysis is possible thanks to recent work that estimated relatedness for approximately 95% of the NLSY79 kin pairs <span class="citation">(Rodgers et al. <a href="references.html#ref-rodgers2016" role="doc-biblioref">2016</a>)</span>. These kinship links are included in the <a href="http://nlsy-links.github.io/NlsyLinks/index.html">{NlsyLinks}</a> R package <span class="citation">(Beasley et al. <a href="references.html#ref-beasley2016" role="doc-biblioref">2016</a>)</span> and are easily utilized with the {discord} package.</p>
+</div>
+<div id="data-cleaning" class="section level3">
+<h3>
+<span class="header-section-number">3.3.2</span> Data Cleaning<a class="anchor" aria-label="anchor" href="#data-cleaning"><i class="fas fa-link"></i></a>
+</h3>
+<p>For this example, we will load the following packages.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># For easy data manipulation</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="co"># For kinship linkages</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://liveoak.github.io/NlsyLinks">NlsyLinks</a></span><span class="op">)</span>
+<span class="co"># For discordant-kinship regression</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/R-Computing-Lab/discord">discord</a></span><span class="op">)</span>
+<span class="co"># To clean data frame names</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sfirke/janitor">janitor</a></span><span class="op">)</span></code></pre></div>
+<p>After some pre-processing, we have a data frame containing subject identifiers, demographic information such as race and sex, and behavioral measurements such as flu vaccination rates and SES at age 40:</p>
+<pre><code>## # A tibble: 6 x 5
+##   CASEID  RACE   SEX FLU_total S00_H40
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;int&gt;   &lt;dbl&gt;
+## 1      1     0     0         0    NA  
+## 2      2     0     0         3    36.2
+## 3      3     0     0         4    62.3
+## 4      4     0     0         1    NA  
+## 5      5     0     1         0    NA  
+## 6      6     0     1         5    77.3</code></pre>
+<p>Using the kinship relationships included in the {NlsyLinks} package, we can create a data frame that lends itself to behavior-genetic analysis. For each kin pair, the function <code><a href="https://rdrr.io/pkg/NlsyLinks/man/CreatePairLinks.html">CreatePairLinksSingleEntered()</a></code> takes a data set like the one above, a specification of the NLSY database and the kin’s relatedness, and the variables of interest. It returns a data frame where every row is a kin-pair and each column is a variable of interest with a suffix indicating to which individual the value corresponds.</p>
+<p>For our example, we want to examine the relationship between flu vaccinations received between 2006-2016 and SES at age 40 between full siblings. I’m specifying the following variables from the above data set.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Get kinship links for individuals with the following variables:</span>
+<span class="va">link_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"FLU_total"</span>, <span class="st">"FLU_2008"</span>, <span class="st">"FLU_2010"</span>, <span class="st">"FLU_2012"</span>, <span class="st">"FLU_2014"</span>, <span class="st">"FLU_2016"</span>, <span class="st">"S00_H40"</span>, <span class="st">"RACE"</span>, <span class="st">"SEX"</span><span class="op">)</span></code></pre></div>
+<p>We now link the subjects by the specified variables using <code><a href="https://rdrr.io/pkg/NlsyLinks/man/CreatePairLinks.html">CreatePairLinksSingleEntered()</a></code>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df_link</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/NlsyLinks/man/CreatePairLinks.html">CreatePairLinksSingleEntered</a></span><span class="op">(</span>outcomeDataset <span class="op">=</span> <span class="va">flu_ses_data</span>,
+                                        linksPairDataset <span class="op">=</span> <span class="va">Links79PairExpanded</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">Links79PairExpanded</span><span class="op">$</span><span class="va">RelationshipPath</span> <span class="op">==</span> <span class="st">"Gen1Housemates"</span> <span class="op">&amp;</span> <span class="va">Links79PairExpanded</span><span class="op">$</span><span class="va">RFull</span><span class="op">==</span><span class="fl">0.5</span><span class="op">)</span>,<span class="op">]</span>,
+                                        outcomeNames <span class="op">=</span> <span class="va">link_vars</span><span class="op">)</span></code></pre></div>
+<p>We’ve saved this data frame as <code>df_link</code>. A subset of this data looks like this:</p>
+<pre><code>##   ExtendedID SubjectTag_S1 SubjectTag_S2 FLU_total_S1 FLU_total_S2 S00_H40_S1
+## 1          3           300           400            4            1   62.28579
+## 2          5           500           600            0            5         NA
+## 3         13          1300          1400            0            3   89.40735
+## 4         17          1700          1800            0            0   49.26537
+## 5         20          2000          2100            4            3   82.35719
+## 6         23          2300          2400            0            0         NA
+##   S00_H40_S2
+## 1         NA
+## 2   77.27040
+## 3   83.37954
+## 4   74.92440
+## 5   81.27520
+## 6         NA</code></pre>
+<p>Notice that, with the exception of the first column indicating the specific pair, each column name has the suffix “_S1” and “_S2”. As mentioned above, these indicate to which sibling the column values correspond.</p>
+<p>This data is almost ready for analysis, but we want to ensure that the data are representative of actual trends. The <code>FLU_total</code> column is simply a sum of the biennial survey responses. So for a given sibling-pair, one or both individuals may not have responded to the survey indicating their vaccination status. If that’s the case, we wish to exclude those siblings to reduce non-response bias. We can do this by examining the biennial responses and removing any rows that have <code>NA</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Take the linked data, group by the sibling pairs and</span>
+<span class="co"># count the number of responses for flu each year. If there is an NA, then data is missing for one of the years, and we omit it.</span>
+<span class="va">consistent_kin</span> <span class="op">&lt;-</span> <span class="va">df_link</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">SubjectTag_S1</span>, <span class="va">SubjectTag_S2</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">FLU_2008_S1</span>, <span class="va">FLU_2010_S1</span>, <span class="va">FLU_2012_S1</span>, <span class="va">FLU_2014_S1</span>, <span class="va">FLU_2016_S1</span>,
+        <span class="va">FLU_2008_S2</span>, <span class="va">FLU_2010_S2</span>, <span class="va">FLU_2012_S2</span>, <span class="va">FLU_2014_S2</span>, <span class="va">FLU_2016_S2</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># Create the flu_modeling_data object with only consistent responders.</span>
+<span class="co"># Clean the column names with the {janitor} package.</span>
+<span class="va">flu_modeling_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join</a></span><span class="op">(</span><span class="va">df_link</span>, <span class="va">consistent_kin</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"SubjectTag_S1"</span>, <span class="st">"SubjectTag_S2"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/janitor/man/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>To be extra safe in our analysis, we specify that the sibling-pairs should be from unique households (i.e. remove households with more than one sibling-pair).</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">flu_modeling_data</span> <span class="op">&lt;-</span> <span class="va">flu_modeling_data</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">extended_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>The data we will use for modeling now contains meta-information for each kin pair, including sex and race of each individual, flu vaccination status for the biennial survey between 2006-2016, and a total flu vaccination count for that period. The total vaccination count ranges from 0 - 5, where 0 indicates that the individual did not get a vaccine in any year between 2006-2016 and 5 indicates that an individual got at least 5 vaccines between 2006-2016. Though our data set has individual years, we are only interested in the total. A subset of the data we will use in our regression looks like this:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">flu_modeling_data</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"extended_id"</span>, <span class="st">"subject_tag"</span>, <span class="st">"flu_total"</span>, <span class="st">"race"</span>, <span class="st">"sex"</span>, <span class="st">"s00_h40"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 1,067 x 11
+##    extended_id subject_tag_s1 subject_tag_s2 flu_total_s1 flu_total_s2 race_s1
+##          &lt;int&gt;          &lt;int&gt;          &lt;int&gt;        &lt;int&gt;        &lt;int&gt;   &lt;dbl&gt;
+##  1          17           1700           1800            0            0       0
+##  2          29           2900           3000            2            0       0
+##  3          37           3700           3800            1            5       0
+##  4          40           4000           4100            2            0       0
+##  5          58           5800           5900            5            0       0
+##  6          61           6100           6200            3            4       0
+##  7          67           6700           6800            4            4       0
+##  8          74           7500           7600            0            0       0
+##  9          83           8300           8400            0            3       1
+## 10          85           8500           8700            0            4       1
+## # … with 1,057 more rows, and 5 more variables: race_s2 &lt;dbl&gt;, sex_s1 &lt;dbl&gt;,
+## #   sex_s2 &lt;dbl&gt;, s00_h40_s1 &lt;dbl&gt;, s00_h40_s2 &lt;dbl&gt;</code></pre>
+<p>To perform the regression using the {discord} package, we supply the data frame and specify the outcome and predictors. It also requires a kinship pair id, <code>extended_id</code> in our case, as well as pair identifiers – the column name suffixes that identify to which kin a column’s values correspond (“_s1” and “_s2” in our case).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Note these were previously “_S1” and “_S2”, however, we used the &lt;code&gt;clean_names()&lt;/code&gt; function which coerced the column names to lowercase.&lt;/p&gt;"><sup>3</sup></a> Optional, though recommended, are columns containing sex and race information to control for as additional covariates. In our case, these columns are prefixed “race” and “sex”. Per the <em>pre-processing script</em>, these columns contain dummy variables where the default race is non-minority and the default sex is female.</p>
+<p>By entering this information into the <code><a href="https://rdrr.io/pkg/discord/man/discord_regression.html">discord_regression()</a></code> function, we can run our model as such:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Setting a seed for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">18</span><span class="op">)</span>
+<span class="va">flu_model_output</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/discord/man/discord_regression.html">discord_regression</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">flu_modeling_data</span>,
+                                outcome <span class="op">=</span> <span class="st">"flu_total"</span>,
+                                predictors <span class="op">=</span> <span class="st">"s00_h40"</span>,
+                                id <span class="op">=</span> <span class="st">"extended_id"</span>,
+                                sex <span class="op">=</span> <span class="st">"sex"</span>,
+                                race <span class="op">=</span> <span class="st">"race"</span>,
+                                pair_identifiers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"_s1"</span>, <span class="st">"_s2"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>The default output of <code><a href="https://rdrr.io/pkg/discord/man/discord_regression.html">discord_regression()</a></code> is a tidy data frame containing the model metrics – courtesy of the <a href="https://broom.tidymodels.org"><code>broom</code></a> package <span class="citation">(Robinson, Hayes, and Couch <a href="references.html#ref-robinson2021" role="doc-biblioref">2021</a>)</span>. In this example, our results are:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">flu_model_output</span></code></pre></div>
+<pre><code>## # A tibble: 7 x 5
+##   term           estimate std.error statistic  p.value
+##   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)     1.35      0.192       7.00  4.53e-12
+## 2 flu_total_mean  0.183     0.0334      5.48  5.31e- 8
+## 3 s00_h40_diff    0.00766   0.00202     3.80  1.54e- 4
+## 4 s00_h40_mean    0.00337   0.00271     1.25  2.13e- 1
+## 5 sex_1          -0.0620    0.0979     -0.633 5.27e- 1
+## 6 race_1         -0.0202    0.103      -0.197 8.44e- 1
+## 7 sex_2           0.0235    0.0977      0.241 8.10e- 1</code></pre>
+<blockquote>
+<p>Summarize model results</p>
+</blockquote>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>
+<span class="header-section-number">3.4</span> Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"><i class="fas fa-link"></i></a>
+</h2>
+<p>Coming soon to a website in your browser…</p>
 
 </div>
 </div>
@@ -88,7 +219,13 @@ Y_{i\Delta} = \beta_0 + \beta_1 \bar{Y}_i + \beta_2 \bar{X}_i + \beta_3 X_{i\Del
 <li><a class="nav-link" href="#discord"><span class="header-section-number">3</span> {discord}</a></li>
 <li><a class="nav-link" href="#behavior-genetics"><span class="header-section-number">3.1</span> Behavior Genetics</a></li>
 <li><a class="nav-link" href="#technical-aspects"><span class="header-section-number">3.2</span> Technical Aspects</a></li>
-<li><a class="nav-link" href="#vaccine-willingness-and-socioeconomic-status"><span class="header-section-number">3.3</span> Vaccine willingness and socioeconomic status</a></li>
+<li>
+<a class="nav-link" href="#vaccine-willingness-and-socioeconomic-status"><span class="header-section-number">3.3</span> Vaccine willingness and socioeconomic status</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#introduction"><span class="header-section-number">3.3.1</span> Introduction</a></li>
+<li><a class="nav-link" href="#data-cleaning"><span class="header-section-number">3.3.2</span> Data Cleaning</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#conclusion"><span class="header-section-number">3.4</span> Conclusion</a></li>
 </ul>
 
       <div class="book-extra">
@@ -105,7 +242,7 @@ Y_{i\Delta} = \beta_0 + \beta_1 \bar{Y}_i + \beta_2 \bar{X}_i + \beta_3 X_{i\Del
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Senior Thesis</strong>" was written by Jonathan D. Trattner. It was last built on 2021-04-17.</p>
+    <p>"<strong>Senior Thesis</strong>" was written by Jonathan D. Trattner. It was last built on 2021-04-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

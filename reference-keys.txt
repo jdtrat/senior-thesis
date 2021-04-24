@@ -14,6 +14,9 @@ discord
 behavior-genetics
 technical-aspects
 vaccine-willingness-and-socioeconomic-status
+introduction
+data-cleaning
+conclusion
 shinysurveys
 what-is-shiny
 usage
@@ -33,7 +36,7 @@ advanced-features
 dependency-questions
 required_questions
 user-tracking
-conclusion
+conclusion-1
 ghee
 version-control
 git-and-github
@@ -45,4 +48,4 @@ what-are-use-cases-for-ghee
 collaboration
 repositories
 issues
-conclusion-1
+conclusion-2
