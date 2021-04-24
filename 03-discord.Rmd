@@ -26,7 +26,137 @@ The next section illustrates how to perform a discordant-kinship regression usin
 
 ## Vaccine willingness and socioeconomic status
 
-The following analysis is a pared-down version of previous work presented at the Behavior Genetics Association 50th Annual Meeting [@jonathantrattner2020]. It utilizes data from the 1979 National Longitudinal Survey of Youth (NLSY79), a nationally representative household probability sample sponsored by the U.S. Bureau of Labor Statistics and Department of Defense. Participants were surveyed annually from 1979-1994 at which point surveys occurred biennially. The data set is publicly available at <https://www.nlsinfo.org/>.
+### Introduction
 
-Recent work identified relatedness for approximately 95% of the NLSY79 kin pairs [@rodgers2016]. These kinship links are included in the [{NlsyLinks}](http://nlsy-links.github.io/NlsyLinks/index.html) R package [@beasley2016] and are easily utilized with the {discord} package. The data for this analysis was downloaded with the [NLS Investigator](https://www.nlsinfo.org/investigator/pages/login) and can be found [*here*.]{.ul} For clarity, and to emphasize the functionality of {discord}, the data has been preprocessed using [*this script*]{.ul}.
+The following analysis is a pared-down version of previous work presented at the Behavior Genetics Association 50th Annual Meeting [@jonathantrattner2020]. The original project was inspired by reports detailing health disparities amongst ethnic minorities during the Covid-19 pandemic [@hooper2020]. These were often attributed to differences in socioeconomic status (SES), pre-existing health conditions, and Covid-19 symptom severity [@ssentongo2020; @yang2020]. In line with the field of behavior genetics, any intervention to address these disparities must explicitly account for known gene-and-environmental confounds [@garrison2019; @williams2020].
 
+We thus aimed to identify the relationship between SES and vaccination willingness using a quasi-experimental design. Data for this analysis is from the 1979 National Longitudinal Survey of Youth (NLSY79), a nationally representative household probability sample sponsored by the U.S. Bureau of Labor Statistics and Department of Defense. Participants were surveyed annually from 1979-1994 at which point surveys occurred biennially. The data set is publicly available at <https://www.nlsinfo.org/>. The data includes a biennial flu vaccine survey containing data from 2006-2016. We examined whether SES at age 40 was a significant predictor for vaccination rates using the discordant-kinship model.
+
+As described in [@garrison2019], SES was quantified using methodology from [@myrianthopoulos1968]. Individuals were given a mean quantile score based on their net family income, years of education, and occupation prestige. Missing data was imputed from nonmissing components, and higher scores correspond to higher SES.
+
+The data for this analysis was downloaded with the [NLS Investigator](https://www.nlsinfo.org/investigator/pages/login) and can be found [*here*.]{.ul} The SES at age 40 data can be found [*here*]{.ul}. For clarity, and to emphasize the functionality of {discord}, the data has been pre-processed using [*this script*]{.ul}. This discordant-kinship analysis is possible thanks to recent work that estimated relatedness for approximately 95% of the NLSY79 kin pairs [@rodgers2016]. These kinship links are included in the [{NlsyLinks}](http://nlsy-links.github.io/NlsyLinks/index.html) R package [@beasley2016] and are easily utilized with the {discord} package.
+
+```{r setup-discord-data, include = FALSE}
+source(file = "discord-files/R/preprocess-discord-flu.R", local = knitr::knit_global())
+```
+
+### Data Cleaning
+
+For this example, we will load the following packages.
+
+```{r discord-setup, message = FALSE}
+
+# For easy data manipulation
+library(dplyr)
+# For kinship linkages
+library(NlsyLinks)
+# For discordant-kinship regression
+library(discord)
+# To clean data frame names
+library(janitor)
+
+```
+
+After some pre-processing, we have a data frame containing subject identifiers, demographic information such as race and sex, and behavioral measurements such as flu vaccination rates and SES at age 40:
+
+```{r preview-pre-processed-data, include = FALSE}
+flu_ses_data %>%
+  select(CASEID, RACE, SEX, FLU_total, S00_H40) %>%
+  head()
+```
+
+Using the kinship relationships included in the {NlsyLinks} package, we can create a data frame that lends itself to behavior-genetic analysis. For each kin pair, the function `CreatePairLinksSingleEntered()` takes a data set like the one above, a specification of the NLSY database and the kin's relatedness, and the variables of interest. It returns a data frame where every row is a kin-pair and each column is a variable of interest with a suffix indicating to which individual the value corresponds.
+
+For our example, we want to examine the relationship between flu vaccinations received between 2006-2016 and SES at age 40 between full siblings. I'm specifying the following variables from the above data set.
+
+```{r set-kinship-link-vars}
+# Get kinship links for individuals with the following variables:
+link_vars <- c("FLU_total", "FLU_2008", "FLU_2010", "FLU_2012", "FLU_2014", "FLU_2016", "S00_H40", "RACE", "SEX")
+```
+
+We now link the subjects by the specified variables using `CreatePairLinksSingleEntered()`.
+
+```{r create-linked-data}
+
+df_link <- CreatePairLinksSingleEntered(outcomeDataset = flu_ses_data,
+                                        linksPairDataset = Links79PairExpanded[which(Links79PairExpanded$RelationshipPath == "Gen1Housemates" & Links79PairExpanded$RFull==0.5),],
+                                        outcomeNames = link_vars)
+
+```
+
+We've saved this data frame as `df_link`. A subset of this data looks like this:
+
+```{r preview-linked-dat, include = FALSE}
+df_link %>%
+  select(ExtendedID, SubjectTag_S1, SubjectTag_S2, FLU_total_S1, FLU_total_S2, S00_H40_S1, S00_H40_S2) %>%
+  head()
+```
+
+Notice that, with the exception of the first column indicating the specific pair, each column name has the suffix "\_S1" and "\_S2". As mentioned above, these indicate to which sibling the column values correspond.
+
+This data is almost ready for analysis, but we want to ensure that the data are representative of actual trends. The `FLU_total` column is simply a sum of the biennial survey responses. So for a given sibling-pair, one or both individuals may not have responded to the survey indicating their vaccination status. If that's the case, we wish to exclude those siblings to reduce non-response bias. We can do this by examining the biennial responses and removing any rows that have `NA`.
+
+```{r consistent-kin-data}
+
+# Take the linked data, group by the sibling pairs and
+# count the number of responses for flu each year. If there is an NA, then data is missing for one of the years, and we omit it.
+consistent_kin <- df_link %>% 
+  group_by(SubjectTag_S1, SubjectTag_S2) %>% 
+  count(FLU_2008_S1, FLU_2010_S1, FLU_2012_S1, FLU_2014_S1, FLU_2016_S1,
+        FLU_2008_S2, FLU_2010_S2, FLU_2012_S2, FLU_2014_S2, FLU_2016_S2) %>% 
+  na.omit()
+
+# Create the flu_modeling_data object with only consistent responders.
+# Clean the column names with the {janitor} package.
+flu_modeling_data <- semi_join(df_link, consistent_kin, by = c("SubjectTag_S1", "SubjectTag_S2")) %>%
+  clean_names()
+```
+
+To be extra safe in our analysis, we specify that the sibling-pairs should be from unique households (i.e. remove households with more than one sibling-pair).
+
+```{r finalize-flu-modeling-data}
+
+flu_modeling_data <- flu_modeling_data %>%
+  group_by(extended_id) %>%
+  slice_sample() %>%
+  ungroup()
+```
+
+The data we will use for modeling now contains meta-information for each kin pair, including sex and race of each individual, flu vaccination status for the biennial survey between 2006-2016, and a total flu vaccination count for that period. The total vaccination count ranges from 0 - 5, where 0 indicates that the individual did not get a vaccine in any year between 2006-2016 and 5 indicates that an individual got at least 5 vaccines between 2006-2016. Though our data set has individual years, we are only interested in the total. A subset of the data we will use in our regression looks like this:
+
+```{r preview-flu-modeling-data}
+flu_modeling_data %>%
+  select(contains(c("extended_id", "subject_tag", "flu_total", "race", "sex", "s00_h40")))
+```
+
+To perform the regression using the {discord} package, we supply the data frame and specify the outcome and predictors. It also requires a kinship pair id, `extended_id` in our case, as well as pair identifiers -- the column name suffixes that identify to which kin a column's values correspond ("\_s1" and "\_s2" in our case).[^discord-2] Optional, though recommended, are columns containing sex and race information to control for as additional covariates. In our case, these columns are prefixed "race" and "sex". Per the *pre-processing script*, these columns contain dummy variables where the default race is non-minority and the default sex is female.
+
+[^discord-2]: Note these were previously "*S1" and "S2"* , however, we used the `clean_names()` function which coerced the column names to lowercase.
+
+By entering this information into the `discord_regression()` function, we can run our model as such:
+
+```{r run-regression}
+
+# Setting a seed for reproducibility
+set.seed(18)
+flu_model_output <- discord_regression(data = flu_modeling_data,
+                                outcome = "flu_total",
+                                predictors = "s00_h40",
+                                id = "extended_id",
+                                sex = "sex",
+                                race = "race",
+                                pair_identifiers = c("_s1", "_s2"))
+
+```
+
+The default output of `discord_regression()` is a tidy data frame containing the model metrics -- courtesy of the [`broom`](https://broom.tidymodels.org) package [@robinson2021]. In this example, our results are:
+
+```{r summarize-model}
+flu_model_output
+```
+
+> Summarize model results
+
+## Conclusion
+
+Coming soon to a website in your browser...
