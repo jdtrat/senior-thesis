@@ -2,9 +2,9 @@
 
 ## Behavior Genetics
 
-As a field, (human) behavior -- or behavioral -- genetics explores individual differences in psychological traits and characteristics that arise from genetic and environmental factors [@burt2019]. As described in [@future-bg], the field grew as an offshoot of psychology and psychiatry as our understanding of molecular genetics matured with the identification of DNA's structure and sequencing -- see [@watson1953; @sanger1977; @fleischmann1995]. For both ethical and practical considerations, conducting randomized experiments -- the "gold standard" for inferring causation [@s.masongarrison2017] -- that aim to tease apart individual traits arising from differences in genes and environment are not possible. Behavior geneticists instead turn towards quasi-experimental designs which control for potential confounds using a variety of statistical approaches [@s.masongarrison2017; @shadish-2002; @sherman2009].
+As a field, (human) behavior -- or behavioral -- genetics explores individual differences in psychological traits and characteristics that arise from genetic and environmental factors [@burt2019]. As described in [@future-bg], the field grew as an offshoot of psychology and psychiatry as our understanding of molecular genetics matured with the identification of DNA's structure and sequencing -- see [@watson1953; @sanger1977]. Although considered the "gold standard" for inferring causation [@rubin2008], conducting randomized experiments to tease apart individual traits from differences in genes and environment are not always possible. For both ethical and practical considerations, behavior geneticists often use quasi-experimental designs which control for potential confounds using a variety of statistical approaches [@s.masongarrison2017].
 
-In this thesis, I present work based on a quasi-experimental design using kinship modeling. Kin comparison designs distinguish within-family variance from between-family variance [@chamberlain1975]. The former is a measure of how family members differ from one another; the latter reflects sources that make family members similar to one another but different from other families [@s.masongarrison2017]. By partitioning these sources of variance, behavioral geneticists may greatly reduce confounds when testing causal hypotheses [@lahey2010]. To ease researchers in this goal, I have developed an R package, {discord}, that provides user-friendly functions for sibling-based quasi-experimental designs.[^discord-1]
+In this thesis, I present work based on a quasi-experimental design using kinship modeling. Kin comparison designs distinguish within-family variance from between-family variance [@chamberlain1975]. The former is a measure of how family members differ from one another; the latter reflects sources that make family members similar to one another but different from other families [@s.masongarrison2017]. By partitioning these sources of variance, behavioral geneticists may greatly reduce confounds when testing causal hypotheses [@lahey2010]. To ease researchers in this goal, I have rewritten an R package, {discord}, to provide user-friendly functions for sibling-based quasi-experimental designs.[^discord-1]
 
 [^discord-1]: The {discord} package was previously published by S. Mason Garrison in 2017. The work I discuss here is a revised implementation of the original package focused on ease-of-use.
 
@@ -34,7 +34,7 @@ We thus aimed to identify the relationship between SES and vaccination willingne
 
 As described in [@garrison2019], SES was quantified using methodology from [@myrianthopoulos1968]. Individuals were given a mean quantile score based on their net family income, years of education, and occupation prestige. Missing data was imputed from nonmissing components, and higher scores correspond to higher SES.
 
-The data for this analysis was downloaded with the [NLS Investigator](https://www.nlsinfo.org/investigator/pages/login) and can be found [*here*.]{.ul} The SES at age 40 data can be found [*here*]{.ul}. For clarity, and to emphasize the functionality of {discord}, the data has been pre-processed using [*this script*]{.ul}. This discordant-kinship analysis is possible thanks to recent work that estimated relatedness for approximately 95% of the NLSY79 kin pairs [@rodgers2016]. These kinship links are included in the [{NlsyLinks}](http://nlsy-links.github.io/NlsyLinks/index.html) R package [@beasley2016] and are easily utilized with the {discord} package.
+The data for this analysis was downloaded with the [NLS Investigator](https://www.nlsinfo.org/investigator/pages/login) and can be found [here](https://github.com/jdtrat/senior-thesis-discord/blob/main/data/flu_shot.dat). The SES at age 40 data can be found [here](https://github.com/jdtrat/senior-thesis-discord/blob/main/data/nlsy-ses.csv). For clarity, and to emphasize the functionality of {discord}, the data has been pre-processed using [this script](https://github.com/jdtrat/senior-thesis-discord/blob/main/R/preprocess-discord-flu.R). This discordant-kinship analysis is possible thanks to recent work that estimated relatedness for approximately 95% of the NLSY79 kin pairs [@rodgers2016]. These kinship links are included in the [{NlsyLinks}](http://nlsy-links.github.io/NlsyLinks/index.html) R package [@beasley2016] and are easily utilized with the {discord} package.
 
 ```{r setup-discord-data, include = FALSE}
 source(file = "discord-files/R/preprocess-discord-flu.R", local = knitr::knit_global())
@@ -129,7 +129,9 @@ flu_modeling_data %>%
   select(contains(c("extended_id", "subject_tag", "flu_total", "race", "sex", "s00_h40")))
 ```
 
-To perform the regression using the {discord} package, we supply the data frame and specify the outcome and predictors. It also requires a kinship pair id, `extended_id` in our case, as well as pair identifiers -- the column name suffixes that identify to which kin a column's values correspond ("\_s1" and "\_s2" in our case).[^discord-2] Optional, though recommended, are columns containing sex and race information to control for as additional covariates. In our case, these columns are prefixed "race" and "sex". Per the *pre-processing script*, these columns contain dummy variables where the default race is non-minority and the default sex is female.
+### Modeling and Interpretation
+
+To perform the regression using the {discord} package, we supply the data frame and specify the outcome and predictors. It also requires a kinship pair id, `extended_id` in our case, as well as pair identifiers -- the column name suffixes that identify to which kin a column's values correspond ("\_s1" and "\_s2" in our case).[^discord-2] Optional, though recommended, are columns containing sex and race information to control for as additional covariates. In our case, these columns are prefixed "race" and "sex". Per the [pre-processing script](https://github.com/jdtrat/senior-thesis-discord/blob/main/R/preprocess-discord-flu.R), these columns contain dummy variables where the default race is non-black, non-Hispanic and the default sex is female.
 
 [^discord-2]: Note these were previously "\_S1" and "\_S2", however, we used the `clean_names()` function which coerced the column names to lowercase.
 
@@ -149,14 +151,45 @@ flu_model_output <- discord_regression(data = flu_modeling_data,
 
 ```
 
-The default output of `discord_regression()` is a tidy data frame containing the model metrics -- courtesy of the [`broom`](https://broom.tidymodels.org) package [@robinson2021]. In this example, our results are:
+The default output of `discord_regression()` is a tidy data frame containing the model metrics -- courtesy of the [`broom`](https://broom.tidymodels.org) package [@robinson2021]. In this example, our results are as follows:
 
-```{r summarize-model}
-flu_model_output
+```{r summarize-model-html, echo = FALSE, eval = knitr::is_html_output()}
+flu_model_output %>%
+  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
+         across(.cols = is.numeric, ~round(.x, 3))) %>%
+  rename("Standard Error" = std.error,
+         "T Statistic" = statistic) %>%
+  rename_with(~snakecase::to_title_case(.x)) %>%
+  kableExtra::kbl('html', align = "c") %>%
+  kableExtra::kable_styling() %>%
+  kableExtra::column_spec(1:5, extra_css = "text-align: center;")
 ```
 
-> Summarize model results
+```{r summarize-model-latex, echo = FALSE, eval = knitr::is_latex_output()}
+flu_model_output %>%
+  mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
+         across(.cols = is.numeric, ~round(.x, 3))) %>%
+  rename("Standard Error" = std.error,
+         "T Statistic" = statistic) %>%
+  rename_with(~snakecase::to_title_case(.x)) %>%
+  kableExtra::kbl(booktabs = TRUE, align = "c") %>%
+  kableExtra::kable_styling('latex')
+```
+
+Looking at our output, we can think of the intercept as the average difference of the outcome between siblings, ignoring all other variables. In this case, it looks like the average sibling difference for two sisters of a non-minority ethnic background (the default sex and race values) is approximately 1.5. The term `flu_total_mean` is essentially an extra component of the intercept that captures some non-linear trends and allows the difference score to change as a function of the average predictors. Here, this is the mean socioeconomic status for the siblings, `s00_h40_mean`. We also accounted for sex and race, neither of which have a statistically significant effect on the differences in flu vaccine shots between siblings (different families) or within a sibling pair (same family).
+
+The most important metric from the output, though, is the difference score, `s00_h40_diff`. In this example, it is statistically significant. To interpret it, we may say "the difference in socioeconomic status between siblings at age 40 is positively associated with the difference in the number of flu vaccinations received between 2006-2016." This means that a sibling with 10% higher SES is expected to have `r flu_model_output %>% filter(term == "s00_h40_diff") %>% pull(estimate) * 10` more flu shots.
+
+The goal of performing a discordant-kinship regression is to see whether there is a significant difference in some behavioral measure while controlling for as much gene-and-environmental variance as possible. In this example, we found there is a significant difference in the number of flu shots a sibling received and their socioeconomic status. We *cannot* claim this relationship is causal. However, we cannot eliminate causality because there are statistically significant within- and between-family differences in our predictors and outcomes.
 
 ## Conclusion
 
-Coming soon to a website in your browser...
+In its current implementation, the {discord} package encourages best practices for performing discordant-kinship regressions. For example, the main function has the default expectation that sex and race indicators will be supplied. These measures are both important covariates when testing for causality between familial background and psychological characteristics.
+
+This, and other design choices, are crucial to facilitating transparent and reproducible results. To further support this, future releases of {discord} will provide improved documentation and allow for easier inspection of the underlying model implementation and results.
+
+An example of this can be seen in the development version, which is hosted on GitHub. From commit [`d0189a3`](https://github.com/R-Computing-Lab/discord/commit/d0189a3199fe5c4f97b10fde9368e473369553f8), {discord} has the option to return the complete linear model object, as opposed to an abridged summary via {broom}. This allows researchers to get a clearer understanding of model metrics such as degrees of freedom and $R^2$.
+
+Further, future versions of {discord} will explore hitherto undefined mathematical frameworks for implementing discordant-kinship regressions with non-Gaussian distributions. The example covered in the vignette, while illustrative of *how* to use {discord}, did not follow appropriate modeling assumptions. To more truthfully describe the relationship between socioeconomic status and flu vaccines received, we would need a distribution that is limited to integers, or counts, such as the Poisson.
+
+In short, {discord} provides user-friendly functions for genetically-informed quasi experimental designs. As of May 11, 2021, the version of {discord} described in this thesis has been downloaded over 3800 times, which I think is incredible. Future work on this package will attempt to make it more transparent and extendable, while maintaining its ease-of-use.

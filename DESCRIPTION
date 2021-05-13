@@ -31,7 +31,10 @@ Imports:
     NlsyLinks,
     discord,
     janitor,
-    readr
+    readr,
+    scales,
+    snakecase,
+    kableExtra
 Remotes: 
     rstudio/bookdown,
     hadley/emo
