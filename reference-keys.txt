@@ -16,6 +16,7 @@ technical-aspects
 vaccine-willingness-and-socioeconomic-status
 introduction
 data-cleaning
+modeling-and-interpretation
 conclusion
 shinysurveys
 what-is-shiny
