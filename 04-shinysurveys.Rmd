@@ -4,11 +4,9 @@
 
 ### Technical Aspects {#technical-aspects}
 
-Websites are predominantly built using three languages:
+Websites are predominantly built using three languages, HTML, CSS, and JavaScript, as described in the following figure.
 
-1.  HTML for defining the structure of websites
-2.  CSS for customizing the aesthetics of websites
-3.  JavaScript for controlling the behavior of websites
+![](graphics/shinysurveys/web-language-graphic.png)
 
 At a high-level, {shiny} allows programmers to combine the computational strengths of R with the interactivity of web applications. {shiny} provides a curated set of functions that generate the HTML, CSS, and JavaScript necessary to create web applications[@hadleywickham2020].
 
@@ -42,26 +40,26 @@ knitr::include_graphics(here::here("graphics/shinysurveys/shinyapp_textInput.gif
 ```
 
 ```{r shinyapp-textInput-png, include = knitr::is_latex_output(), echo = FALSE}
-knitr::include_graphics(here::here("graphics/shinysurveys/shinyapp_textInput.png"))
+knitr::include_graphics(here::here("graphics/shinysurveys/static-textInput/combined.png"))
 ```
 
 ### Usage {#usage}
 
-{shiny} is used in many disciplines. DePalma, Turnidge, and Craig (2017) developed an application that allows physicians to utilize complex mathematical methods of determining microbial resistance to antibiotics[@depalma2017].
+{shiny} is used in many disciplines. For example, DePalma, Turnidge, and Craig (2017) developed an application that allows physicians to utilize complex mathematical methods of determining microbial resistance to antibiotics[@depalma2017].
 
-Kandlikar and colleagues (2018) developed an application, *ranacapa*, to explore environmental DNA sequences that is used to engage and educate professionals and students alike. It allowed resource managers at the Channel Islands National Park Service to filter their observed species down to "a particular set of key taxa that they regularly monitor" and allowed students with "no prior bioinformatics experience" to gain an understanding of their eDNA samples, allowing their instructors to focus on "biological questions rather than on troubleshooting bioinformatics problems" [@kandlikar2018].
+Similarly, Kandlikar and colleagues (2018) developed an application, *ranacapa*, to explore environmental DNA sequences that is used to engage and educate professionals and students alike. It allowed resource managers at the Channel Islands National Park Service to filter their observed species down to "a particular set of key taxa that they regularly monitor" and allowed students with "no prior bioinformatics experience" to gain an understanding of their eDNA samples, allowing their instructors to focus on "biological questions rather than on troubleshooting bioinformatics problems" [@kandlikar2018].
 
 ```{r add-industry-example, echo = FALSE}
 details::details(c("Add an example of {shiny} in industry. Mastering Shiny references Silicon Valley metrics. Maybe ask R4DS members?"), summary = "Add Industry Example")
 ```
 
-{shiny} is "used in almost as many niches and industries as R itself is" [@hadleywickham2020]. As such, the work presented in this section is usable in many contexts.
-
 ## Motivation {#motivation}
 
-Surveys are extremely useful tools for gathering information from individuals on a large scale and are used in a variety of domains. Within the medical research field, for example, there are often three types of surveys: epidemiological questionnaires, ones on attitudes towards health services or interventions, and polls to assess knowledge about specific topics [@jones2013]. Neuroscientific research often uses them to correlate behaviors such as  political ideology with neuroimaging data -- see [@ahn2014] as an example.
+> {shiny} is "used in almost as many niches and industries as R itself is" [@hadleywickham2020]. As such, the work presented in this section is usable in many contexts.
 
-The ability to easily collect and analyze survey data is, therefore, extremely important. Many platforms provide user-friendly methods to do this. [Google Forms](https://www.google.com/forms/about/), [SurveyMonkey](https://www.surveymonkey.com/), and [Qualtrics](https://www.qualtrics.com/core-xm/survey-software/) are all popular options. For many cases, they work extremely well. One limitation, though, is often the ease with which they integrate with existing data analysis and/or research pipelines. Because of R's prevalence in academia and research [@rstudio2018a; @carson2016], {shinysurveys} was developed to streamline the data collection and analysis process. To do this, we utilized a package called {shiny}, which makes it easy to build interactive web applications with R [@chang2021].
+Surveys are useful tools for gathering information from individuals on a large scale and are used in a variety of domains. Within the medical research field, for example, they may be epidemiological questionnaires (e.g. have you received your COVID-19 Vaccine). In neuroscience research, they are often used to correlate behaviors such as political ideology with neuroimaging data [@ahn2014].
+
+The ability to easily collect and analyze survey data is, therefore, incredibly important. Many platforms provide user-friendly methods to do this. [Google Forms](https://www.google.com/forms/about/), [SurveyMonkey](https://www.surveymonkey.com/), and [Qualtrics](https://www.qualtrics.com/core-xm/survey-software/) are all popular options. For many cases, they work very well. However, existing services don't always integrate with existing data analysis and/or research pipelines easily. Because of R's prevalence in academia and research [@rstudio2018a; @carson2016], {shinysurveys} was developed to streamline the data collection and analysis process. It is built upon the {shiny} package [@chang2021] previously described.
 
 ## A survey of {shinysurveys} {#survey-of-shinysurveys}
 
@@ -70,7 +68,7 @@ library(shinysurveys)
 library(tibble)
 ```
 
-Surveys are ubiquitous in data science. A clear example is a simple demographic form. Our package allows you to easily create questionnaires using {shiny}.[^shinysurveys-1] This vignette introduces you to the main functionality of our package as it is currently published on CRAN.[^shinysurveys-2] We provide two functions to do this: `surveyOutput()` and `renderSurvey()`. Both of these take in a data frame containing question information that follows a specific format. To illustrate them in use, we will show you a questionnaire from McGowan et al. (unpublished) that is built into the `shinysurveys` package:[^shinysurveys-3]
+Surveys are ubiquitous in data science. A clear example is a simple demographic form. Our package allows you to easily create questionnaires using {shiny}.[^shinysurveys-1] This vignette introduces you to the main functionality of our package as it is currently published on CRAN.[^shinysurveys-2] I provide two functions to do this: `surveyOutput()` and `renderSurvey()`. Both of these take in a data frame containing question information that follows a specific format. To illustrate them in use, we will show you a questionnaire from a recent study conducted by the [D'Agostino McGowan Data Science Lab](http://dmds.lucymcgowan.com/) that is built into the `shinysurveys` package:[^shinysurveys-3]
 
 [^shinysurveys-1]: We assume that you are familiar with the basic layout of a Shiny application. If not, please check out the brief discussion earlier in this thesis or RStudio's [great resources](https://shiny.rstudio.com/tutorial/).
 
@@ -110,7 +108,7 @@ A good example of a numeric input is the first question: "What's your age?":
 subset(teaching_r_questions, input_id == "age")
 ```
 
-As we noted in the [introduction](#Introduction), this row shows us that the question is "What's your age?". We know we are expecting a numeric input by looking at the `input_type` column, and the default value is equal to 25 according to the `option` column.[^shinysurveys-4]
+As noted above, this row shows us that the question is "What's your age?". We know we are expecting a numeric input by looking at the `input_type` column, and the default value is equal to 25 according to the `option` column.[^shinysurveys-4]
 
 [^shinysurveys-4]: It is important to note that the option column for numeric inputs provides the default value, but for other types -- as we will see -- provides the possible options for a question.
 
@@ -205,7 +203,7 @@ Please note that the UI comes with a "Submit" button included. Survey designers 
 
 #### Dependency Questions
 
-We use the term question dependencies in reference to the situations where a question should only be shown (i.e. asked) if a specific response is given to a preceding question. The questions included with the `shinysurveys` package contain many dependencies. One example we've seen discussing [multiple choice](#multiple_choice) and [text-based](#text_input) questions is the dependent for "Which best describes your gender?"
+I use the term question dependencies in reference to the situations where a question should only be shown (i.e. asked) if a specific response is given to a preceding question. The questions included with the `shinysurveys` package contain many dependencies. One example we've seen discussing [multiple choice](#multiple_choice) and [text-based](#text_input) questions is the dependent for "Which best describes your gender?"
 
 ```{r what is your gender - question dependencies, echo = FALSE}
 subset(teaching_r_questions, input_id == "gender" | input_id == "self_describe_gender")
@@ -233,8 +231,6 @@ Built into the survey is the ability to track users based on URL parameters. If 
 
 {shinysurveys} was developed to integrate behavioral data collection into existing research and/or analysis pipelines in R. The package provides an easy-to-use, highly customizable framework for deploying surveys and questionnaires via web applications. By extending the {shiny} package, a shinysurvey can make use of the data manipulation and visualization tools in R, facilitating automated data analysis and real-time metrics for participant responses.
 
-In its current implementation, {shinysurveys} is a powerful tool. Amazingly, as of May 11, 2021, the package has been downloaded over 1,000 times. The original idea for it was to provide a select set of well-supported input types commonly used with surveys. However, it was not designed to meet every use-case, and shortly after its release, new question-types were requested (see GitHub Issue [#6](https://github.com/jdtrat/shinysurveys/issues/6) or [#18](https://github.com/jdtrat/shinysurveys/issues/18)). 
+In its current implementation, {shinysurveys} is a powerful tool. Amazingly, as of May 11, 2021, the package has been downloaded over 1,000 times. The original idea for it was to provide a select set of well-supported input types commonly used in surveys. However, it was not designed to meet every use-case, and shortly after its release, new question-types were requested (see GitHub Issue [\#6](https://github.com/jdtrat/shinysurveys/issues/6) or [\#18](https://github.com/jdtrat/shinysurveys/issues/18)).
 
-In order to make the package as light-weight as possible, minimizing the dependence on external code, I did not wish to implement any input types not native to {shiny}. While some additional inputs have been addressed in the development version, future work will focus on providing a method to extend possible input types. This would allow inputs from packages such as [`{shinyWidgets}`](http://shinyapps.dreamrs.fr/shinyWidgets/) to be utilized as desired while maintaining {shinysurveys} as a minimalistic package.
-
-
+In order to make the package as light-weight as possible, minimizing the dependence on external code, I did not wish to implement any input types not native to {shiny}. While some additional inputs have been addressed in the development version, future work will focus on providing a method to extend possible input types. The ability to extend {shinysurveys} with custom inputs, from packages such as [`{shinyWidgets}`](http://shinyapps.dreamrs.fr/shinyWidgets/), will allow users to administer more complex surveys.
