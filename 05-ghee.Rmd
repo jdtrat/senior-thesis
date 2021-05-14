@@ -2,7 +2,7 @@
 
 ## Version Control
 
-Programming is an important skill used in academia and industry alike. A computational neuroscientist, for example, may need to develop code that combines neuroimaging data (such as functional magnetic resonance imaging, fMRI) with behavioral data (such as political ideology) in order to understand the relationship between neural processes and political attitudes (e.g. [@ahn2014]). An industry professional may need to develop code that combines demographic data and purchasing history in order to predict future profits for a new product. Complex models and programs like these are often developed piecemeal by multiple individuals. Thus, if one person makes a change or implements a feature, it's essential that all collaborators have the latest version. It's equally essential that any change be revertible in case it introduces a bug to the existing code.
+Programming is an important skill used in academia and industry alike. A computational neuroscientist, for example, may need to develop code that combines neuroimaging data like fMRI with behavioral data, such as political ideology, in order to understand the relationship between neural processes and political attitudes -- e.g. [@ahn2014]. An industry professional may need to develop code that combines demographic data and purchasing history in order to predict future profits for a new product. Complex models and programs like these are often developed piecemeal by multiple individuals. Thus, if one person makes a change or implements a feature, it's essential that all collaborators have the latest version. It is equally essential that any change be revertible in case it introduces a bug to the existing code.
 
 These requirements are met with a version control system (VCS), which allows you to track incremental changes to code. One may think of VCS as a more robust version of Microsoft Word's "Track Changes" feature. A popular VCS is called [git](http://git-scm.com), and is extremely popular with scientists and programmers alike [@blischak2016]. The next section discusses the basics of working with git and how to share your code with others using [GitHub](https://github.com), an online platform that hosts code that is version-controlled with git.
 
@@ -71,7 +71,7 @@ For R, the package [{gh}](http://gh.r-lib.org/) provides extremely flexible API 
 
 ## Clarifying Butter
 
-I chose the name {ghee} for a couple reasons. One, my neighbor loves using ghee (clarified butter) to cook with, and I've become a fan. Two, I think it makes it easy to switch between this package and its underlying one, {gh}, if you need to perform sophisticated API requests.
+I chose the name {ghee} for a couple reasons. One, my neighbor loves using ghee (clarified butter) to cook, and I have recently become a fan of it. Two, I think it makes it easy to switch between this package and its underlying one, {gh}, if you need to perform sophisticated API requests.
 
 ### Installation
 
@@ -107,7 +107,8 @@ If you wanted to invite multiple friends at once, you could do so in a functiona
 
 friends <- c("friend", "pal", "amigo")
 purrr::walk(.x = friends, 
-            ~ gh_collab_invite(path = "owner/repository", invitee = .x))
+            ~ gh_collab_invite(path = "owner/repository", 
+                               invitee = .x))
 ```
 
 #### Repositories
@@ -117,7 +118,9 @@ purrr::walk(.x = friends,
 ```{r gh_repos_create, eval = FALSE}
 
 # Create a Private Repo
-gh_repos_create(path = "jdtrat/ghee_test", private = TRUE, description = "A test repository.")
+gh_repos_create(path = "jdtrat/ghee_test", 
+                private = TRUE, 
+                description = "A test repository.")
 ```
 
 ![](graphics/ghee/ghee_test_create.png){style="max-width: 100%;"}
@@ -126,7 +129,8 @@ Note how the above picture shows an "Issues" tab. I don't really want feedback o
 
 ```{r gh_repos_mutate-issues, eval = FALSE}
 # Disable Issues
-gh_repos_mutate(path = "jdtrat/ghee_test", has_issues = FALSE)
+gh_repos_mutate(path = "jdtrat/ghee_test", 
+                has_issues = FALSE)
 ```
 
 ![](graphics/ghee/ghee_test_mutate_issues.png){style="max-width: 100%;"}
@@ -135,7 +139,8 @@ If you decide you don't want a private repo anymore, no problem! That's an easy 
 
 ```{r gh_repos_mutate-private, eval = FALSE}
 # Change Privacy Settings
-gh_repos_mutate(path = "jdtrat/ghee_test", private = FALSE)
+gh_repos_mutate(path = "jdtrat/ghee_test", 
+                private = FALSE)
 ```
 
 ![](graphics/ghee/ghee_test_mutate_privacy.png){style="max-width: 100%;"}
@@ -144,7 +149,8 @@ Now, I know what you're thinking. You don't like the repo name "ghee_test." I do
 
 ```{r gh_repos_mutate-name, eval = FALSE}
 # Change Repo Name
-gh_repos_mutate(path = "jdtrat/ghee_test", name = "ghee_testing")
+gh_repos_mutate(path = "jdtrat/ghee_test", 
+                name = "ghee_testing")
 ```
 
 ![](graphics/ghee/ghee_test_mutate_name.png){style="max-width: 100%;"}
@@ -161,7 +167,7 @@ Another big component of GitHub are Issues. {ghee} includes some helper function
 
 gh_issue_new(path = "jdtrat/shinysurveys", 
              title = "My Issue Title", 
-             body = "Just wanted to pop on and say I love your package!")
+             body = "Just wanted to say I love your package!")
 
 ```
 
