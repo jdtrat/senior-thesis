@@ -30,7 +30,7 @@ The next section illustrates how to perform a discordant-kinship regression usin
 
 The following analysis is a pared-down version of previous work presented at the Behavior Genetics Association 50th Annual Meeting [@jonathantrattner2020]. The original project was inspired by reports detailing health disparities amongst ethnic minorities during the Covid-19 pandemic [@hooper2020]. These were often attributed to differences in socioeconomic status (SES), pre-existing health conditions, and Covid-19 symptom severity [@ssentongo2020; @yang2020]. In line with the field of behavior genetics, any intervention to address these disparities must explicitly account for known gene-and-environmental confounds [@garrison2019; @williams2020].
 
-We thus aimed to identify the relationship between SES and vaccination willingness using a quasi-experimental design. Data for this analysis is from the 1979 National Longitudinal Survey of Youth (NLSY79), a nationally representative household probability sample sponsored by the U.S. Bureau of Labor Statistics and Department of Defense. Participants were surveyed annually from 1979-1994 at which point surveys occurred biennially. The data set is publicly available at <https://www.nlsinfo.org/>. The data includes a biennial flu vaccine survey containing data from 2006-2016. We examined whether SES at age 40 was a significant predictor for vaccination rates using the discordant-kinship model.
+We thus aimed to identify the relationship between SES and vaccination willingness using a quasi-experimental design. Data for this analysis is from the 1979 National Longitudinal Survey of Youth (NLSY79), a nationally representative household probability sample sponsored by the U.S. Bureau of Labor Statistics and Department of Defense. Participants were surveyed annually from 1979-1994 at which point surveys occurred biennially. The data set is publicly available at <https://www.nlsinfo.org/>. The data include a biennial flu vaccine survey containing data from 2006-2016. We examined whether SES at age 40 was a significant predictor for vaccination rates using the discordant-kinship model.
 
 As described in [@garrison2019], SES was quantified using methodology from [@myrianthopoulos1968]. Individuals were given a mean quantile score based on their net family income, years of education, and occupation prestige. Missing data was imputed from nonmissing components, and higher scores correspond to higher SES.
 
@@ -156,7 +156,7 @@ The default output of `discord_regression()` is a tidy data frame containing the
 ```{r summarize-model-html, echo = FALSE, eval = knitr::is_html_output()}
 flu_model_output %>%
   mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
-         across(.cols = is.numeric, ~round(.x, 3))) %>%
+         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
   rename("Standard Error" = std.error,
          "T Statistic" = statistic) %>%
   rename_with(~snakecase::to_title_case(.x)) %>%
@@ -168,7 +168,7 @@ flu_model_output %>%
 ```{r summarize-model-latex, echo = FALSE, eval = knitr::is_latex_output()}
 flu_model_output %>%
   mutate(p.value = scales::pvalue(p.value, add_p = TRUE),
-         across(.cols = is.numeric, ~round(.x, 3))) %>%
+         across(.cols = where(is.numeric), ~round(.x, 3))) %>%
   rename("Standard Error" = std.error,
          "T Statistic" = statistic) %>%
   rename_with(~snakecase::to_title_case(.x)) %>%
