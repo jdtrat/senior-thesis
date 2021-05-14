@@ -10,12 +10,9 @@ biblio-style: apalike
 link-citations: yes
 colorlinks: yes
 description: |
-  R is an interpreted, object-oriented programming language frequently used in academia and industry. One of its primary benefits is its extensibility with packages, which bundle code, data, documentation, and tests in a common, easily shareable format.
-  In this thesis, I describe the development process for three published R packages. Although each package was developed individually, they are united with the purpose of helping others more easily achieve their academic and professional goals with R. The first package, {discord}, provides user-friendly functions for genetically-informed quasi-experimental designs. It facilitates discordant-kinship regressions by comparing kin, such as siblings, in a manner that accounts for gene-and-environmental confounds when examining causal links in the realm of ‘nature vs. nurture.’
-  The second package, {shinysurveys}, provides easy-to-use, minimalistic code for creating and deploying surveys in R. It extends the {shiny} package and converts a table of questions into an interactive web-based application. Administering surveys with this package allows users to combine the computational tools of R with the interactivity of web applications. This synergy helps bridge the gap between data collection and data analysis. 
-  The third package, {ghee}, expands upon the low-level GitHub API package, {gh}. GitHub, an online host for git repositories, is a popular platform for code collaboration. {ghee} provides a curated set of functions to help developers easily perform common tasks on it such as creating repositories and inviting collaborators.
-  In this thesis, I cover the technical background and implementation of each package and provide vignettes highlighting their main features.
-
+  In this thesis, I describe the development process for three published R packages. Although each package was developed individually, they are united with the purpose of helping others more easily achieve their academic and professional goals with R. I cover the technical background and implementation of each package and provide vignettes highlighting their main features.
+knit: "bookdown::render_book"
+url: 'https\://senior-thesis.jdtrat.com/'
 ---
 
 # Hello, World {-}

@@ -1,6 +1,6 @@
-book_filename: "senior-thesis"
+book_filename: "trattner-senior-thesis.Rmd"
 delete_merged_file: true
 language:
   ui:
     chapter_name: ""
-download: ["book.pdf", "book.epub"]
+view: https://github.com/jdtrat/senior-thesis/blob/main/%s
