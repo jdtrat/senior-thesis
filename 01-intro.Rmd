@@ -1,17 +1,12 @@
 # Introduction {#intro}
 
-[**You:**]{.ul} "Jonathan, what is your senior thesis?".
 
-[**Me:**]{.ul} "Oh, it's a hodgepodge of R packages and projects I've developed. I have something for behavioral-genetics modeling, creating and deploying surveys, conducting randomized-trials, interfacing with the GitHub API, and more."
-
-[**You:**]{.ul} "Wow! That's so cool. How does it relate to your major?"
-
-[**Me:**]{.ul} "Good question! In order to determine statistical significance for a question-of-interest, many researchers (especially in the life sciences) employ randomized-controlled studies. They are the 'gold standard for effectiveness research' because they help reduce bias when examining causal relationships [@hariton2018]. In the neuroscience literature specifically, a lot of behavioral data is collected and correlated with neuroimaging data. Some of the work I've done to facilitate easy creation and deployment of surveys, as well as provide a framework for randomized-controlled studies, helps make that process easier."
-
-[**You:**]{.ul} "What about the GitHub API interface and behavioral-genetics modeling work?"
-
-[**Me:**]{.ul} "Also good question! GitHub is a code hosting platform that facilitates collaboration between programmers all over the world. It's especially useful because it allows you to version-control your work (i.e. save a copy at every stage and easily revert back to older work as needed). The behavioral-genetics modeling is simply one way I exercised the computational techniques (both mathematical and technical) I have learned while pursuing my degree."
-
-[**You:**]{.ul} "Well, okay then! How can I hear about these in more detail?"
-
-[**Me:**]{.ul} "I'm so glad you asked! You can read about them on this website I created for my senior thesis. That is, at [senior-thesis.jdtrat.com](https://senior-thesis.jdtrat.com). There, I describe in-depth the theoretical and technical details involved in my work, why it matters, and how it can (and is already) helping other people."
+  In this thesis, I describe my work developing software in the programming language R to help others more easily achieve their academic and professional goals. The first part of the thesis briefly the programming language R and its rising popularity throughout industry and academia. The middle part consists of three chapters, one for each piece of software developed. I describe the technical background and implementation of each package, an easily shareable unit of code, and provide vignette-like documentation highlighting their main features.
+  
+  The first package, {discord}, provides user-friendly functions for genetically-informed quasi-experimental designs. It facilitates discordant-kinship regressions by comparing kin, such as siblings, in a manner that accounts for gene-and-environmental confounds when examining causal links in the realm of ‘nature vs. nurture.’
+  
+  The second package, {shinysurveys}, provides easy-to-use, minimalistic code for creating and deploying surveys in R. It extends the {shiny} package and converts a table of questions into an interactive web-based application. Administering surveys with this package allows users to combine the computational tools of R with the interactivity of web applications. This synergy helps bridge the gap between data collection and data analysis. 
+  
+  The third package, {ghee}, expands upon the low-level GitHub API package, {gh}. GitHub, an online host for git repositories, is a popular platform for code collaboration. {ghee} provides a curated set of functions to help developers easily perform common tasks on it such as creating repositories and inviting collaborators.
+  
+  I end each of the main chapters by discussing how to improve upon the software and, in the final section of this thesis, close with an overarching conclusion. The packages described in this thesis have been downloaded over 5500 times. I believe they have really exciting potential, and am excited to see what people do with them.
