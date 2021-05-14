@@ -120,7 +120,7 @@ purrr::walk(.x = friends,
 gh_repos_create(path = "jdtrat/ghee_test", private = TRUE, description = "A test repository.")
 ```
 
-![](graphics/ghee/ghee_test_create.png)
+![](graphics/ghee/ghee_test_create.png){style="max-width: 100%;"}
 
 Note how the above picture shows an "Issues" tab. I don't really want feedback on this repository, so I'm going to disable it with the `gh_repos_mutate()` function.
 
@@ -129,7 +129,7 @@ Note how the above picture shows an "Issues" tab. I don't really want feedback o
 gh_repos_mutate(path = "jdtrat/ghee_test", has_issues = FALSE)
 ```
 
-![](graphics/ghee/ghee_test_mutate_issues.png)
+![](graphics/ghee/ghee_test_mutate_issues.png){style="max-width: 100%;"}
 
 If you decide you don't want a private repo anymore, no problem! That's an easy change! In the picture below, you can see the private badge next to the title is gone.
 
@@ -138,7 +138,7 @@ If you decide you don't want a private repo anymore, no problem! That's an easy 
 gh_repos_mutate(path = "jdtrat/ghee_test", private = FALSE)
 ```
 
-![](graphics/ghee/ghee_test_mutate_privacy.png)
+![](graphics/ghee/ghee_test_mutate_privacy.png){style="max-width: 100%;"}
 
 Now, I know what you're thinking. You don't like the repo name "ghee_test." I don't blame you. Let's change it! Voila! It's now "ghee_testing."
 
@@ -147,7 +147,7 @@ Now, I know what you're thinking. You don't like the repo name "ghee_test." I do
 gh_repos_mutate(path = "jdtrat/ghee_test", name = "ghee_testing")
 ```
 
-![](graphics/ghee/ghee_test_mutate_name.png)
+![](graphics/ghee/ghee_test_mutate_name.png){style="max-width: 100%;"}
 
 For more repository manipulation options, check out GitHub's API [here](https://docs.github.com/en/rest/reference/repos#update-a-repository). You can also look at the documentation for `gh_repos_mutate()`, which expands upon the above examples.
 
@@ -180,4 +180,8 @@ gh_issue_comment(path = "jdtrat/shinysurveys",
 
 ## Conclusion
 
-Coming soon to a website on your browser...
+As mentioned in the vignette, {ghee} was not developed to be an exhaustive API. It was designed to provide a curated set of functions to improve R user's workflow for common tasks with GitHub. From first-hand experience, I believe this goal has been achieved. Excitingly, it has been downloaded over 750 times as of May 11, 2021.
+
+Even so, discussions within the R community[^ghee-3] have indicated a need for automating certain tasks not currently supported, such as relabeling GitHub Issues. While there are other alternatives for this, chiefly [{usethis}](https://usethis.r-lib.org/reference/index.html#section-git-and-github), I believe the R community could benefit from a common interface. Future work on {ghee} will focus on implementing additional features to improve user's interaction with GitHub.
+
+[^ghee-3]: e.g. <https://twitter.com/henrikbengtsson/status/1392207996592087043?s=20>
