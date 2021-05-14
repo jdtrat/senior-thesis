@@ -170,7 +170,7 @@ Y_{i\Delta} = \beta_0 + \beta_1 \bar{Y}_i + \beta_2 \bar{X}_i + \beta_3 X_{i\Del
 ##  7          67           6700           6800            4            4       0
 ##  8          74           7500           7600            0            0       0
 ##  9          83           8300           8400            0            3       1
-## 10          85           8500           8600            0            0       1
+## 10          85           8500           8700            0            4       1
 ## # … with 1,057 more rows, and 5 more variables: race_s2 &lt;dbl&gt;, sex_s1 &lt;dbl&gt;,
 ## #   sex_s2 &lt;dbl&gt;, s00_h40_s1 &lt;dbl&gt;, s00_h40_s2 &lt;dbl&gt;</code></pre>
 </div>
@@ -215,13 +215,13 @@ P Value
 (Intercept)
 </td>
 <td style="text-align:center;text-align: center;">
-1.275
+1.409
 </td>
 <td style="text-align:center;text-align: center;">
-0.194
+0.189
 </td>
 <td style="text-align:center;text-align: center;">
-6.585
+7.446
 </td>
 <td style="text-align:center;text-align: center;">
 p&lt;0.001
@@ -232,13 +232,13 @@ p&lt;0.001
 flu_total_mean
 </td>
 <td style="text-align:center;text-align: center;">
-0.211
+0.197
 </td>
 <td style="text-align:center;text-align: center;">
 0.034
 </td>
 <td style="text-align:center;text-align: center;">
-6.278
+5.849
 </td>
 <td style="text-align:center;text-align: center;">
 p&lt;0.001
@@ -249,16 +249,16 @@ p&lt;0.001
 s00_h40_diff
 </td>
 <td style="text-align:center;text-align: center;">
-0.005
+0.007
 </td>
 <td style="text-align:center;text-align: center;">
 0.002
 </td>
 <td style="text-align:center;text-align: center;">
-2.432
+3.506
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.015
+p&lt;0.001
 </td>
 </tr>
 <tr>
@@ -266,16 +266,16 @@ p=0.015
 s00_h40_mean
 </td>
 <td style="text-align:center;text-align: center;">
-0.003
+0.002
 </td>
 <td style="text-align:center;text-align: center;">
 0.003
 </td>
 <td style="text-align:center;text-align: center;">
-0.950
+0.648
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.342
+p=0.517
 </td>
 </tr>
 <tr>
@@ -283,16 +283,16 @@ p=0.342
 sex_1
 </td>
 <td style="text-align:center;text-align: center;">
--0.087
+-0.040
 </td>
 <td style="text-align:center;text-align: center;">
 0.098
 </td>
 <td style="text-align:center;text-align: center;">
--0.883
+-0.404
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.378
+p=0.687
 </td>
 </tr>
 <tr>
@@ -300,16 +300,16 @@ p=0.378
 race_1
 </td>
 <td style="text-align:center;text-align: center;">
--0.016
+-0.035
 </td>
 <td style="text-align:center;text-align: center;">
-0.103
+0.102
 </td>
 <td style="text-align:center;text-align: center;">
--0.155
+-0.346
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.877
+p=0.730
 </td>
 </tr>
 <tr>
@@ -317,22 +317,22 @@ p=0.877
 sex_2
 </td>
 <td style="text-align:center;text-align: center;">
-0.167
+-0.016
 </td>
 <td style="text-align:center;text-align: center;">
 0.098
 </td>
 <td style="text-align:center;text-align: center;">
-1.695
+-0.165
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.090
+p=0.869
 </td>
 </tr>
 </tbody>
 </table></div>
 <p>Looking at our output, we can think of the intercept as the average difference of the outcome between siblings, ignoring all other variables. In this case, it looks like the average sibling difference for two sisters of a non-minority ethnic background (the default sex and race values) is approximately 1.5. The term <code>flu_total_mean</code> is essentially an extra component of the intercept that captures some non-linear trends and allows the difference score to change as a function of the average predictors. Here, this is the mean socioeconomic status for the siblings, <code>s00_h40_mean</code>. We also accounted for sex and race, neither of which have a statistically significant effect on the differences in flu vaccine shots between siblings (different families) or within a sibling pair (same family).</p>
-<p>The most important metric from the output, though, is the difference score, <code>s00_h40_diff</code>. In this example, it is statistically significant. To interpret it, we may say “the difference in socioeconomic status between siblings at age 40 is positively associated with the difference in the number of flu vaccinations received between 2006-2016.” This means that a sibling with 10% higher SES is expected to have 0.0496402 more flu shots.</p>
+<p>The most important metric from the output, though, is the difference score, <code>s00_h40_diff</code>. In this example, it is statistically significant. To interpret it, we may say “the difference in socioeconomic status between siblings at age 40 is positively associated with the difference in the number of flu vaccinations received between 2006-2016.” This means that a sibling with 10% higher SES is expected to have 0.0714194 more flu shots.</p>
 <p>The goal of performing a discordant-kinship regression is to see whether there is a significant difference in some behavioral measure while controlling for as much gene-and-environmental variance as possible. In this example, we found there is a significant difference in the number of flu shots a sibling received and their socioeconomic status. We <em>cannot</em> claim this relationship is causal. However, we cannot eliminate causality because there are statistically significant within- and between-family differences in our predictors and outcomes.</p>
 </div>
 </div>
