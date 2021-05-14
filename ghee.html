@@ -43,7 +43,7 @@
 </ul>
 
         <div class="book-extra">
-          
+          <p><a id="book-repo" href="https://github.com/jdtrat/senior-thesis">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -55,7 +55,7 @@
 <h2>
 <span class="header-section-number">5.1</span> Version Control<a class="anchor" aria-label="anchor" href="#version-control"><i class="fas fa-link"></i></a>
 </h2>
-<p>Programming is an important skill used in academia and industry alike. A computational neuroscientist, for example, may need to develop code that combines neuroimaging data (such as functional magnetic resonance imaging, fMRI) with behavioral data (such as political ideology) in order to understand the relationship between neural processes and political attitudes (e.g. <span class="citation">(Ahn et al. <a href="references.html#ref-ahn2014" role="doc-biblioref">2014</a>)</span>). An industry professional may need to develop code that combines demographic data and purchasing history in order to predict future profits for a new product. Complex models and programs like these are often developed piecemeal by multiple individuals. Thus, if one person makes a change or implements a feature, it’s essential that all collaborators have the latest version. It’s equally essential that any change be revertible in case it introduces a bug to the existing code.</p>
+<p>Programming is an important skill used in academia and industry alike. A computational neuroscientist, for example, may need to develop code that combines neuroimaging data like fMRI with behavioral data, such as political ideology, in order to understand the relationship between neural processes and political attitudes – e.g. <span class="citation">(Ahn et al. <a href="references.html#ref-ahn2014" role="doc-biblioref">2014</a>)</span>. An industry professional may need to develop code that combines demographic data and purchasing history in order to predict future profits for a new product. Complex models and programs like these are often developed piecemeal by multiple individuals. Thus, if one person makes a change or implements a feature, it’s essential that all collaborators have the latest version. It is equally essential that any change be revertible in case it introduces a bug to the existing code.</p>
 <p>These requirements are met with a version control system (VCS), which allows you to track incremental changes to code. One may think of VCS as a more robust version of Microsoft Word’s “Track Changes” feature. A popular VCS is called <a href="http://git-scm.com">git</a>, and is extremely popular with scientists and programmers alike <span class="citation">(Blischak, Davenport, and Wilson <a href="references.html#ref-blischak2016" role="doc-biblioref">2016</a>)</span>. The next section discusses the basics of working with git and how to share your code with others using <a href="https://github.com">GitHub</a>, an online platform that hosts code that is version-controlled with git.</p>
 </div>
 <div id="git-and-github" class="section level2">
@@ -120,7 +120,7 @@ To <strong>pull</strong> is to retrieve any commits (modifications) that are on 
 <h2>
 <span class="header-section-number">5.4</span> Clarifying Butter<a class="anchor" aria-label="anchor" href="#clarifying-butter"><i class="fas fa-link"></i></a>
 </h2>
-<p>I chose the name {ghee} for a couple reasons. One, my neighbor loves using ghee (clarified butter) to cook with, and I’ve become a fan. Two, I think it makes it easy to switch between this package and its underlying one, {gh}, if you need to perform sophisticated API requests.</p>
+<p>I chose the name {ghee} for a couple reasons. One, my neighbor loves using ghee (clarified butter) to cook, and I have recently become a fan of it. Two, I think it makes it easy to switch between this package and its underlying one, {gh}, if you need to perform sophisticated API requests.</p>
 <div id="installation" class="section level3">
 <h3>
 <span class="header-section-number">5.4.1</span> Installation<a class="anchor" aria-label="anchor" href="#installation"><i class="fas fa-link"></i></a>
@@ -153,7 +153,8 @@ To <strong>pull</strong> is to retrieve any commits (modifications) that are on 
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">friends</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"friend"</span>, <span class="st">"pal"</span>, <span class="st">"amigo"</span><span class="op">)</span>
 <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">walk</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">friends</span>, 
-            <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_collab_invite.html">gh_collab_invite</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"owner/repository"</span>, invitee <span class="op">=</span> <span class="va">.x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+            <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_collab_invite.html">gh_collab_invite</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"owner/repository"</span>, 
+                               invitee <span class="op">=</span> <span class="va">.x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="repositories" class="section level4">
 <h4>
@@ -162,22 +163,27 @@ To <strong>pull</strong> is to retrieve any commits (modifications) that are on 
 <p>{ghee} provides functions to create, edit, and delete repositories. As an example, I’ll create a repo called “ghee_test,” as seen below.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Create a Private Repo</span>
-<span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_repos_create.html">gh_repos_create</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/ghee_test"</span>, private <span class="op">=</span> <span class="cn">TRUE</span>, description <span class="op">=</span> <span class="st">"A test repository."</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_repos_create.html">gh_repos_create</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/ghee_test"</span>, 
+                private <span class="op">=</span> <span class="cn">TRUE</span>, 
+                description <span class="op">=</span> <span class="st">"A test repository."</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="graphics/ghee/ghee_test_create.png" style="max-width: 100%;"></div>
 <p>Note how the above picture shows an “Issues” tab. I don’t really want feedback on this repository, so I’m going to disable it with the <code><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate()</a></code> function.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Disable Issues</span>
-<span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/ghee_test"</span>, has_issues <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/ghee_test"</span>, 
+                has_issues <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="graphics/ghee/ghee_test_mutate_issues.png" style="max-width: 100%;"></div>
 <p>If you decide you don’t want a private repo anymore, no problem! That’s an easy change! In the picture below, you can see the private badge next to the title is gone.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Change Privacy Settings</span>
-<span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/ghee_test"</span>, private <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/ghee_test"</span>, 
+                private <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="graphics/ghee/ghee_test_mutate_privacy.png" style="max-width: 100%;"></div>
 <p>Now, I know what you’re thinking. You don’t like the repo name “ghee_test.” I don’t blame you. Let’s change it! Voila! It’s now “ghee_testing.”</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Change Repo Name</span>
-<span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/ghee_test"</span>, name <span class="op">=</span> <span class="st">"ghee_testing"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/ghee_test"</span>, 
+                name <span class="op">=</span> <span class="st">"ghee_testing"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="graphics/ghee/ghee_test_mutate_name.png" style="max-width: 100%;"></div>
 <p>For more repository manipulation options, check out GitHub’s API <a href="https://docs.github.com/en/rest/reference/repos#update-a-repository">here</a>. You can also look at the documentation for <code><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate()</a></code>, which expands upon the above examples.</p>
 <p>{ghee} also has a function to delete repositories, though it should be <em>used with caution</em>, as it is <span class="ul"><strong>permanent</strong></span>. Further, if you want to use it, you will need to create a special GitHub PAT with the <a href="https://docs.github.com/en/github/administering-a-repository/deleting-a-repository">appropriate permissions</a>. This can be done with the with the <a href="http://usethis.r-lib.org">{usethis}</a> package as follows: <code>usethis::create_github_token(scopes = "delete_repo")</code>.</p>
@@ -190,7 +196,7 @@ To <strong>pull</strong> is to retrieve any commits (modifications) that are on 
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_issue_new.html">gh_issue_new</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/shinysurveys"</span>, 
              title <span class="op">=</span> <span class="st">"My Issue Title"</span>, 
-             body <span class="op">=</span> <span class="st">"Just wanted to pop on and say I love your package!"</span><span class="op">)</span></code></pre></div>
+             body <span class="op">=</span> <span class="st">"Just wanted to say I love your package!"</span><span class="op">)</span></code></pre></div>
 <p>To assign that issue to myself, or respond to it, I would use the issue number (which I could get with <code><a href="https://rdrr.io/pkg/ghee/man/gh_issue_list.html">gh_issue_list()</a></code>) and do something like this:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_issue_assign.html">gh_issue_assign</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/shinysurveys"</span>,
@@ -236,7 +242,8 @@ To <strong>pull</strong> is to retrieve any commits (modifications) that are on 
 
       <div class="book-extra">
         <ul class="list-unstyled">
-          
+<li><a id="book-source" href="https://github.com/jdtrat/senior-thesis/blob/master/05-ghee.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/jdtrat/senior-thesis/edit/master/05-ghee.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
