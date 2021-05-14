@@ -43,9 +43,9 @@ version-control
 git-and-github
 what-is-ghee
 technical-aspects-1
-clarifying-butter
+ghee-highlights
 installation
-what-are-use-cases-for-ghee
+use-cases
 collaboration
 repositories
 issues

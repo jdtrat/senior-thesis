@@ -55,18 +55,14 @@
 <h2>
 <span class="header-section-number">5.1</span> Version Control<a class="anchor" aria-label="anchor" href="#version-control"><i class="fas fa-link"></i></a>
 </h2>
-<p>Programming is an important skill used in academia and industry alike. A computational neuroscientist, for example, may need to develop code that combines neuroimaging data like fMRI with behavioral data, such as political ideology, in order to understand the relationship between neural processes and political attitudes – e.g. <span class="citation">(Ahn et al. <a href="references.html#ref-ahn2014" role="doc-biblioref">2014</a>)</span>. An industry professional may need to develop code that combines demographic data and purchasing history in order to predict future profits for a new product. Complex models and programs like these are often developed piecemeal by multiple individuals. Thus, if one person makes a change or implements a feature, it’s essential that all collaborators have the latest version. It is equally essential that any change be revertible in case it introduces a bug to the existing code.</p>
-<p>These requirements are met with a version control system (VCS), which allows you to track incremental changes to code. One may think of VCS as a more robust version of Microsoft Word’s “Track Changes” feature. A popular VCS is called <a href="http://git-scm.com">git</a>, and is extremely popular with scientists and programmers alike <span class="citation">(Blischak, Davenport, and Wilson <a href="references.html#ref-blischak2016" role="doc-biblioref">2016</a>)</span>. The next section discusses the basics of working with git and how to share your code with others using <a href="https://github.com">GitHub</a>, an online platform that hosts code that is version-controlled with git.</p>
+<p>Programming is an important skill used in academia and industry alike. For example, an industry professional may need to develop code that combines demographic data and purchasing history in order to predict future profits for a new product. Similarly, a computational neuroscientist, may need to develop code that combines neuroimaging data like fMRI with behavioral data. Such a combination may help them understand the relationship between neural processes and political attitudes – e.g. <span class="citation">(Ahn et al. <a href="references.html#ref-ahn2014" role="doc-biblioref">2014</a>)</span>. Complex models and programs like these are often developed piecemeal by multiple individuals. Thus, if one person makes a change or implements a feature, it’s essential that all collaborators have the latest version. It is equally important that any change be revertible in case it introduces a bug to the existing code.</p>
+<p>These requirements are met with a version control system (VCS), which allows people to track incremental changes to code. A VCS may be thought of as a more robust version of Microsoft Word’s “Track Changes” feature. A popular VCS is called <a href="http://git-scm.com">git</a>, and is popular with scientists and programmers alike <span class="citation">(Blischak, Davenport, and Wilson <a href="references.html#ref-blischak2016" role="doc-biblioref">2016</a>)</span>. The next section discusses the basics of working with git and how to share your code with others using <a href="https://github.com">GitHub</a>, an online platform that hosts code that is version-controlled with git.</p>
 </div>
 <div id="git-and-github" class="section level2">
 <h2>
 <span class="header-section-number">5.2</span> git and GitHub<a class="anchor" aria-label="anchor" href="#git-and-github"><i class="fas fa-link"></i></a>
 </h2>
-<p>In order to version-control your code with git you must navigate to the folder containing your code and <em>initiate</em> a <strong>repository</strong>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;This minimal introduction assumes git is installed on your computer. For a great “how-to”, see the “Install Git” section from &lt;span class="citation"&gt;(Jenny Bryan and Jim Hester, &lt;a href="references.html#ref-jennybryan" role="doc-biblioref"&gt;n.d.&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>11</sup></a></p>
-<details closed><p><summary><span title="Click to Expand"> How to best cite these git definitions? </span> </summary></p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="ghee.html#cb23-1"></a></span>
-<span id="cb23-2"><a href="ghee.html#cb23-2"></a>How should I cite the definition blocks? I wanted to include them because I found box <span class="dv">1</span> of [<span class="op">@</span>blischak2016] useful, but I feel they are not explicitly citable from that?</span></code></pre></div>
-</details><p><br></p>
+<p>In order to version-control your code with git you must navigate to the folder containing your code and <em>initiate</em> a <strong>repository</strong>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;This minimal introduction assumes git is installed on your computer. For a great “how-to”, see the “Install Git” section from &lt;span class="citation"&gt;(Jenny Bryan and Jim Hester, &lt;a href="references.html#ref-jennybryan" role="doc-biblioref"&gt;n.d.&lt;/a&gt;)&lt;/span&gt;. For a more formal treatment of version controlling with git and GitHub, see &lt;span class="citation"&gt;(Blischak, Davenport, and Wilson &lt;a href="references.html#ref-blischak2016" role="doc-biblioref"&gt;2016&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>11</sup></a></p>
 <div class="definition">
 <p><span id="def:unlabeled-div-1" class="definition"><strong>Definition 5.1  </strong></span>A <strong>repository</strong> (or <strong>repo</strong>) is a folder containing all files to be version-controlled in their present and past forms.</p>
 </div>
@@ -85,11 +81,7 @@
 <p><span id="def:unlabeled-div-4" class="definition"><strong>Definition 5.4  </strong></span>To <strong>clone</strong> a repository is to make a copy of a remote repository on a personal computer; that is, make a local repo from an remote one.<br>
 To <strong>pull</strong> is to retrieve any commits (modifications) that are on a remote repository and update your local repo.</p>
 </div>
-<p>With an understanding of some of the core features of git,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;There are additional features of git that are outside the scope of this thesis. For those interested, I would recommend the book &lt;em&gt;Pro Git&lt;/em&gt;, which is freely available &lt;a href="http://git-scm.com/book/en/v2"&gt;here&lt;/a&gt; &lt;span class="citation"&gt;(Scott Chacon and Ben Straub &lt;a href="references.html#ref-scottchacon2014" role="doc-biblioref"&gt;2014&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>12</sup></a> one is ready to collaborate with others. This is often done using <a href="https://github.com/">GitHub</a>, which I will redescribe as an online host for git repositories. When I push an updated version of my thesis, others can view that (and previous versions) <a href="https://github.com/jdtrat/senior-thesis">on GitHub</a>. Because GitHub is a remote platform, it provides a version-controlled backup of my code (or thesis) in case something happened to my computer. On top of that, GitHub has extremely nice features for collaboration and productivity. A few features relevant to my thesis include:</p>
-<details closed><p><summary><span title="Click to Expand"> How to best cite these GitHub Features? </span> </summary></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="ghee.html#cb24-1"></a></span>
-<span id="cb24-2"><a href="ghee.html#cb24-2"></a>How should I cite these? They<span class="st">'re from GitHub'</span>s website <span class="op">--</span><span class="st"> </span>mainly https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>features <span class="op">--</span><span class="st"> </span>as well as personal experience</span></code></pre></div>
-</details><p><br></p>
+<p>With an understanding of some of the core features of git,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;There are additional features of git that are outside the scope of this thesis. For those interested, I would recommend the book &lt;em&gt;Pro Git&lt;/em&gt;, which is freely available &lt;a href="http://git-scm.com/book/en/v2"&gt;here&lt;/a&gt; &lt;span class="citation"&gt;(Scott Chacon and Ben Straub &lt;a href="references.html#ref-scottchacon2014" role="doc-biblioref"&gt;2014&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;'><sup>12</sup></a> it’s time to collaborate with others. This is often done using <a href="https://github.com/">GitHub</a>, which I will redescribe as an online host for git repositories. When I push an updated version of my thesis, others can view that (and previous versions) <a href="https://github.com/jdtrat/senior-thesis">on GitHub</a>. Because GitHub is a remote platform, it provides a version-controlled backup of my code (or thesis) in case something happened to my computer. On top of that, GitHub has wonderful features for collaboration and productivity. A few features relevant to my thesis include:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;More detailed documentation for these can be found at &lt;a href="https://github.com/features" class="uri"&gt;https://github.com/features&lt;/a&gt;.&lt;/p&gt;'><sup>13</sup></a></p>
 <ol style="list-style-type: decimal">
 <li>
 <strong>Issues</strong>: A framework for collecting user feedback, reporting software bugs, tracking and prioritizing work, assigning responsibilities, and more.</li>
@@ -98,7 +90,7 @@ To <strong>pull</strong> is to retrieve any commits (modifications) that are on 
 <li>
 <strong>Repository visibility:</strong> A way to restrict who has access to a repository; public repos are available to anyone on the internet; private repos are only available to the owner and any individuals to whom they explicitly grant access; organization repos are available to people in specific organizations (groups).</li>
 </ol>
-<p>For my research, I found myself utilizing these features of GitHub more often. I was constantly leaving my code editor, <a href="https://www.rstudio.com">RStudio</a>, opening up a browser, navigating to my repo-of-choice, and creating or commenting on issues, inviting people to a repository, etc. For this reason, I developed a package, {ghee}, that allows common GitHub tasks to be achieved directly from R. So, what exactly is {ghee}?</p>
+<p>For my research, I found myself frequently utilizing these features of GitHub. I constantly left my integrated development environment (IDE), <a href="https://www.rstudio.com">RStudio</a>, opened a web browser, navigated to my repo-of-choice, and created or commented on issues, invited people to the repository, etc. For this reason, I developed a package, {ghee}, that allows common GitHub tasks to be achieved directly from R.</p>
 </div>
 <div id="what-is-ghee" class="section level2">
 <h2>
@@ -113,20 +105,19 @@ To <strong>pull</strong> is to retrieve any commits (modifications) that are on 
 </h3>
 <p>An Application Programming Interface (API) may be thought of as a channel provided by developers of proprietary software that allows individuals to access certain features. The R package <a href="http://googledrive.tidyverse.org/">{googledrive}</a>, for example, allows you to read, write, and manipulate files in your Google Drive account directly from R. In the same vein, GitHub’s API allows you to perform <a href="https://docs.github.com/en/rest/overview/endpoints-available-for-github-apps">hundreds of actions</a> involving repositories, organizations, billing, and more. The official GitHub API “Octokit” is provided for Ruby, .NET, and JavaScript, but there are implementations in many other languages from Clojure to Go, Haskell to Perl, Python and R.</p>
 <p>For R, the package <a href="http://gh.r-lib.org/">{gh}</a> provides extremely flexible API access to GitHub, though it requires the use of HTTP verbs such as <code>HEAD</code>, <code>GET</code>, and <code>POST</code> to perform actions. For R users who are familiar with web protocols, or those who don’t mind exploring the documentation for API requests, {gh} is a wonderful package.</p>
-<p>{ghee} is <strong>not</strong> meant to replace {gh} or be an exhaustive API. It is designed for R users, such as myself, who are less comfortable with web protocols but regularly interact with GitHub. That is, it was designed with the goal of helping developers achieve common tasks with GitHub easily. As such, all functions begin with the prefix <code>gh_</code>, followed by categories of actions such as <code>collab</code> and <code>issue</code>. An overview of the package is described in the next section.</p>
+<p>{ghee} is <strong>not</strong> meant to replace {gh} or be an exhaustive API. It is designed for R users, such as myself, who are less comfortable with web protocols but regularly interact with GitHub. That is, it was designed with the goal of helping developers easily achieve common tasks with GitHub. As such, all functions begin with the prefix <code>gh_</code>, followed by categories of actions such as <code>collab</code> and <code>issue</code>. An overview of the package is described in the next section.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;I chose the name {ghee} for a couple reasons. One, my neighbor loves using ghee (clarified butter) to cook, and I have recently become a fan of it. Two, I think it makes it easy to switch between this package and its underlying one, {gh}, if you need to perform sophisticated API requests.&lt;/p&gt;"><sup>14</sup></a></p>
 </div>
 </div>
-<div id="clarifying-butter" class="section level2">
+<div id="ghee-highlights" class="section level2">
 <h2>
-<span class="header-section-number">5.4</span> Clarifying Butter<a class="anchor" aria-label="anchor" href="#clarifying-butter"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4</span> {ghee} Highlights<a class="anchor" aria-label="anchor" href="#ghee-highlights"><i class="fas fa-link"></i></a>
 </h2>
-<p>I chose the name {ghee} for a couple reasons. One, my neighbor loves using ghee (clarified butter) to cook, and I have recently become a fan of it. Two, I think it makes it easy to switch between this package and its underlying one, {gh}, if you need to perform sophisticated API requests.</p>
 <div id="installation" class="section level3">
 <h3>
 <span class="header-section-number">5.4.1</span> Installation<a class="anchor" aria-label="anchor" href="#installation"><i class="fas fa-link"></i></a>
 </h3>
 <p>The source code for {ghee} is <a href="https://github.com/jdtrat/ghee">on my GitHub repo</a>, and the development version of it can be installed and loaded as follows:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Install released version from CRAN</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ghee"</span><span class="op">)</span>
 
@@ -137,20 +128,20 @@ To <strong>pull</strong> is to retrieve any commits (modifications) that are on 
 <span class="co"># Load package</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jdtrat/ghee">ghee</a></span><span class="op">)</span></code></pre></div>
 </div>
-<div id="what-are-use-cases-for-ghee" class="section level3">
+<div id="use-cases" class="section level3">
 <h3>
-<span class="header-section-number">5.4.2</span> What are use cases for {ghee}?<a class="anchor" aria-label="anchor" href="#what-are-use-cases-for-ghee"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4.2</span> Use Cases<a class="anchor" aria-label="anchor" href="#use-cases"><i class="fas fa-link"></i></a>
 </h3>
 <div id="collaboration" class="section level4">
 <h4>
 <span class="header-section-number">5.4.2.1</span> Collaboration<a class="anchor" aria-label="anchor" href="#collaboration"><i class="fas fa-link"></i></a>
 </h4>
 <p>I’ve found it particularly helpful to use {ghee} when working with collaborators. Normally, to invite someone to a repo, I would have to navigate to its page on Github, go to settings, manage access, and send an invitation manually. With {ghee}, though, it’s as simple as specifying the repo and the invitee:</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_collab_invite.html">gh_collab_invite</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"owner/repository"</span>,
                  invitee <span class="op">=</span> <span class="st">"bestfriend"</span><span class="op">)</span></code></pre></div>
 <p>If you wanted to invite multiple friends at once, you could do so in a functional programming style. Here’s an example with the <a href="http://purrr.tidyverse.org/">{purrr}</a> package, which simply calls the <code><a href="https://rdrr.io/pkg/ghee/man/gh_collab_invite.html">gh_collab_invite()</a></code> for each entry in the friends vector.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">friends</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"friend"</span>, <span class="st">"pal"</span>, <span class="st">"amigo"</span><span class="op">)</span>
 <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">walk</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">friends</span>, 
             <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_collab_invite.html">gh_collab_invite</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"owner/repository"</span>, 
@@ -161,26 +152,26 @@ To <strong>pull</strong> is to retrieve any commits (modifications) that are on 
 <span class="header-section-number">5.4.2.2</span> Repositories<a class="anchor" aria-label="anchor" href="#repositories"><i class="fas fa-link"></i></a>
 </h4>
 <p>{ghee} provides functions to create, edit, and delete repositories. As an example, I’ll create a repo called “ghee_test,” as seen below.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Create a Private Repo</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_repos_create.html">gh_repos_create</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/ghee_test"</span>, 
                 private <span class="op">=</span> <span class="cn">TRUE</span>, 
                 description <span class="op">=</span> <span class="st">"A test repository."</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="graphics/ghee/ghee_test_create.png" style="max-width: 100%;"></div>
 <p>Note how the above picture shows an “Issues” tab. I don’t really want feedback on this repository, so I’m going to disable it with the <code><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate()</a></code> function.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Disable Issues</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/ghee_test"</span>, 
                 has_issues <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="graphics/ghee/ghee_test_mutate_issues.png" style="max-width: 100%;"></div>
 <p>If you decide you don’t want a private repo anymore, no problem! That’s an easy change! In the picture below, you can see the private badge next to the title is gone.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Change Privacy Settings</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/ghee_test"</span>, 
                 private <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="graphics/ghee/ghee_test_mutate_privacy.png" style="max-width: 100%;"></div>
 <p>Now, I know what you’re thinking. You don’t like the repo name “ghee_test.” I don’t blame you. Let’s change it! Voila! It’s now “ghee_testing.”</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Change Repo Name</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_repos_mutate.html">gh_repos_mutate</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/ghee_test"</span>, 
                 name <span class="op">=</span> <span class="st">"ghee_testing"</span><span class="op">)</span></code></pre></div>
@@ -193,12 +184,12 @@ To <strong>pull</strong> is to retrieve any commits (modifications) that are on 
 <span class="header-section-number">5.4.2.3</span> Issues<a class="anchor" aria-label="anchor" href="#issues"><i class="fas fa-link"></i></a>
 </h4>
 <p>Another big component of GitHub are Issues. {ghee} includes some helper functions for interacting with them. These include, <code><a href="https://rdrr.io/pkg/ghee/man/gh_issue_list.html">gh_issue_list()</a></code>, <code><a href="https://rdrr.io/pkg/ghee/man/gh_issue_new.html">gh_issue_new()</a></code>, <code><a href="https://rdrr.io/pkg/ghee/man/gh_issue_comment.html">gh_issue_comment()</a></code>, and <code><a href="https://rdrr.io/pkg/ghee/man/gh_issue_assign.html">gh_issue_assign()</a></code>. The first function lists the GitHub issues for a specific repo. The next one allows you to create a new issue, and the other two allow you to comment on or assign existing ones. For example, if I wanted to create an issue for my <a href="https://github.com/jdtrat/shinysurveys">{shinysurveys}</a> package discussed <a href="shinysurveys.html#shinysurveys">elsewhere in this thesis</a>, I could do so as follows:</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_issue_new.html">gh_issue_new</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/shinysurveys"</span>, 
              title <span class="op">=</span> <span class="st">"My Issue Title"</span>, 
              body <span class="op">=</span> <span class="st">"Just wanted to say I love your package!"</span><span class="op">)</span></code></pre></div>
 <p>To assign that issue to myself, or respond to it, I would use the issue number (which I could get with <code><a href="https://rdrr.io/pkg/ghee/man/gh_issue_list.html">gh_issue_list()</a></code>) and do something like this:</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ghee/man/gh_issue_assign.html">gh_issue_assign</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"jdtrat/shinysurveys"</span>,
                 issue_number <span class="op">=</span> <span class="fl">5</span>, 
                 assignees <span class="op">=</span> <span class="st">"jdtrat"</span><span class="op">)</span>
@@ -213,8 +204,8 @@ To <strong>pull</strong> is to retrieve any commits (modifications) that are on 
 <h2>
 <span class="header-section-number">5.5</span> Conclusion<a class="anchor" aria-label="anchor" href="#conclusion-2"><i class="fas fa-link"></i></a>
 </h2>
-<p>As mentioned in the vignette, {ghee} was not developed to be an exhaustive API. It was designed to provide a curated set of functions to improve R user’s workflow for common tasks with GitHub. From first-hand experience, I believe this goal has been achieved. Excitingly, it has been downloaded over 750 times as of May 11, 2021.</p>
-<p>Even so, discussions within the R community<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;e.g. &lt;a href="https://twitter.com/henrikbengtsson/status/1392207996592087043?s=20" class="uri"&gt;https://twitter.com/henrikbengtsson/status/1392207996592087043?s=20&lt;/a&gt;&lt;/p&gt;'><sup>13</sup></a> have indicated a need for automating certain tasks not currently supported, such as relabeling GitHub Issues. While there are other alternatives for this, chiefly <a href="https://usethis.r-lib.org/reference/index.html#section-git-and-github">{usethis}</a>, I believe the R community could benefit from a common interface. Future work on {ghee} will focus on implementing additional features to improve user’s interaction with GitHub.</p>
+<p>As mentioned in the vignette, {ghee} was not developed to be an exhaustive API. It was designed to provide a curated set of functions to improve R user’s workflow for common tasks with GitHub. My productivity has benefited from {ghee}, and (excitingly) it has been downloaded over 750 times as of May 11, 2021.</p>
+<p>Even so, discussions within the R community<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;e.g. &lt;a href="https://twitter.com/henrikbengtsson/status/1392207996592087043?s=20" class="uri"&gt;https://twitter.com/henrikbengtsson/status/1392207996592087043?s=20&lt;/a&gt;&lt;/p&gt;'><sup>15</sup></a> have indicated a need for automating certain tasks not currently supported, such as relabeling GitHub Issues. While there are other alternatives for this, chiefly <a href="https://usethis.r-lib.org/reference/index.html#section-git-and-github">{usethis}</a>, I believe the R community could benefit from a common interface. Future work on {ghee} will focus on implementing additional features to improve user’s interaction with GitHub.</p>
 
 </div>
 </div>
@@ -232,9 +223,9 @@ To <strong>pull</strong> is to retrieve any commits (modifications) that are on 
 <a class="nav-link" href="#what-is-ghee"><span class="header-section-number">5.3</span> What is {ghee}?</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#technical-aspects-1"><span class="header-section-number">5.3.1</span> Technical Aspects</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#clarifying-butter"><span class="header-section-number">5.4</span> Clarifying Butter</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#ghee-highlights"><span class="header-section-number">5.4</span> {ghee} Highlights</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#installation"><span class="header-section-number">5.4.1</span> Installation</a></li>
-<li><a class="nav-link" href="#what-are-use-cases-for-ghee"><span class="header-section-number">5.4.2</span> What are use cases for {ghee}?</a></li>
+<li><a class="nav-link" href="#use-cases"><span class="header-section-number">5.4.2</span> Use Cases</a></li>
 </ul>
 </li>
 <li><a class="nav-link" href="#conclusion-2"><span class="header-section-number">5.5</span> Conclusion</a></li>
