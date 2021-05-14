@@ -79,7 +79,7 @@ Y_{i\Delta} = \beta_0 + \beta_1 \bar{Y}_i + \beta_2 \bar{X}_i + \beta_3 X_{i\Del
 <span class="header-section-number">3.3.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction"><i class="fas fa-link"></i></a>
 </h3>
 <p>The following analysis is a pared-down version of previous work presented at the Behavior Genetics Association 50th Annual Meeting <span class="citation">(Jonathan Trattner, Kennon Later, and S. Mason Garrison <a href="references.html#ref-jonathantrattner2020" role="doc-biblioref">2020</a>)</span>. The original project was inspired by reports detailing health disparities amongst ethnic minorities during the Covid-19 pandemic <span class="citation">(Hooper, Nápoles, and Pérez-Stable <a href="references.html#ref-hooper2020" role="doc-biblioref">2020</a>)</span>. These were often attributed to differences in socioeconomic status (SES), pre-existing health conditions, and Covid-19 symptom severity <span class="citation">(Ssentongo et al. <a href="references.html#ref-ssentongo2020" role="doc-biblioref">2020</a>; Yang, Gui, and Xiong <a href="references.html#ref-yang2020" role="doc-biblioref">2020</a>)</span>. In line with the field of behavior genetics, any intervention to address these disparities must explicitly account for known gene-and-environmental confounds <span class="citation">(Garrison and Rodgers <a href="references.html#ref-garrison2019" role="doc-biblioref">2019</a>; Williams et al. <a href="references.html#ref-williams2020" role="doc-biblioref">2020</a>)</span>.</p>
-<p>We thus aimed to identify the relationship between SES and vaccination willingness using a quasi-experimental design. Data for this analysis is from the 1979 National Longitudinal Survey of Youth (NLSY79), a nationally representative household probability sample sponsored by the U.S. Bureau of Labor Statistics and Department of Defense. Participants were surveyed annually from 1979-1994 at which point surveys occurred biennially. The data set is publicly available at <a href="https://www.nlsinfo.org/" class="uri">https://www.nlsinfo.org/</a>. The data includes a biennial flu vaccine survey containing data from 2006-2016. We examined whether SES at age 40 was a significant predictor for vaccination rates using the discordant-kinship model.</p>
+<p>We thus aimed to identify the relationship between SES and vaccination willingness using a quasi-experimental design. Data for this analysis is from the 1979 National Longitudinal Survey of Youth (NLSY79), a nationally representative household probability sample sponsored by the U.S. Bureau of Labor Statistics and Department of Defense. Participants were surveyed annually from 1979-1994 at which point surveys occurred biennially. The data set is publicly available at <a href="https://www.nlsinfo.org/" class="uri">https://www.nlsinfo.org/</a>. The data include a biennial flu vaccine survey containing data from 2006-2016. We examined whether SES at age 40 was a significant predictor for vaccination rates using the discordant-kinship model.</p>
 <p>As described in <span class="citation">(Garrison and Rodgers <a href="references.html#ref-garrison2019" role="doc-biblioref">2019</a>)</span>, SES was quantified using methodology from <span class="citation">(Myrianthopoulos and French <a href="references.html#ref-myrianthopoulos1968" role="doc-biblioref">1968</a>)</span>. Individuals were given a mean quantile score based on their net family income, years of education, and occupation prestige. Missing data was imputed from nonmissing components, and higher scores correspond to higher SES.</p>
 <p>The data for this analysis was downloaded with the <a href="https://www.nlsinfo.org/investigator/pages/login">NLS Investigator</a> and can be found <a href="https://github.com/jdtrat/senior-thesis-discord/blob/main/data/flu_shot.dat">here</a>. The SES at age 40 data can be found <a href="https://github.com/jdtrat/senior-thesis-discord/blob/main/data/nlsy-ses.csv">here</a>. For clarity, and to emphasize the functionality of {discord}, the data has been pre-processed using <a href="https://github.com/jdtrat/senior-thesis-discord/blob/main/R/preprocess-discord-flu.R">this script</a>. This discordant-kinship analysis is possible thanks to recent work that estimated relatedness for approximately 95% of the NLSY79 kin pairs <span class="citation">(Rodgers et al. <a href="references.html#ref-rodgers2016" role="doc-biblioref">2016</a>)</span>. These kinship links are included in the <a href="http://nlsy-links.github.io/NlsyLinks/index.html">{NlsyLinks}</a> R package <span class="citation">(Beasley et al. <a href="references.html#ref-beasley2016" role="doc-biblioref">2016</a>)</span> and are easily utilized with the {discord} package.</p>
 </div>
@@ -169,7 +169,7 @@ Y_{i\Delta} = \beta_0 + \beta_1 \bar{Y}_i + \beta_2 \bar{X}_i + \beta_3 X_{i\Del
 ##  7          67           6700           6800            4            4       0
 ##  8          74           7500           7600            0            0       0
 ##  9          83           8300           8400            0            3       1
-## 10          85           8600           8700            0            4       1
+## 10          85           8500           8600            0            0       1
 ## # … with 1,057 more rows, and 5 more variables: race_s2 &lt;dbl&gt;, sex_s1 &lt;dbl&gt;,
 ## #   sex_s2 &lt;dbl&gt;, s00_h40_s1 &lt;dbl&gt;, s00_h40_s2 &lt;dbl&gt;</code></pre>
 </div>
@@ -190,16 +190,6 @@ Y_{i\Delta} = \beta_0 + \beta_1 \bar{Y}_i + \beta_2 \bar{X}_i + \beta_3 X_{i\Del
                                 race <span class="op">=</span> <span class="st">"race"</span>,
                                 pair_identifiers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"_s1"</span>, <span class="st">"_s2"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>The default output of <code><a href="https://rdrr.io/pkg/discord/man/discord_regression.html">discord_regression()</a></code> is a tidy data frame containing the model metrics – courtesy of the <a href="https://broom.tidymodels.org"><code>broom</code></a> package <span class="citation">(Robinson, Hayes, and Couch <a href="references.html#ref-robinson2021" role="doc-biblioref">2021</a>)</span>. In this example, our results are as follows:</p>
-<pre><code>## Warning: Predicate functions must be wrapped in `where()`.
-## 
-##   # Bad
-##   data %&gt;% select(is.numeric)
-## 
-##   # Good
-##   data %&gt;% select(where(is.numeric))
-## 
-## ℹ Please update your code.
-## This message is displayed once per session.</code></pre>
 <div class="inline-table"><table class="table" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:center;">
@@ -224,13 +214,13 @@ P Value
 (Intercept)
 </td>
 <td style="text-align:center;text-align: center;">
-1.481
+1.448
 </td>
 <td style="text-align:center;text-align: center;">
-0.190
+0.191
 </td>
 <td style="text-align:center;text-align: center;">
-7.783
+7.580
 </td>
 <td style="text-align:center;text-align: center;">
 p&lt;0.001
@@ -241,13 +231,13 @@ p&lt;0.001
 flu_total_mean
 </td>
 <td style="text-align:center;text-align: center;">
-0.188
+0.191
 </td>
 <td style="text-align:center;text-align: center;">
-0.034
+0.033
 </td>
 <td style="text-align:center;text-align: center;">
-5.561
+5.765
 </td>
 <td style="text-align:center;text-align: center;">
 p&lt;0.001
@@ -258,16 +248,16 @@ p&lt;0.001
 s00_h40_diff
 </td>
 <td style="text-align:center;text-align: center;">
-0.004
+0.006
 </td>
 <td style="text-align:center;text-align: center;">
 0.002
 </td>
 <td style="text-align:center;text-align: center;">
-2.096
+3.192
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.036
+p=0.001
 </td>
 </tr>
 <tr>
@@ -281,10 +271,10 @@ s00_h40_mean
 0.003
 </td>
 <td style="text-align:center;text-align: center;">
-0.833
+0.792
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.405
+p=0.429
 </td>
 </tr>
 <tr>
@@ -292,16 +282,16 @@ p=0.405
 sex_1
 </td>
 <td style="text-align:center;text-align: center;">
--0.233
+-0.106
 </td>
 <td style="text-align:center;text-align: center;">
-0.098
+0.097
 </td>
 <td style="text-align:center;text-align: center;">
--2.383
+-1.098
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.017
+p=0.272
 </td>
 </tr>
 <tr>
@@ -309,16 +299,16 @@ p=0.017
 race_1
 </td>
 <td style="text-align:center;text-align: center;">
--0.001
+-0.098
 </td>
 <td style="text-align:center;text-align: center;">
-0.102
+0.101
 </td>
 <td style="text-align:center;text-align: center;">
--0.007
+-0.972
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.995
+p=0.331
 </td>
 </tr>
 <tr>
@@ -326,22 +316,22 @@ p=0.995
 sex_2
 </td>
 <td style="text-align:center;text-align: center;">
-0.023
+0.019
 </td>
 <td style="text-align:center;text-align: center;">
-0.098
+0.097
 </td>
 <td style="text-align:center;text-align: center;">
-0.237
+0.192
 </td>
 <td style="text-align:center;text-align: center;">
-p=0.812
+p=0.848
 </td>
 </tr>
 </tbody>
 </table></div>
 <p>Looking at our output, we can think of the intercept as the average difference of the outcome between siblings, ignoring all other variables. In this case, it looks like the average sibling difference for two sisters of a non-minority ethnic background (the default sex and race values) is approximately 1.5. The term <code>flu_total_mean</code> is essentially an extra component of the intercept that captures some non-linear trends and allows the difference score to change as a function of the average predictors. Here, this is the mean socioeconomic status for the siblings, <code>s00_h40_mean</code>. We also accounted for sex and race, neither of which have a statistically significant effect on the differences in flu vaccine shots between siblings (different families) or within a sibling pair (same family).</p>
-<p>The most important metric from the output, though, is the difference score, <code>s00_h40_diff</code>. In this example, it is statistically significant. To interpret it, we may say “the difference in socioeconomic status between siblings at age 40 is positively associated with the difference in the number of flu vaccinations received between 2006-2016.” This means that a sibling with 10% higher SES is expected to have 0.042571 more flu shots.</p>
+<p>The most important metric from the output, though, is the difference score, <code>s00_h40_diff</code>. In this example, it is statistically significant. To interpret it, we may say “the difference in socioeconomic status between siblings at age 40 is positively associated with the difference in the number of flu vaccinations received between 2006-2016.” This means that a sibling with 10% higher SES is expected to have 0.0631576 more flu shots.</p>
 <p>The goal of performing a discordant-kinship regression is to see whether there is a significant difference in some behavioral measure while controlling for as much gene-and-environmental variance as possible. In this example, we found there is a significant difference in the number of flu shots a sibling received and their socioeconomic status. We <em>cannot</em> claim this relationship is causal. However, we cannot eliminate causality because there are statistically significant within- and between-family differences in our predictors and outcomes.</p>
 </div>
 </div>
@@ -391,7 +381,7 @@ p=0.812
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Senior Thesis</strong>" was written by Jonathan D. Trattner. It was last built on 2021-05-13.</p>
+    <p>"<strong>Senior Thesis</strong>" was written by Jonathan D. Trattner. It was last built on 2021-05-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
