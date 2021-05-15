@@ -12,38 +12,48 @@ In order to version-control your code with git you must navigate to the folder c
 
 [^ghee-1]: This minimal introduction assumes git is installed on your computer. For a great "how-to", see the "Install Git" section from [@jennybryan]. For a more formal treatment of version controlling with git and GitHub, see [@blischak2016].
 
-::: {.definition}
+::: {.point data-latex=""}
+
 A **repository** (or **repo**) is a folder containing all files to be version-controlled in their present and past forms.
+
 :::
 
 As an example, this thesis is currently version-controlled in a repo called "senior-thesis," which simply lives as a folder on my computer. This is the **local** repository. Whenever I make a change to a file, I **stage** those changes and **commit** them to my local repository.
 
-::: {.definition}
+::: {.point data-latex=""}
+
 A **local** repository is a folder of version-controlled files that lives on a personal computer.
 
 To **stage** files is to highlight them as modified; typically comments are made about any changes for these files and a snapshot of them are **committed** to your local repo.
+
 :::
 
 Once I have committed (a snapshot of) my modified files to my local repo, I **push** those changes to a **remote** repository.
 
-::: {.definition}
+::: {.point data-latex=""}
+
 A **remote** repository is the version of your local repository stored on a remote server such as GitHub.
 
 To **push** files is to send commits from a local repository to its remote repository.
+
 :::
+
 
 If someone wished to work on my thesis for me, they could **clone** the remote repository "senior-thesis", stage, commit, and push changes, and then I could **pull** them into my local repository, ensuring that our versions our consistent.
 
-::: {.definition}
+::: {.point data-latex=""}
+
 To **clone** a repository is to make a copy of a remote repository on a personal computer; that is, make a local repo from an remote one.\
 To **pull** is to retrieve any commits (modifications) that are on a remote repository and update your local repo.
+
 :::
+
 
 With an understanding of some of the core features of git,[^ghee-2] it's time to collaborate with others. This is often done using [GitHub](https://github.com/), which I will redescribe as an online host for git repositories. When I push an updated version of my thesis, others can view that (and previous versions) [on GitHub](https://github.com/jdtrat/senior-thesis). Because GitHub is a remote platform, it provides a version-controlled backup of my code (or thesis) in case something happened to my computer. On top of that, GitHub has wonderful features for collaboration and productivity. A few features relevant to my thesis include:[^ghee-3]
 
 [^ghee-2]: There are additional features of git that are outside the scope of this thesis. For those interested, I would recommend the book *Pro Git*, which is freely available [here](http://git-scm.com/book/en/v2) [@scottchacon2014].
 
-[^ghee-3]: More detailed documentation for these can be found at https://github.com/features.
+[^ghee-3]: More detailed documentation for these can be found at <https://github.com/features>.
 
 1.  **Issues**: A framework for collecting user feedback, reporting software bugs, tracking and prioritizing work, assigning responsibilities, and more.
 2.  **Pull requests**: A method of pushing changes to a repository which requires approval by an owner. This facilitates discussions of potential changes before they are integrated into the repository.
@@ -53,7 +63,11 @@ For my research, I found myself frequently utilizing these features of GitHub. I
 
 ## What is {ghee}?
 
-> {ghee} is a user-friendly wrapper for the {gh} package that provides client access to Github's REST API for common tasks such as creating issues and inviting collaborators.
+::: {.blockquote data-latex=""}
+
+{ghee} is a user-friendly wrapper for the {gh} package that provides client access to Github's REST API for common tasks such as creating issues and inviting collaborators.
+
+:::
 
 ### Technical Aspects
 
@@ -87,7 +101,7 @@ library(ghee)
 
 #### Collaboration
 
-I've found it particularly helpful to use {ghee} when working with collaborators. Normally, to invite someone to a repo, I would have to navigate to its page on Github, go to settings, manage access, and send an invitation manually. With {ghee}, though, it's as simple as specifying the repo and the invitee:
+II have found it particularly helpful to use {ghee} when working with collaborators. Normally, to invite someone to a repo, I would have to navigate to its page on Github, go to settings, manage access, and send an invitation manually. With {ghee}, though, it's as simple as specifying the repo and the invitee:
 
 ```{r gh_collab_invite-individual, eval = FALSE}
 
@@ -139,7 +153,7 @@ gh_repos_mutate(path = "jdtrat/ghee_test",
 
 ![](graphics/ghee/ghee_test_mutate_privacy.png){style="max-width: 100%;"}
 
-Now, I know what you're thinking. You don't like the repo name "ghee_test." I don't blame you. Let's change it! Voila! It's now "ghee_testing."
+Now, I know what you're thinking. You don't like the repo name "ghee_test." I don't blame you. Let's change it! Voila! It is now "ghee_testing."
 
 ```{r gh_repos_mutate-name, eval = FALSE}
 # Change Repo Name

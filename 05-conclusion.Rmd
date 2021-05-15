@@ -1,0 +1,9 @@
+# Conclusion
+
+In this thesis, I described the development process for three R packages, {discord}, {shinysurveys}, and {ghee}. I sought to convey the theoretical and technical backgrounds for each package. I discussed their applications and their limitations. Although the work in this thesis has been published on CRAN, the Comprehensive R Archive Network, each package is still under active development.
+
+I was mentored by two brilliant professors: S. Mason Garrison and Lucy D'Agostino McGowan. Dr. Garrison worked with me on {discord}, and Dr. McGowan collaborated with me on {shinysurveys}. The skills I gained working with them enabled me to develop {ghee} on my own. Their guidance was invaluable to me as I worked on this applied thesis with the intention of using R to help others more easily achieve their academic and professional goals. Collectively, {discord}, {shinysurveys}, and {ghee} have been downloaded over 5500 times. I am excited to see what the future has in store for my work as R continues to gain popularity throughout academia and industry.
+
+Jonathan Trattner\
+Winston-Salem, North Carolina\
+May 13, 2021

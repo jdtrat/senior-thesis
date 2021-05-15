@@ -62,7 +62,9 @@ After some pre-processing, we have a data frame containing subject identifiers, 
 ```{r preview-pre-processed-data, echo = FALSE}
 flu_ses_data %>%
   select(CASEID, RACE, SEX, FLU_total, S00_H40) %>%
-  head()
+  head() %>%
+  kableExtra::kbl(format = 'latex', booktabs = TRUE, align = "c") %>%
+   kableExtra::kable_styling(latex_options = c("striped", "hold_position"), position = "center")
 ```
 
 Using the kinship relationships included in the {NlsyLinks} package, we can create a data frame that lends itself to behavior-genetic analysis. For each kin pair, the function `CreatePairLinksSingleEntered()` takes a data set like the one above, a specification of the NLSY database and the kin's relatedness, and the variables of interest. It returns a data frame where every row is a kin-pair and each column is a variable of interest with a suffix indicating to which individual the value corresponds.
@@ -71,15 +73,21 @@ For our example, we want to examine the relationship between flu vaccinations re
 
 ```{r set-kinship-link-vars}
 # Get kinship links for individuals with the following variables:
-link_vars <- c("FLU_total", "FLU_2008", "FLU_2010", "FLU_2012", "FLU_2014", "FLU_2016", "S00_H40", "RACE", "SEX")
+link_vars <- c("FLU_total", "FLU_2008", "FLU_2010", 
+               "FLU_2012", "FLU_2014", "FLU_2016", 
+               "S00_H40", "RACE", "SEX")
 ```
 
 We now link the subjects by the specified variables using `CreatePairLinksSingleEntered()`.
 
 ```{r create-linked-data}
 
+# Narrow NLSY Link Pairs 
+link_pairs <- Links79PairExpanded %>%
+  filter(RelationshipPath == "Gen1Housemates" & RFull == 0.5)
+
 df_link <- CreatePairLinksSingleEntered(outcomeDataset = flu_ses_data,
-                                        linksPairDataset = Links79PairExpanded[which(Links79PairExpanded$RelationshipPath == "Gen1Housemates" & Links79PairExpanded$RFull==0.5),],
+                                        linksPairDataset = link_pairs,
                                         outcomeNames = link_vars)
 
 ```
@@ -89,7 +97,9 @@ We've saved this data frame as `df_link`. A subset of this data looks like this:
 ```{r preview-linked-dat, echo = FALSE}
 df_link %>%
   select(ExtendedID, SubjectTag_S1, SubjectTag_S2, FLU_total_S1, FLU_total_S2, S00_H40_S1, S00_H40_S2) %>%
-  head()
+  head() %>%
+  kableExtra::kbl(format = 'latex', booktabs = TRUE, align = "c") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "hold_position", "scale_down"))
 ```
 
 Notice that, with the exception of the first column indicating the specific pair, each column name has the suffix "\_S1" and "\_S2". As mentioned above, these indicate to which sibling the column values correspond.
@@ -99,7 +109,8 @@ This data is almost ready for analysis, but we want to ensure that the data are 
 ```{r consistent-kin-data}
 
 # Take the linked data, group by the sibling pairs and
-# count the number of responses for flu each year. If there is an NA, then data is missing for one of the years, and we omit it.
+# count the number of responses for flu each year. If there is an NA, 
+# then data is missing for one of the years, and we omit it.
 consistent_kin <- df_link %>% 
   group_by(SubjectTag_S1, SubjectTag_S2) %>% 
   count(FLU_2008_S1, FLU_2010_S1, FLU_2012_S1, FLU_2014_S1, FLU_2016_S1,
@@ -108,7 +119,8 @@ consistent_kin <- df_link %>%
 
 # Create the flu_modeling_data object with only consistent responders.
 # Clean the column names with the {janitor} package.
-flu_modeling_data <- semi_join(df_link, consistent_kin, by = c("SubjectTag_S1", "SubjectTag_S2")) %>%
+flu_modeling_data <- semi_join(df_link, consistent_kin, 
+                               by = c("SubjectTag_S1", "SubjectTag_S2")) %>%
   clean_names()
 ```
 
@@ -124,9 +136,18 @@ flu_modeling_data <- flu_modeling_data %>%
 
 The data we will use for modeling now contains meta-information for each kin pair, including sex and race of each individual, flu vaccination status for the biennial survey between 2006-2016, and a total flu vaccination count for that period. The total vaccination count ranges from 0 - 5, where 0 indicates that the individual did not get a vaccine in any year between 2006-2016 and 5 indicates that an individual got at least 5 vaccines between 2006-2016. Though our data set has individual years, we are only interested in the total. A subset of the data we will use in our regression looks like this:
 
-```{r preview-flu-modeling-data}
+```{r preview-flu-modeling-data, echo = FALSE, eval = knitr::is_html_output()}
 flu_modeling_data %>%
   select(contains(c("extended_id", "subject_tag", "flu_total", "race", "sex", "s00_h40")))
+  
+```
+
+```{r preview-flu-modeling-data-latex, eval = knitr::is_latex_output(), echo = FALSE}
+flu_modeling_data %>%
+  select(contains(c("extended_id", "subject_tag", "flu_total", "race", "sex", "s00_h40"))) %>%
+  slice(1:10) %>%
+  kableExtra::kbl(format = 'latex', booktabs = TRUE, align = "c") %>%
+   kableExtra::kable_styling(latex_options = c("striped", "hold_position", "scale_down"))
 ```
 
 ### Modeling and Interpretation
@@ -172,8 +193,8 @@ flu_model_output %>%
   rename("Standard Error" = std.error,
          "T Statistic" = statistic) %>%
   rename_with(~snakecase::to_title_case(.x)) %>%
-  kableExtra::kbl(booktabs = TRUE, align = "c") %>%
-  kableExtra::kable_styling('latex')
+  kableExtra::kbl(format = 'latex', booktabs = TRUE, align = "c") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "hold_position"), position = "center")
 ```
 
 Looking at our output, we can think of the intercept as the average difference of the outcome between siblings, ignoring all other variables. In this case, it looks like the average sibling difference for two sisters of a non-minority ethnic background (the default sex and race values) is approximately 1.5. The term `flu_total_mean` is essentially an extra component of the intercept that captures some non-linear trends and allows the difference score to change as a function of the average predictors. Here, this is the mean socioeconomic status for the siblings, `s00_h40_mean`. We also accounted for sex and race, neither of which have a statistically significant effect on the differences in flu vaccine shots between siblings (different families) or within a sibling pair (same family).

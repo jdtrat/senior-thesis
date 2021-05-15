@@ -1,1 +1,138 @@
+% Begin preamble.tex -----------------------------------------------------------
+
 \usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage[most]{tcolorbox}
+
+% ------------------------------------------------------------------------------
+% size based on "Statistical Rethinking" style files
+
+\usepackage[paperwidth=7.67in,paperheight=10.67in,layoutwidth=7in,layoutheight=10in,text={5.5in,8.5in},left=0.65in,top=0.75in,headheight=0.25in,headsep=0.4in,footskip=0.4in, layouthoffset=0.33in, layoutvoffset=0.33in]{geometry}
+
+
+\usepackage{fancyhdr}
+
+\fancypagestyle{plain}{\pagestyle{fancy}}
+\fancyhf{}
+\fancyfoot[CO]{Trattner - The Complete Package}
+
+% no line in header or footer
+\renewcommand{\headrulewidth}{0pt}
+
+% Adapted https://latex.org/forum/viewtopic.php?t=11011
+\newenvironment{dedication}
+    {
+    \vspace{6ex}
+    \begin{quotation}
+    \begin{center}
+    \begin{em}
+    \begin{tcolorbox}[blanker, width =0.75\textwidth,boxrule=0pt,frame hidden,
+    borderline west={0.5mm}{0mm}{black!90!white},
+    borderline south={0.25mm}{0mm}{black!80!white},
+  left = 0.125in, right = 0.125in, top = 0.125in, bottom = 0.125in]
+    }
+    {\par\end{tcolorbox}\end{em}\end{center}\end{quotation}}
+
+% Next
+
+\edef\colorIndex{0}
+\def\colorList{{"blue","green","red","orange", "purple", "black"}}%
+
+
+% color box for interesting points that will bore the audience
+\newenvironment{point}
+{
+  \noindent
+  \begin{center}
+  \pgfmathparse{\colorList[\colorIndex]}
+  \begin{tcolorbox}[width = 0.9\textwidth, colback = \pgfmathresult!5!white, colframe = \pgfmathresult!75!black, left = 0.125in, right = 0.125in, top = 0.125in, bottom = 0.125in, sharp corners]
+   \pgfmathparse{mod(\colorIndex+1, 6)}
+   \xdef\colorIndex{\pgfmathresult}
+  \rm
+}
+{
+  \end{tcolorbox}
+  \end{center}
+}
+
+
+
+\newenvironment{blockquote}
+{
+\begin{center}
+ \begin{tcolorbox}[enhanced, width = 0.85\textwidth,colback=black!2.5!white,boxrule=0pt,frame hidden,
+  borderline west={1mm}{0mm}{black!15!white},
+  left = 0.125in, right = 0.125in, top = 0.125in, bottom = 0.125in]
+}
+{
+\end{tcolorbox}
+\end{center}
+}
+
+
+
+% This following is definition copyright (C) 2003 Sam Noble. It may be modified so long
+% as my name is not removed and the modifier adds his name to the file.
+% Redistribution permitted.
+%
+% 27 Jan 2004	Sam Noble	Removed tocbibind dependency.
+% 04 Dec 2001 	Sam Noble	Class file
+% 03 Sep 1995	David Perkinson	Title Page
+% Acknowledgements Page, David Perkinson & Sam Noble
+% May 2005 Patrick Carlisle Table of contents chapter definition
+% 2004-2005 Ben Salzberg (BTS) a variety of tweaks here and in the template
+% 2015 Chester Ismay (CII) modified to create R Markdown template
+% 2021 Jonathan Trattner (JT) customized for his WFU thesis
+
+\renewcommand{\maketitle}{%
+  {\pagestyle{empty}
+  \fontsize{12}{14}\selectfont
+  \begin{titlepage}
+  \newpage
+  \let\footnotesize\small
+  \let\footnoterule\relax
+  \let \footnote \thanks
+
+  \baselineskip = 1.4\baselineskip
+  \setbox0=\hbox{of the Requirements for the Degree}
+
+  \begin{center}
+    \setcounter{page}{1}
+    \null\vfil
+    {\fontsize{12}{14}\selectfont \@title}
+    \vfil
+    \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+    \vfil
+    A Thesis \\
+    Presented to \\
+    the Department of Interdisciplinary Studies \\
+    Wake Forest University
+    \vfil
+    \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+    \vfil
+    In Partial Fulfillment \\
+    of the Requirements for the Degree \\
+    Bachelor of Science
+    \vfil
+    \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+    \bigskip
+    \centerline{}
+    \bigskip
+    {\fontsize{12}{14}\selectfont \lineskip .75em
+    \begin{tabular}[t]{c}%
+      \@author
+    \end{tabular}\par}
+    \vskip 1.5em
+    {\fontsize{12}{14}\selectfont \@date \par}
+  \end{center}\par
+  \end{titlepage}

@@ -14,13 +14,17 @@ bookdown::gitbook:
       before: |
         <li><a href="./">The Complete Package: An Applied Thesis for Programming in R</a></li>
     sharing: yes
+bookdown::pdf_document2:
+  toc: yes
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  keep_tex: yes
 bookdown::pdf_book:
     toc: yes
     includes:
       in_header: preamble.tex
     latex_engine: xelatex
     keep_tex: yes
-linkcolor: "blue"
-urlcolor: "blue"
 bookdown::epub_book: default
 bookdown::html_book: default
