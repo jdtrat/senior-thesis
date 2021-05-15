@@ -33,7 +33,7 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Hello, World</a></li>
-<li><a class="" href="intro.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="acknowledgements.html"><span class="header-section-number">1</span> Acknowledgements</a></li>
 <li><a class="" href="r.html"><span class="header-section-number">2</span> R</a></li>
 <li><a class="" href="discord.html"><span class="header-section-number">3</span> {discord}</a></li>
 <li><a class="active" href="shinysurveys.html"><span class="header-section-number">4</span> {shinysurveys}</a></li>
@@ -55,57 +55,58 @@
 <h2>
 <span class="header-section-number">4.1</span> What is {shiny}?<a class="anchor" aria-label="anchor" href="#what-is-shiny"><i class="fas fa-link"></i></a>
 </h2>
-<div id="technical-aspects" class="section level3">
+<div id="technical-aspects-shiny" class="section level3">
 <h3>
-<span class="header-section-number">4.1.1</span> Technical Aspects<a class="anchor" aria-label="anchor" href="#technical-aspects"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.1.1</span> Technical Aspects<a class="anchor" aria-label="anchor" href="#technical-aspects-shiny"><i class="fas fa-link"></i></a>
 </h3>
 <p>Websites are predominantly built using three languages, HTML, CSS, and JavaScript, as described in the following figure.</p>
-<div class="inline-figure"><img src="graphics/shinysurveys/web-language-graphic.png"></div>
+<div class="center">
+<div class="inline-figure"><img src="graphics/shinysurveys/web-language-graphic.png" style="max-width: 100%;"></div>
+</div>
 <p>At a high-level, {shiny} allows programmers to combine the computational strengths of R with the interactivity of web applications. {shiny} provides a curated set of functions that generate the HTML, CSS, and JavaScript necessary to create web applications<span class="citation">(Hadley Wickham <a href="references.html#ref-hadleywickham2020" role="doc-biblioref">2020</a>)</span>.</p>
 <p>A simple {shiny} application consists of two elements: <code>ui</code> (user-interface) and <code>server</code>. The former, defines what an individual will see when they visit the application and the latter defines the computations performed. For example, you can define a simple application that accepts a name, adds a greeting, and displays the result using a few lines of code:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># load the package</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
 
-<span class="co"># define a user-interface with two elements: a text input with an ID, label, and</span>
-<span class="co"># initial value; a textOutput that returns the input + greeting</span>
+<span class="co"># define a user-interface with two elements: a text input with an ID, </span>
+<span class="co"># label, and initial value; define a textOutput that </span>
+<span class="co"># returns the input + greeting</span>
 <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textInput.html">textInput</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"nameInput"</span>, label <span class="op">=</span> <span class="st">"What is your name?"</span>, value <span class="op">=</span> <span class="st">"World"</span><span class="op">)</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textInput.html">textInput</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"nameInput"</span>, 
+            label <span class="op">=</span> <span class="st">"What is your name?"</span>, 
+            value <span class="op">=</span> <span class="st">"World"</span><span class="op">)</span>,
   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">textOutput</a></span><span class="op">(</span><span class="st">"name"</span><span class="op">)</span>
 <span class="op">)</span>
 
 <span class="co"># define the server side logic to manipulate the inputs</span>
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  <span class="co"># define the output that concatenates the strings "Hello, " + user input + "."</span>
+  <span class="co"># define the output that concatenates the strings </span>
+  <span class="co"># "Hello, " + user input + "."</span>
   <span class="va">output</span><span class="op">$</span><span class="va">name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderText</a></span><span class="op">(</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Hello, "</span>, <span class="va">input</span><span class="op">$</span><span class="va">nameInput</span>, <span class="st">"."</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="co"># run the application</span>
 <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p>When run in a browser, this code produces the following application:</p>
-<div class="inline-figure">
-<img src="graphics/shinysurveys/shinyapp_textInput.gif"><!-- -->
-</div>
+<div class="inline-figure"><img src="graphics/shinysurveys/shinyapp_textInput.gif" style="display: block; margin: auto;"></div>
 </div>
 <div id="usage" class="section level3">
 <h3>
 <span class="header-section-number">4.1.2</span> Usage<a class="anchor" aria-label="anchor" href="#usage"><i class="fas fa-link"></i></a>
 </h3>
+<div class="blockquote">
+<p>{shiny} is “used in almost as many niches and industries as R itself is” <span class="citation">(Hadley Wickham <a href="references.html#ref-hadleywickham2020" role="doc-biblioref">2020</a>)</span>.</p>
+</div>
 <p>{shiny} is used in many disciplines. For example, DePalma, Turnidge, and Craig (2017) developed an application that allows physicians to utilize complex mathematical methods of determining microbial resistance to antibiotics<span class="citation">(DePalma, Turnidge, and Craig <a href="references.html#ref-depalma2017" role="doc-biblioref">2017</a>)</span>.</p>
 <p>Similarly, Kandlikar and colleagues (2018) developed an application, <em>ranacapa</em>, to explore environmental DNA sequences that is used to engage and educate professionals and students alike. It allowed resource managers at the Channel Islands National Park Service to filter their observed species down to “a particular set of key taxa that they regularly monitor” and allowed students with “no prior bioinformatics experience” to gain an understanding of their eDNA samples, allowing their instructors to focus on “biological questions rather than on troubleshooting bioinformatics problems” <span class="citation">(Kandlikar et al. <a href="references.html#ref-kandlikar2018" role="doc-biblioref">2018</a>)</span>.</p>
-<details closed><p><summary><span title="Click to Expand"> Add Industry Example </span> </summary></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="shinysurveys.html#cb12-1"></a></span>
-<span id="cb12-2"><a href="shinysurveys.html#cb12-2"></a>Add an example of {shiny} <span class="cf">in</span> industry. Mastering Shiny references Silicon Valley metrics. Maybe ask R4DS members?</span></code></pre></div>
-</details><p><br></p>
+<p>These two examples serve to illustrate the effectiveness of allowing people to ‘interact’ with R. The next section describes the specific motivation for {shinysurveys}.</p>
 </div>
 </div>
 <div id="motivation" class="section level2">
 <h2>
 <span class="header-section-number">4.2</span> Motivation<a class="anchor" aria-label="anchor" href="#motivation"><i class="fas fa-link"></i></a>
 </h2>
-<blockquote>
-<p>{shiny} is “used in almost as many niches and industries as R itself is” <span class="citation">(Hadley Wickham <a href="references.html#ref-hadleywickham2020" role="doc-biblioref">2020</a>)</span>. As such, the work presented in this section is usable in many contexts.</p>
-</blockquote>
 <p>Surveys are useful tools for gathering information from individuals on a large scale and are used in a variety of domains. Within the medical research field, for example, they may be epidemiological questionnaires (e.g. have you received your COVID-19 Vaccine). In neuroscience research, they are often used to correlate behaviors such as political ideology with neuroimaging data <span class="citation">(Ahn et al. <a href="references.html#ref-ahn2014" role="doc-biblioref">2014</a>)</span>.</p>
 <p>The ability to easily collect and analyze survey data is, therefore, incredibly important. Many platforms provide user-friendly methods to do this. <a href="https://www.google.com/forms/about/">Google Forms</a>, <a href="https://www.surveymonkey.com/">SurveyMonkey</a>, and <a href="https://www.qualtrics.com/core-xm/survey-software/">Qualtrics</a> are all popular options. For many cases, they work very well. However, existing services don’t always integrate with existing data analysis and/or research pipelines easily. Because of R’s prevalence in academia and research <span class="citation">(RStudio <a href="references.html#ref-rstudio2018a" role="doc-biblioref">2018</a><a href="references.html#ref-rstudio2018a" role="doc-biblioref">b</a>; Carson and Basiliko <a href="references.html#ref-carson2016" role="doc-biblioref">2016</a>)</span>, {shinysurveys} was developed to streamline the data collection and analysis process. It is built upon the {shiny} package <span class="citation">(Chang et al. <a href="references.html#ref-chang2021" role="doc-biblioref">2021</a>)</span> previously described.</p>
 </div>
@@ -113,36 +114,11 @@
 <h2>
 <span class="header-section-number">4.3</span> A survey of {shinysurveys}<a class="anchor" aria-label="anchor" href="#survey-of-shinysurveys"><i class="fas fa-link"></i></a>
 </h2>
-<p>Surveys are ubiquitous in data science. A clear example is a simple demographic form. Our package allows you to easily create questionnaires using {shiny}.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;We assume that you are familiar with the basic layout of a Shiny application. If not, please check out the brief discussion earlier in this thesis or RStudio’s &lt;a href="https://shiny.rstudio.com/tutorial/"&gt;great resources&lt;/a&gt;.&lt;/p&gt;'><sup>4</sup></a> This vignette introduces you to the main functionality of our package as it is currently published on CRAN.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The version discussed was published on CRAN, the Comprehensive R Archive Network, on February 19th, 2021. The development version, hosted on GitHub, contains new features and can be &lt;a href="https://github.com/jdtrat/shinysurveys/"&gt;accessed here&lt;/a&gt;.&lt;/p&gt;'><sup>5</sup></a> I provide two functions to do this: <code><a href="https://rdrr.io/pkg/shinysurveys/man/surveyOutput.html">surveyOutput()</a></code> and <code><a href="https://rdrr.io/pkg/shinysurveys/man/renderSurvey.html">renderSurvey()</a></code>. Both of these take in a data frame containing question information that follows a specific format. To illustrate them in use, we will show you a questionnaire from a recent study conducted by the <a href="http://dmds.lucymcgowan.com/">D’Agostino McGowan Data Science Lab</a> that is built into the <code>shinysurveys</code> package:<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;In the following code, I use the prefix &lt;code&gt;shinysurveys::&lt;/code&gt; whenever I’m using a function specific to this package. If you are unfamiliar with this notation, see &lt;a href="https://r-pkgs.org/namespace.html"&gt;[@rpkgs]&lt;/a&gt;&lt;/p&gt;'><sup>6</sup></a></p>
-<pre><code>## # A tibble: 54 x 7
-##    question    option   input_type input_id dependence dependence_value required
-##    &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;            &lt;lgl&gt;   
-##  1 What's you… 25       numeric    age      &lt;NA&gt;       &lt;NA&gt;             TRUE    
-##  2 Which best… Female   mc         gender   &lt;NA&gt;       &lt;NA&gt;             TRUE    
-##  3 Which best… Male     mc         gender   &lt;NA&gt;       &lt;NA&gt;             TRUE    
-##  4 Which best… Prefer … mc         gender   &lt;NA&gt;       &lt;NA&gt;             TRUE    
-##  5 Which best… Prefer … mc         gender   &lt;NA&gt;       &lt;NA&gt;             TRUE    
-##  6 Which best… &lt;NA&gt;     text       self_de… gender     Prefer to self … FALSE   
-##  7 What is th… Did not… select     educati… &lt;NA&gt;       &lt;NA&gt;             FALSE   
-##  8 What is th… Some hi… select     educati… &lt;NA&gt;       &lt;NA&gt;             FALSE   
-##  9 What is th… High sc… select     educati… &lt;NA&gt;       &lt;NA&gt;             FALSE   
-## 10 What is th… Some co… select     educati… &lt;NA&gt;       &lt;NA&gt;             FALSE   
-## # … with 44 more rows</code></pre>
-<p>As seen, this is a tidy data frame, where each row is a unique observation and each column is a variable. While there are 54 rows, there are only 11 unique questions:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu">shinysurveys</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shinysurveys/man/teaching_r_questions.html">teaching_r_questions</a></span><span class="op">$</span><span class="va">question</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] "What's your age?"                                                               
-##  [2] "Which best describes your gender?"                                              
-##  [3] "What is the highest level of education you have attained?"                      
-##  [4] "What was your first language?"                                                  
-##  [5] "In what language do you read most often?"                                       
-##  [6] "Have you ever learned to program in R?"                                         
-##  [7] "If yes, how many years have you been using R?"                                  
-##  [8] "Have you ever learned a programming language (other than R)?"                   
-##  [9] "If yes, which language(s) and how many years have you been using each language?"
-## [10] "Have you ever completed a data analysis?"                                       
-## [11] "If yes, approximately how many data analyses have you completed?"</code></pre>
-<p>Each question has seven variables that dictate how it functions within the survey. They are described in the data set documentation, accessed by calling <code><a href="https://rdrr.io/pkg/shinysurveys/man/teaching_r_questions.html">?shinysurveys::teaching_r_questions</a></code> in your console, as follows:</p>
+<p>Surveys are ubiquitous in data science. A clear example is a simple demographic form. Our package allows you to easily create questionnaires using {shiny}.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;We assume that you are familiar with the basic layout of a Shiny application. If not, please check out the brief discussion earlier in this thesis or RStudio’s &lt;a href="https://shiny.rstudio.com/tutorial/"&gt;great resources&lt;/a&gt;.&lt;/p&gt;'><sup>4</sup></a> This vignette introduces you to the main functionality of our package as it is currently published on CRAN.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The version discussed was published on CRAN, the Comprehensive R Archive Network, on February 19th, 2021. The development version, hosted on GitHub, contains new features and can be &lt;a href="https://github.com/jdtrat/shinysurveys/"&gt;accessed here&lt;/a&gt;.&lt;/p&gt;'><sup>5</sup></a> Recalling the basic structure of a {shiny} application, consisting of the user-interface and server components, {shinysurveys} has a function for each: <code><a href="https://rdrr.io/pkg/shinysurveys/man/surveyOutput.html">surveyOutput()</a></code> and <code><a href="https://rdrr.io/pkg/shinysurveys/man/renderSurvey.html">renderSurvey()</a></code>. Both of these take in a data frame containing question information that follows a specific format. To illustrate them in use, we will show you a questionnaire from a recent study conducted by the <a href="http://dmds.lucymcgowan.com/">D’Agostino McGowan Data Science Lab</a> that is built into the <code>shinysurveys</code> package.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;In the following code, I use the prefix &lt;code&gt;shinysurveys::&lt;/code&gt; whenever I’m using a function specific to this package. If you are unfamiliar with this notation, see &lt;a href="https://r-pkgs.org/namespace.html"&gt;[@rpkgs]&lt;/a&gt;&lt;/p&gt;'><sup>6</sup></a> The first ten (of 54) rows of this data frame look like:</p>
+
+<p>This data can be described as a tidy data frame, where each row is a unique observation and each column is a variable. While the full table consists of 54 rows, there are only 11 unique questions:</p>
+
+<p>Each question has seven parameters that dictate its functionality within {shinysurveys}. They are described in the package documentation and can be accessed by typing <code><a href="https://rdrr.io/pkg/shinysurveys/man/teaching_r_questions.html">?shinysurveys::teaching_r_questions</a></code> in your console:</p>
 <ul>
 <li>
 <em>question</em>: The question to be asked.</li>
@@ -159,6 +135,7 @@
 <li>
 <em>required</em>: logical TRUE/FALSE signifying if a question is required.</li>
 </ul>
+<p>The reason for the discrepancy between the number of rows and unique questions derives from the fact that certain questions can have more than one possible response. For example, the multiple choice question asking about gender has four options: “Female”, “Male”, “Prefer not to say”, or “Prefer to self describe.” It thus has four rows, one per each option. The next section describes input types native to {shinysurveys}.</p>
 <div id="examples" class="section level3">
 <h3>
 <span class="header-section-number">4.3.1</span> Examples<a class="anchor" aria-label="anchor" href="#examples"><i class="fas fa-link"></i></a>
@@ -169,64 +146,55 @@
 <span class="header-section-number">4.3.1.1</span> Numeric Input<a class="anchor" aria-label="anchor" href="#numeric-input"><i class="fas fa-link"></i></a>
 </h4>
 <p>A good example of a numeric input is the first question: “What’s your age?”:</p>
-<pre><code>## # A tibble: 1 x 7
-##   question       option input_type input_id dependence dependence_value required
-##   &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;            &lt;lgl&gt;   
-## 1 What's your a… 25     numeric    age      &lt;NA&gt;       &lt;NA&gt;             TRUE</code></pre>
+
 <p>As noted above, this row shows us that the question is “What’s your age?”. We know we are expecting a numeric input by looking at the <code>input_type</code> column, and the default value is equal to 25 according to the <code>option</code> column.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;It is important to note that the option column for numeric inputs provides the default value, but for other types – as we will see – provides the possible options for a question.&lt;/p&gt;"><sup>7</sup></a></p>
 <p>We can also tell that there are no dependency questions. This means that no matter what value you enter, no follow-up question will appear. Lastly, we know this is a required question.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Required question functionality will be discussed in more detail in the section &lt;a href="shinysurveys.html#required_questions"&gt;Required Questions&lt;/a&gt;.&lt;/p&gt;'><sup>8</sup></a></p>
+<div class="center">
 <div class="inline-figure"><img src="graphics/shinysurveys/numeric_example.png" style="display: block; margin: 1em auto" width="300"></div>
+</div>
 </div>
 <div id="multiple_choice" class="section level4">
 <h4>
 <span class="header-section-number">4.3.1.2</span> Multiple Choice (mc) Input<a class="anchor" aria-label="anchor" href="#multiple_choice"><i class="fas fa-link"></i></a>
 </h4>
 <p>An example of this is the question “Which best describes your gender?”:</p>
-<pre><code>## # A tibble: 5 x 7
-##   question    option   input_type input_id  dependence dependence_value required
-##   &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;            &lt;lgl&gt;   
-## 1 Which best… Female   mc         gender    &lt;NA&gt;       &lt;NA&gt;             TRUE    
-## 2 Which best… Male     mc         gender    &lt;NA&gt;       &lt;NA&gt;             TRUE    
-## 3 Which best… Prefer … mc         gender    &lt;NA&gt;       &lt;NA&gt;             TRUE    
-## 4 Which best… Prefer … mc         gender    &lt;NA&gt;       &lt;NA&gt;             TRUE    
-## 5 Which best… &lt;NA&gt;     text       self_des… gender     Prefer to self … FALSE</code></pre>
-<p>Unlike numeric inputs, the <code>option</code> column represents each of the possible responses for this question. You may notice that the fifth row of this question has <em>NA</em> in the <code>option</code> column and “text” in the <code>input_type</code> column. We will discuss this in more detail <a href="#Question%20Dependencies">below</a>, but for now note that this question has a dependent. That is, if a specific option is chosen for this question, a new one will appear below. In this case, a question that accepts text as its input.</p>
+
+<p>Unlike numeric inputs, the <code>option</code> column represents each of the possible responses for this question. You may notice that the fifth row of this question has <em>NA</em> in the <code>option</code> column and “text” in the <code>input_type</code> column. We will discuss this in more detail <a href="shinysurveys.html#dependency-questions">below</a>, but for now note that this question has a dependent. That is, if a specific option is chosen for this question, a new one will appear below. In this case, a question that accepts text as its input.</p>
+<div class="center">
 <div class="inline-figure"><img src="graphics/shinysurveys/mc_example.png" style="display: block; margin: 1em auto" width="300"></div>
+</div>
 </div>
 <div id="text_input" class="section level4">
 <h4>
 <span class="header-section-number">4.3.1.3</span> Text Input<a class="anchor" aria-label="anchor" href="#text_input"><i class="fas fa-link"></i></a>
 </h4>
 <p>Questions that need text-based input should specify “text” in the <code>input_type</code> column. As noted in the previous example, the following is a dependent of the question “Which best describes your gender?”:</p>
-<pre><code>## # A tibble: 1 x 7
-##   question     option input_type input_id   dependence dependence_value required
-##   &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;            &lt;lgl&gt;   
-## 1 Which best … &lt;NA&gt;   text       self_desc… gender     Prefer to self … FALSE</code></pre>
+
 <p>It’s important to note that, as previously mentioned, the <code>option</code> column for text-based inputs corresponds to a placeholder value. It can be left blank (i.e. NA) or contain a character string. If they are left empty, the text field will display “Placeholder” as seen below. Otherwise, the character string will be displayed.</p>
-<div class="inline-figure"><img src="graphics/shinysurveys/text_input_placeholder.png" style="display: block; margin: 1em auto" width="300"></div>
-<div class="inline-figure"><img src="graphics/shinysurveys/text_input_character_string.png" style="display: block; margin: 1em auto" width="290" height="71"></div>
+<div class="center">
+<div class="inline-figure"><img src="graphics/shinysurveys/text_input_placeholder.png" class="center" style="display: block; margin: 1em auto" width="300"></div>
+<div class="inline-figure"><img src="graphics/shinysurveys/text_input_character_string.png" class="center" data-latex="" style="display: block; margin: 1em auto" width="290" height="71"></div>
+</div>
 </div>
 <div id="select-input" class="section level4">
 <h4>
 <span class="header-section-number">4.3.1.4</span> Select Input<a class="anchor" aria-label="anchor" href="#select-input"><i class="fas fa-link"></i></a>
 </h4>
-<p>Select inputs are great when there are many potential, discretely defined, response choices.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;As of October 2020, these do not support multiple options selected at once, though we anticipate adding this functionality in the future.&lt;/p&gt;"><sup>9</sup></a> An example is the question “What was your first language?” which contains 15 options (rows):<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Note the presence of the NA in the output above. This deals with question dependencies, which is explained in detail in the section &lt;a href="#Question%20Dependencies"&gt;Dependency Questions&lt;/a&gt;.&lt;/p&gt;'><sup>10</sup></a></p>
-<pre><code>##  [1] "Arabic"   "Armenian" "Chinese"  "English"  "French"   "Creole"  
-##  [7] "German"   "Greek"    "Gujarati" "Hebrew"   "Hindi"    "Italian" 
-## [13] "Japanese" "Other"    NA</code></pre>
+<p>Select inputs are great when there are many potential, discretely defined, response choices.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;As of May 2021, these do not support multiple options selected at once, though we anticipate adding this functionality in the future.&lt;/p&gt;"><sup>9</sup></a> An example is the question “What was your first language?” which contains 15 options:</p>
+
+<div class="center">
 <div class="inline-figure"><img src="graphics/shinysurveys/select_input_example.png" style="display: block; margin: 1em auto" width="300"></div>
+</div>
 </div>
 <div id="yes-or-no-yn-input" class="section level4">
 <h4>
 <span class="header-section-number">4.3.1.5</span> Yes or No (y/n) Input<a class="anchor" aria-label="anchor" href="#yes-or-no-yn-input"><i class="fas fa-link"></i></a>
 </h4>
 <p>Yes or no questions are self-explanatory. An example is the question “Have you ever learned to program in R?”:</p>
-<pre><code>## # A tibble: 2 x 7
-##   question       option input_type input_id dependence dependence_value required
-##   &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;            &lt;lgl&gt;   
-## 1 Have you ever… Yes    y/n        learned… &lt;NA&gt;       &lt;NA&gt;             TRUE    
-## 2 Have you ever… No     y/n        learned… &lt;NA&gt;       &lt;NA&gt;             TRUE</code></pre>
+
+<div class="center">
 <div class="inline-figure"><img src="graphics/shinysurveys/yes_no_example.png" style="display: block; margin: 1em auto" width="300"></div>
+</div>
 </div>
 </div>
 <div id="implementing-surveys-in-shiny" class="section level3">
@@ -250,7 +218,7 @@
 <span class="header-section-number">4.3.2.3</span> Basic Survey<a class="anchor" aria-label="anchor" href="#basic-survey"><i class="fas fa-link"></i></a>
 </h4>
 <p>A minimal example of a survey can be created with this template:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">shinysurveys</span><span class="op">)</span>
 <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
   <span class="fu">shinysurveys</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shinysurveys/man/surveyOutput.html">surveyOutput</a></span><span class="op">(</span>df <span class="op">=</span> <span class="fu">shinysurveys</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/shinysurveys/man/teaching_r_questions.html">teaching_r_questions</a></span>,
@@ -275,25 +243,22 @@
 <span class="header-section-number">4.3.3.1</span> Dependency Questions<a class="anchor" aria-label="anchor" href="#dependency-questions"><i class="fas fa-link"></i></a>
 </h4>
 <p>I use the term question dependencies in reference to the situations where a question should only be shown (i.e. asked) if a specific response is given to a preceding question. The questions included with the <code>shinysurveys</code> package contain many dependencies. One example we’ve seen discussing <a href="shinysurveys.html#multiple_choice">multiple choice</a> and <a href="shinysurveys.html#text_input">text-based</a> questions is the dependent for “Which best describes your gender?”</p>
-<pre><code>## # A tibble: 5 x 7
-##   question    option   input_type input_id  dependence dependence_value required
-##   &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;            &lt;lgl&gt;   
-## 1 Which best… Female   mc         gender    &lt;NA&gt;       &lt;NA&gt;             TRUE    
-## 2 Which best… Male     mc         gender    &lt;NA&gt;       &lt;NA&gt;             TRUE    
-## 3 Which best… Prefer … mc         gender    &lt;NA&gt;       &lt;NA&gt;             TRUE    
-## 4 Which best… Prefer … mc         gender    &lt;NA&gt;       &lt;NA&gt;             TRUE    
-## 5 Which best… &lt;NA&gt;     text       self_des… gender     Prefer to self … FALSE</code></pre>
+
 <p>Focusing on the columns <code>dependence</code> and <code>dependence_value</code>, we see that the text-based question will only show if the multiple choice one, with the input id of “gender” takes on the value “Prefer to self describe.” That is, a question with non <em>NA</em> values in the <code>dependence</code> and <code>dependence_value</code> columns mean that it will only show if the question with the input id from <code>dependence</code> takes on the value from <code>dependence_value</code>. This can be seen below:</p>
+<div class="center">
 <div class="inline-figure"><img src="graphics/shinysurveys/dependency_example_1.png" style="display: block; margin: 1em auto" width="300"></div>
 <div class="inline-figure"><img src="graphics/shinysurveys/dependency_example_2.png" style="display: block; margin: 1em auto" width="300"></div>
+</div>
 </div>
 <div id="required_questions" class="section level4">
 <h4>
 <span class="header-section-number">4.3.3.2</span> Required Questions<a class="anchor" aria-label="anchor" href="#required_questions"><i class="fas fa-link"></i></a>
 </h4>
 <p>Survey designers can define questions that must be answered by adding the value TRUE to the <code>required</code> column. If a required question is not answered, the user will not be able to submit their responses.</p>
+<div class="center">
 <div class="inline-figure"><img src="graphics/shinysurveys/required_submit_disabled.png" style="display: block; margin: 1em auto" width="300"></div>
 <div class="inline-figure"><img src="graphics/shinysurveys/required_submit_enabled.png" style="display: block; margin: 1em auto" width="300"></div>
+</div>
 </div>
 <div id="user-tracking" class="section level4">
 <h4>
@@ -323,7 +288,7 @@
 <li><a class="nav-link" href="#shinysurveys"><span class="header-section-number">4</span> {shinysurveys}</a></li>
 <li>
 <a class="nav-link" href="#what-is-shiny"><span class="header-section-number">4.1</span> What is {shiny}?</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#technical-aspects"><span class="header-section-number">4.1.1</span> Technical Aspects</a></li>
+<li><a class="nav-link" href="#technical-aspects-shiny"><span class="header-section-number">4.1.1</span> Technical Aspects</a></li>
 <li><a class="nav-link" href="#usage"><span class="header-section-number">4.1.2</span> Usage</a></li>
 </ul>
 </li>
@@ -340,8 +305,8 @@
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/jdtrat/senior-thesis/blob/master/04-shinysurveys.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/jdtrat/senior-thesis/edit/master/04-shinysurveys.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/jdtrat/senior-thesis/blob/master/03-shinysurveys.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/jdtrat/senior-thesis/edit/master/03-shinysurveys.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -353,7 +318,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>The Complete Package: An Applied Thesis for Programming in R</strong>" was written by Jonathan D. Trattner. It was last built on 2021-05-14.</p>
+    <p>"<strong>The Complete Package: An Applied Thesis for Programming in R</strong>" was written by Jonathan D. Trattner. It was last built on 2021-05-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

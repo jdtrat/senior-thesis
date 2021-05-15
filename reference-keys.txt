@@ -1,12 +1,4 @@
-def:unlabeled-div-1
-def:unlabeled-div-2
-def:unlabeled-div-3
-def:unlabeled-div-4
-foreword
-why-did-i-major-in-computational-neuroscience
-what-am-i-doing-with-computational-neuroscience
-thank-you
-intro
+acknowledgements
 r
 what-is-r
 r-popularity
@@ -20,6 +12,7 @@ modeling-and-interpretation
 conclusion
 shinysurveys
 what-is-shiny
+technical-aspects-shiny
 usage
 motivation
 survey-of-shinysurveys
