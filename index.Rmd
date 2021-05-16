@@ -20,7 +20,7 @@ url: 'https\://senior-thesis.jdtrat.com/'
 
 # Hello, World {-}
 
-My name is Jonathan Trattner. In May 2021, I will graduate with a Bachelor's of Science Degree in Computational Neuroscience from [Wake Forest University](https://wfu.edu). This `r ifelse(knitr::is_latex_output(), "document", "website")` is the embodiment of my honor's thesis. In it, I discuss my work developing software in the programming language R to help others more easily achieve their academic and professional goals. The first part of the thesis briefly outlines the programming language R and its rising popularity throughout industry and academia. The middle part consists of three chapters, one for each piece of software developed. I describe the technical background and implementation of each package, an easily shareable unit of code, and provide vignette-like documentation highlighting their main features.
+My name is Jonathan Trattner. In May 2021, I will graduate with a Bachelor's of Science Degree in Computational Neuroscience from [Wake Forest University](https://wfu.edu). This `r ifelse(knitr::is_latex_output(), "document", "website")` is the embodiment of my honor's thesis. In it, I discuss my work developing software in the programming language R to help others more easily achieve their academic and professional goals. The first part of the thesis briefly covers R and its rising popularity. The middle part consists of three chapters, one for each piece of software developed. I describe the technical background and implementation of each package, an easily shareable unit of code, and provide vignette-like documentation highlighting their main features.
   
   The first package, {discord}, provides user-friendly functions for genetically-informed quasi-experimental designs. It facilitates discordant-kinship regressions by comparing kin, such as siblings, in a manner that accounts for gene-and-environmental confounds when examining causal links in the realm of ‘nature vs. nurture.’
   
@@ -28,7 +28,7 @@ My name is Jonathan Trattner. In May 2021, I will graduate with a Bachelor's of 
   
   The third package, {ghee}, provides an interface to interact with GitHub, an online host for git repositories. GitHub is a popular platform for code collaboration and can be accessed using their REST API. {ghee} wraps the low-level API R package, {gh}, and provides a curated set of functions to help developers easily perform common GitHub tasks such as creating repositories and inviting collaborators.
   
-  I end each of the main chapters by discussing how to improve upon the software and, in the final section of this thesis, close with an overarching conclusion. The packages described in this thesis have been downloaded over 5500 times. I am excited about the potential applications for this work.
+  I end each of the main chapters by discussing how to improve upon the software and, in the final section of this thesis, close with an overarching conclusion. The packages described in this thesis have been downloaded over 5500 times, and I am excited to see the future applications for this work.
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages

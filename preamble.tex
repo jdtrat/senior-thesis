@@ -32,7 +32,7 @@
 % Adapted https://latex.org/forum/viewtopic.php?t=11011
 \newenvironment{dedication}
     {
-    \vspace{6ex}
+    \vspace{-2ex}
     \begin{quotation}
     \begin{center}
     \begin{em}
@@ -40,6 +40,7 @@
     borderline west={0.5mm}{0mm}{black!90!white},
     borderline south={0.25mm}{0mm}{black!80!white},
   left = 0.125in, right = 0.125in, top = 0.125in, bottom = 0.125in]
+  \textbf{Dedication:}
     }
     {\par\end{tcolorbox}\end{em}\end{center}\end{quotation}}
 
@@ -93,10 +94,209 @@
 % 2004-2005 Ben Salzberg (BTS) a variety of tweaks here and in the template
 % 2015 Chester Ismay (CII) modified to create R Markdown template
 % 2021 Jonathan Trattner (JT) customized for his WFU thesis
+%
+% \renewcommand{\maketitle}
+  % {\pagestyle{empty}
+  % \fontsize{12}{14}\selectfont
+  % \begin{titlepage}
+  % \newpage
+  % \let\footnotesize\small
+  % \let\footnoterule\relax
+  % \let \footnote \thanks
+  %
+  % \baselineskip = 1.4\baselineskip
+  % \setbox0=\hbox{of the Requirements for the Degree}
+%
+%   \begin{center}
+%     \setcounter{page}{1}
+%     \null\vfil
+    % {\fontsize{12}{14}\selectfont The Complete Package: An Applied Thesis for Programming in R}
+%     \vfil
+%     \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+%     \vfil
+%     A Thesis \\
+%     Presented to \\
+%     the Department of Interdisciplinary Studies \\
+%     Wake Forest University
+%     \vfil
+%     \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+%     \vfil
+%     In Partial Fulfillment \\
+%     of the Requirements for the Degree \\
+%     Bachelor of Science
+%     \vfil
+%     \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+%     \bigskip
+%     \centerline{}
+%     \bigskip
+%     {\fontsize{12}{14}\selectfont \lineskip .75em
+%     \begin{tabular}[t]{c}%
+%       Jonathan D. Trattner
+%     \end{tabular}\par}
+%     \vskip 1.5em
+%     {\fontsize{12}{14}\selectfont May 15, 2021 \par}
+%   \end{center}\par
+%   \end{titlepage}
+%   }
 
-\renewcommand{\maketitle}{%
+%
+% \renewcommand{\maketitle}{
+% \begin{titlepage}
+% \baselineskip = 1.4\baselineskip
+%  \setbox0=\hbox{of the Requirements for the Degree}
+%     \begin{center}
+%         \vspace*{1cm}
+%
+%         \Huge
+%         \textbf{The Complete Package}
+%
+%         \vspace{0.5cm}
+%         \LARGE
+%         An Applied Thesis for Programming in R
+%         \vspace{1.0cm}
+%
+%         \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+%
+%         \vspace{1.0cm}
+%         A Thesis Presented to \\
+%         \textit{the Department of Interdisciplinary Studies} \\
+%         Wake Forest University
+%
+%         \vspace{0.5cm}
+%         \textnormal{In Partial Fulfillment \\
+%         of the Requirements for the Degree \\
+%         Bachelor of Science}
+%         \vspace{1cm}
+%
+%         \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+%
+%         \vfil
+%         \textbf{Jonathan D. Trattner} \\
+%         \vspace{0.1cm}
+%         May 15, 2021
+%
+%         \vfil
+%
+%         %\centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+%
+%     \end{center}
+% \end{titlepage}
+% }
+
+
+%
+% \renewcommand{\maketitle}{
+%   {\pagestyle{empty}
+%   \fontsize{12}{14}\selectfont
+%   \begin{titlepage}
+%   \newpage
+%   \let\footnotesize\small
+%   \let\footnoterule\relax
+%   \let \footnote \thanks
+%
+%   \baselineskip = 1.4\baselineskip
+%   \setbox0=\hbox{of the Requirements for the Degree}
+%     \begin{center}
+%         \vspace*{1cm}
+%
+%         \textbf{\LARGE The Complete Package}
+%
+%         \vspace{0.5cm}
+%
+%         {\Large
+%         An Applied Thesis for Programming in R}
+%         \vspace{1.0cm}
+%
+%         \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+%
+%         \vspace{1.0cm}
+%         A Thesis Presented to \\
+%         \textit{the Department of Interdisciplinary Studies} \\
+%         Wake Forest University
+%
+%         \vspace{0.5cm}
+%         \textnormal{In Partial Fulfillment \\
+%         of the Requirements for the Degree \\
+%         Bachelor of Science}
+%         \vspace{1cm}
+%
+%         \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+%
+%         \vfil
+%         \textbf{Jonathan D. Trattner} \\
+%         \vspace{0.1cm}
+%         May 15, 2021
+%
+%         \vfil
+%
+%         %\centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+%
+%     \end{center}
+% \end{titlepage}
+% }
+% }
+
+
+%
+% \renewcommand{\maketitle}{
+%   {\pagestyle{empty}
+%   \fontsize{11}{14}\selectfont
+%   \begin{titlepage}
+%   \newpage
+%   \let\footnotesize\small
+%   \let\footnoterule\relax
+%   \let \footnote \thanks
+%
+%   \baselineskip = 1.4\baselineskip
+%   \setbox0=\hbox{of the Requirements for the Degree}
+%     \begin{center}
+%         \vspace*{1.8cm}
+%
+%         \textbf{\LARGE The Complete Package}
+%
+%         \vspace{0.36cm}
+%
+%         {\Large
+%         An Applied Thesis for Programming in R}
+%
+%         \vfil
+%
+%         \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+%
+%         \vspace{0.6cm}
+%         A Thesis Presented to the \\
+%         \textnormal{Department of Interdisciplinary Studies} \\
+%         \textbf{Wake Forest University}
+%
+%         \vspace{0.5cm}
+%         \textnormal{In Partial Fulfillment \\
+%        of the Requirements for the Degree \\
+%         \textbf{Bachelor of Science}}
+%         \vspace{0.6cm}
+%
+%         \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+%
+%         \vfil
+%
+%         \textbf{\large Jonathan D. Trattner} \\
+%         \vspace{0.1cm}
+%         May 15, 2021
+%
+%         \vspace{1cm}
+%
+%         Approved By \\
+%         Lucy D'Agostino McGowan, Ph.D.
+%
+%         \vfil
+%
+%     \end{center}
+% \end{titlepage}
+% }
+% }
+
+\renewcommand{\maketitle}{
   {\pagestyle{empty}
-  \fontsize{12}{14}\selectfont
+  \fontsize{11.5}{14}\selectfont
   \begin{titlepage}
   \newpage
   \let\footnotesize\small
@@ -105,34 +305,48 @@
 
   \baselineskip = 1.4\baselineskip
   \setbox0=\hbox{of the Requirements for the Degree}
+    \begin{center}
+        \vspace*{1.8cm}
 
-  \begin{center}
-    \setcounter{page}{1}
-    \null\vfil
-    {\fontsize{12}{14}\selectfont \@title}
-    \vfil
-    \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
-    \vfil
-    A Thesis \\
-    Presented to \\
-    the Department of Interdisciplinary Studies \\
-    Wake Forest University
-    \vfil
-    \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
-    \vfil
-    In Partial Fulfillment \\
-    of the Requirements for the Degree \\
-    Bachelor of Science
-    \vfil
-    \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
-    \bigskip
-    \centerline{}
-    \bigskip
-    {\fontsize{12}{14}\selectfont \lineskip .75em
-    \begin{tabular}[t]{c}%
-      \@author
-    \end{tabular}\par}
-    \vskip 1.5em
-    {\fontsize{12}{14}\selectfont \@date \par}
-  \end{center}\par
-  \end{titlepage}
+        \textbf{\LARGE The Complete Package}
+
+        \vspace{0.36cm}
+
+        {\Large
+        An Applied Thesis for Programming in R}
+
+        \vfil
+
+        \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+
+        \vspace{0.6cm}
+        A Thesis Presented to the \\
+        \textnormal{Department of Statistics  on behalf of the} \\
+        \textnormal{Department of Interdisciplinary Studies} \\
+        \textbf{Wake Forest University}
+
+        \vspace{0.5cm}
+        \textnormal{In Partial Fulfillment \\
+       of the Requirements for the Degree \\
+        \textbf{Bachelor of Science}}
+        \vspace{0.6cm}
+
+        \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+
+        \vfil
+
+        \textbf{\large Jonathan D. Trattner} \\
+        \vspace{0.1cm}
+        May 15, 2021
+
+        \vspace{1cm}
+
+        Approved By \\
+        Lucy D'Agostino McGowan, Ph.D.
+
+        \vfil
+
+    \end{center}
+\end{titlepage}
+}
+}

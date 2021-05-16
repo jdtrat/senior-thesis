@@ -2,12 +2,12 @@
 
 ```{=tex}
 \begin{dedication}
-For my dad, AMT, the original software engineer.
+For my dad, Andrew M. Trattner, the original software engineer.
 \end{dedication}
 ```
-My thesis work was made possible because of three amazing mentors: Lucy D'Agostino McGowan, S. Mason Garrison, and Kenneth T. Kishida.
+My thesis projects were made possible because of three amazing mentors: Lucy D'Agostino McGowan, S. Mason Garrison, and Kenneth T. Kishida.
 
-First and foremost, I would like to express my deep gratitude to my primary advisor, Dr. Lucy D'Agostino McGowan. She helped foster my interest in programming, especially in R, through her *Statistical Learning* course which introduced me to more advanced statistics and R programming concepts. Working as her TA, and having the opportunity to interact with her, has greatly influenced my thinking and post-college plans.
+First and foremost, I would like to express my deep gratitude to my primary advisor, Dr. McGowan. She helped foster my interest in programming, especially in R, through her *Statistical Learning* course, which introduced me to more advanced statistics and R programming concepts. Working as her TA, and having the opportunity to interact with her, has greatly influenced my thinking and post-college plans.
 
 It has been a pleasure and a privilege to collaborate with Dr. Garrison on {discord}. I will always be grateful to her for introducing me to quantitative psychology and experimental design and for the ongoing support she provides for my academic and programming endeavors.
 

@@ -7,6 +7,7 @@ bookdown::bs4_book:
     in_header: hypothesis-annotation.html
   sharing: yes
   download: ["pdf", "epub"]
+  csl: american-statistical-association.csl
 bookdown::gitbook:
   css: style.css
   config:
@@ -14,11 +15,13 @@ bookdown::gitbook:
       before: |
         <li><a href="./">The Complete Package: An Applied Thesis for Programming in R</a></li>
     sharing: yes
+    csl: american-statistical-association.csl
 bookdown::pdf_document2:
   toc: yes
   includes:
     in_header: preamble.tex
   latex_engine: xelatex
+  csl: american-statistical-association.csl
   keep_tex: yes
 bookdown::pdf_book:
     toc: yes
@@ -26,5 +29,6 @@ bookdown::pdf_book:
       in_header: preamble.tex
     latex_engine: xelatex
     keep_tex: yes
+    csl: american-statistical-association.csl
 bookdown::epub_book: default
 bookdown::html_book: default

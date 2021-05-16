@@ -4,7 +4,7 @@
 
 Programming is an important skill used in academia and industry alike. For example, an industry professional may need to develop code that combines demographic data and purchasing history in order to predict future profits for a new product. Similarly, a computational neuroscientist, may need to develop code that combines neuroimaging data like fMRI with behavioral data. Such a combination may help them understand the relationship between neural processes and political attitudes -- e.g. [@ahn2014]. Complex models and programs like these are often developed piecemeal by multiple individuals. Thus, if one person makes a change or implements a feature, it's essential that all collaborators have the latest version. It is equally important that any change be revertible in case it introduces a bug to the existing code.
 
-These requirements are met with a version control system (VCS), which allows people to track incremental changes to code. A VCS may be thought of as a more robust version of Microsoft Word's "Track Changes" feature. A popular VCS is called [git](http://git-scm.com), and is popular with scientists and programmers alike [@blischak2016]. The next section discusses the basics of working with git and how to share your code with others using [GitHub](https://github.com), an online platform that hosts code that is version-controlled with git.
+These requirements are met with a version control system (VCS), which allows people to track incremental changes to code. A VCS may be thought of as a more robust version of Microsoft Word's "Track Changes" feature. A VCS called [git](http://git-scm.com) is popular with scientists and programmers alike [@blischak2016]. The next section discusses the basics of working with git and how to share your code with others using [GitHub](https://github.com), an online platform that hosts code which is version-controlled with git.
 
 ## git and GitHub
 
@@ -39,17 +39,17 @@ To **push** files is to send commits from a local repository to its remote repos
 :::
 
 
-If someone wished to work on my thesis for me, they could **clone** the remote repository "senior-thesis", stage, commit, and push changes, and then I could **pull** them into my local repository, ensuring that our versions our consistent.
+If someone wished to work on my thesis for me, for example, they could **clone** the remote repository "senior-thesis". Once they stage, commit, and push changes, I could **pull** them into my local repository, ensuring that our versions our consistent.
 
 ::: {.point data-latex=""}
 
-To **clone** a repository is to make a copy of a remote repository on a personal computer; that is, make a local repo from an remote one.\
+To **clone** a repository is to make a copy of a remote repository on a personal computer; that is, make a local repo from a remote one.\
 To **pull** is to retrieve any commits (modifications) that are on a remote repository and update your local repo.
 
 :::
 
 
-With an understanding of some of the core features of git,[^ghee-2] it's time to collaborate with others. This is often done using [GitHub](https://github.com/), which I will redescribe as an online host for git repositories. When I push an updated version of my thesis, others can view that (and previous versions) [on GitHub](https://github.com/jdtrat/senior-thesis). Because GitHub is a remote platform, it provides a version-controlled backup of my code (or thesis) in case something happened to my computer. On top of that, GitHub has wonderful features for collaboration and productivity. A few features relevant to my thesis include:[^ghee-3]
+With an understanding of some of the core features of git,[^ghee-2] it's time to collaborate with others. This is often done using [GitHub](https://github.com/), which I will redescribe as an online host for git repositories. When I push an updated version of my thesis, others can view that (and previous versions) [on GitHub](https://github.com/jdtrat/senior-thesis). Because GitHub is a remote platform, it provides a version-controlled backup of my work in case something happened to my computer.  On top of that, GitHub has wonderful features for collaboration and productivity. A few aspects relevant to my thesis include:[^ghee-3]
 
 [^ghee-2]: There are additional features of git that are outside the scope of this thesis. For those interested, I would recommend the book *Pro Git*, which is freely available [here](http://git-scm.com/book/en/v2) [@scottchacon2014].
 
@@ -59,7 +59,7 @@ With an understanding of some of the core features of git,[^ghee-2] it's time to
 2.  **Pull requests**: A method of pushing changes to a repository which requires approval by an owner. This facilitates discussions of potential changes before they are integrated into the repository.
 3.  **Repository visibility:** A way to restrict who has access to a repository; public repos are available to anyone on the internet; private repos are only available to the owner and any individuals to whom they explicitly grant access; organization repos are available to people in specific organizations (groups).
 
-For my research, I found myself frequently utilizing these features of GitHub. I constantly left my integrated development environment (IDE), [RStudio](https://www.rstudio.com), opened a web browser, navigated to my repo-of-choice, and created or commented on issues, invited people to the repository, etc. For this reason, I developed a package, {ghee}, that allows common GitHub tasks to be achieved directly from R.
+For my research, I found myself frequently using a lot of these GitHub features. I constantly left my integrated development environment (IDE), [RStudio](https://www.rstudio.com), opened a web browser, navigated to my repo-of-choice, and created or commented on issues, invited people to the repository, etc. For this reason, I developed a package, {ghee}, that allows common GitHub tasks to be achieved directly from R.
 
 ## What is {ghee}?
 
@@ -101,7 +101,7 @@ library(ghee)
 
 #### Collaboration
 
-II have found it particularly helpful to use {ghee} when working with collaborators. Normally, to invite someone to a repo, I would have to navigate to its page on Github, go to settings, manage access, and send an invitation manually. With {ghee}, though, it's as simple as specifying the repo and the invitee:
+I have found it particularly helpful to use {ghee} when working with collaborators. Normally, to invite someone to a repo, I would have to navigate to its page on Github, go to settings, manage access, and send an invitation manually. With {ghee}, though, it's as simple as specifying the repo and the invitee:
 
 ```{r gh_collab_invite-individual, eval = FALSE}
 
@@ -165,7 +165,7 @@ gh_repos_mutate(path = "jdtrat/ghee_test",
 
 For more repository manipulation options, check out GitHub's API [here](https://docs.github.com/en/rest/reference/repos#update-a-repository). You can also look at the documentation for `gh_repos_mutate()`, which expands upon the above examples.
 
-{ghee} also has a function to delete repositories, though it should be *used with caution*, as it is [**permanent**]{.ul}. Further, if you want to use it, you will need to create a special GitHub PAT with the [appropriate permissions](https://docs.github.com/en/github/administering-a-repository/deleting-a-repository). This can be done with the with the [{usethis}](http://usethis.r-lib.org) package as follows: `usethis::create_github_token(scopes = "delete_repo")`.
+{ghee} also has a function to delete repositories, though it should be *used with caution*, as it is [**permanent**]{.ul}. Further, if you want to use it, you will need to create a special GitHub PAT with the [appropriate permissions](https://docs.github.com/en/github/administering-a-repository/deleting-a-repository). This can be done with the [{usethis}](http://usethis.r-lib.org) package as follows: `usethis::create_github_token(scopes = "delete_repo")`.
 
 #### Issues
 
@@ -196,6 +196,6 @@ gh_issue_comment(path = "jdtrat/shinysurveys",
 
 As mentioned in the vignette, {ghee} was not developed to be an exhaustive API. It was designed to provide a curated set of functions to improve R user's workflow for common tasks with GitHub. My productivity has benefited from {ghee}, and (excitingly) it has been downloaded over 750 times as of May 11, 2021.
 
-Even so, discussions within the R community[^ghee-5] have indicated a need for automating certain tasks not currently supported, such as relabeling GitHub Issues. While there are other alternatives for this, chiefly [{usethis}](https://usethis.r-lib.org/reference/index.html#section-git-and-github), I believe the R community could benefit from a common interface. Future work on {ghee} will focus on implementing additional features to improve user's interaction with GitHub.
+Even so, discussions within the R community[^ghee-5] have indicated a need for automating certain tasks not currently supported, such as relabeling GitHub Issues. While there are other alternatives for this, chiefly [{usethis}](https://usethis.r-lib.org/reference/index.html#section-git-and-github), I believe the R community could benefit from a common interface. Future work on {ghee} will focus on implementing additional features to improve user interactions with GitHub.
 
 [^ghee-5]: e.g. <https://twitter.com/henrikbengtsson/status/1392207996592087043?s=20>
